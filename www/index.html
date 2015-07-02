@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Snake on 7-Segment</title>
+
+        <!-- Disable zoom -->
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+        <link rel="stylesheet" href="style.css"/>
+
+        <!-- Load game engine -->
+        <script src="lib/phaser.js"></script>
+
+        <!-- Load game files -->
+        <script type="application/javascript" src="js/cleanMap.js"></script>
+        <script type="application/javascript" src="js/click.js"></script>
+        <script type="application/javascript" src="js/create.js"></script>
+        <script type="application/javascript" src="js/createEventListeners.js"></script>
+        <script type="application/javascript" src="js/game.js"></script>
+        <script type="application/javascript" src="js/getSnakeHeadPosition.js"></script>
+        <script type="application/javascript" src="js/handleInput.js"></script>
+        <script type="application/javascript" src="js/LED.js"></script>
+        <script type="application/javascript" src="js/Map.js"></script>
+        <script type="application/javascript" src="js/Point.js"></script>
+        <script type="application/javascript" src="js/preload.js"></script>
+        <script type="application/javascript" src="js/render.js"></script>
+        <script type="application/javascript" src="js/restart.js"></script>
+        <script type="application/javascript" src="js/SevenSegment.js"></script>
+        <script type="application/javascript" src="js/start.js"></script>
+        <script type="application/javascript" src="js/update.js"></script>
+        <script type="application/javascript" src="js/updateCountDown.js"></script>
+
+        <!-- Start the game when page is loaded -->
+        <script type="text/javascript">
+            document.addEventListener(
+                    'DOMContentLoaded',
+                    function () {
+                        var functions = { update: update };
+
+                        window.game = new Phaser.Game(
+                                1200,
+                                720,
+                                Phaser.AUTO,
+                                'Snake On 7-Segment',
+                                {
+                                    create : create,
+                                    preload: preload,
+                                    //render : render,
+                                    update : function () {
+                                        game.vars.functions.update();
+                                    }
+                                }
+                        );
+
+                        game.vars = {
+                            snake      : [], // List of LEDs visited by snake
+                            food       : null, // Food LED
+                            snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
+                            segments   : [], // 2D array of LED segments
+                            cols       : 6,
+                            rows       : 2,
+                            direction  : { previous: "r", next: "s" },
+                            state      : "end",
+                            map        : null,
+                            update     : 0,
+                            countDown  : 0,
+                            functions  : functions
+                        };
+                    },
+                    false
+            );
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
