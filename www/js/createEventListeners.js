@@ -30,8 +30,6 @@ function createEventListeners() {
             case 32: // Space bar
                 restart();
                 break;
-            default:
-                console.log( event.keyCode );
         }
     } );
 

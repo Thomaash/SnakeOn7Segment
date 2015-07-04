@@ -62,14 +62,12 @@ Point.prototype = {
             case "ht":
             case "hb":
                 if ( this.blocked.vl != null || this.blocked.vr != null ) {
-                    console.log( "blocked" );
                     return true;
                 }
                 break;
             case "vl":
             case "vr":
                 if ( this.blocked.hb != null || this.blocked.ht != null ) {
-                    console.log( "blocked" );
                     return true;
                 }
                 break;
@@ -104,13 +102,7 @@ Point.prototype = {
             case "rbtr":
             case "brrt":
                 return "vr";
-            case "lttl":
-            case "bllb":
-            case "brrb":
-            case "rttr":
-                return null;
             default:
-                console.log( from + to );
                 return null;
         }
     }
