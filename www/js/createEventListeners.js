@@ -1,4 +1,14 @@
 function createEventListeners() {
+    // Touch controls
+    document.body.addEventListener( 'touchstart', function ( event ) {
+        click( event.targetTouches[ 0 ].pageX, event.targetTouches[ 0 ].pageY );
+    }, false );
+
+    // Mouse controls
+    document.body.addEventListener( 'mousedown', function ( event ) {
+        click( event.pageX, event.pageY );
+    }, false );
+
     // Keyboard controls
     document.addEventListener( "keydown", function ( event ) {
         switch ( event.keyCode ) {
@@ -25,8 +35,8 @@ function createEventListeners() {
         }
     } );
 
-    // Touch & click controls
-    game.input.onDown.add( function ( event ) {
-        click( event.positionDown.x, event.positionDown.y );
-    } );
+    //// Touch & click controls. Works only in canvas
+    //game.input.onTap.add( function ( event ) {
+    //    click( event.positionDown.x, event.positionDown.y );
+    //} );
 }
