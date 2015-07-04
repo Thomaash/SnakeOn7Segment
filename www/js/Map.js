@@ -78,6 +78,13 @@ Map.prototype.getRandomLED = function () {
 
     return segment.getRandomLED();
 };
+Map.prototype.clearBlocking = function () {
+    for ( var row = 0; row < this.map.length; ++row ) {
+        for ( var col = 0; col < this.map[ row ].length; ++col ) {
+            this.map[ row ][ col ].clearBlocking();
+        }
+    }
+};
 Map.prototype.setPointState = function ( x, y, color ) {
     if ( x < this.map.length && y < this.map[ x ].length ) {
         var point = this.map[ x ][ y ];

@@ -7,9 +7,7 @@ function Point( tl, tr, rt, rb, br, bl, lb, lt ) {
     this.bl = bl;
     this.lb = lb;
     this.lt = lt;
-    this.blocked = {
-        ht: null, hb: null, vl: null, vr: null
-    };
+    this.clearBlocking();
 
     if ( this.lt != null ) {
         this.lt.BR.point = this;
@@ -45,10 +43,10 @@ function Point( tl, tr, rt, rb, br, bl, lb, lt ) {
     }
 }
 Point.prototype = {
-    block      : function ( from, to ) {
+    block        : function ( from, to ) {
         this.blocked[ this.getCrossing( from, to ) ] = { from: this[ from ], to: this[ to ] };
     },
-    unblock    : function ( led ) {
+    unblock      : function ( led ) {
         if ( this.blocked.hb != null && this.blocked.hb.from === led ) {
             this.blocked.hb = null;
         } else if ( this.blocked.ht != null && this.blocked.ht.from === led ) {
@@ -59,7 +57,7 @@ Point.prototype = {
             this.blocked.vr = null;
         }
     },
-    isBlocked  : function ( from, to ) {
+    isBlocked    : function ( from, to ) {
         switch ( this.getCrossing( from, to ) ) {
             case "ht":
             case "hb":
@@ -77,7 +75,12 @@ Point.prototype = {
                 break;
         }
     },
-    getCrossing: function ( from, to ) {
+    clearBlocking: function () {
+        this.blocked = {
+            ht: null, hb: null, vl: null, vr: null
+        };
+    },
+    getCrossing  : function ( from, to ) {
         if ( from.localeCompare( to ) > 0 ) {
             var tmp = from;
             from = to;
