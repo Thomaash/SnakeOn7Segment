@@ -4,7 +4,7 @@
  * @param {number} y
  */
 function click( x, y ) {
-    if ( x < game.world.width / 2 ) {
+    if ( x < window.innerWidth / 2 ) {
         handleInput.turn( "left" );
     } else {
         handleInput.turn( "right" );
