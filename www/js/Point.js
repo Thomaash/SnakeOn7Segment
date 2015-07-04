@@ -45,30 +45,10 @@ function Point( tl, tr, rt, rb, br, bl, lb, lt ) {
     }
 }
 Point.prototype = {
-    block    : function ( from, to ) {
-        var leds = { from: this[ from ], to: this[ to ] };
-        if ( from.localeCompare( to ) > 0 ) {
-            var tmp = from;
-            from = to;
-            to = tmp;
-        }
-
-        switch ( from + to ) {
-            case "lbrb":
-                this.blocked.hb = leds;
-                break;
-            case "ltrt":
-                this.blocked.ht = leds;
-                break;
-            case "brtr":
-                this.blocked.vl = leds;
-                break;
-            case "bltl":
-                this.blocked.vr = leds;
-                break;
-        }
+    block      : function ( from, to ) {
+        this.blocked[ this.getCrossing( from, to ) ] = { from: this[ from ], to: this[ to ] };
     },
-    unblock  : function ( led ) {
+    unblock    : function ( led ) {
         if ( this.blocked.hb != null && this.blocked.hb.from === led ) {
             this.blocked.hb = null;
         } else if ( this.blocked.ht != null && this.blocked.ht.from === led ) {
@@ -79,14 +59,56 @@ Point.prototype = {
             this.blocked.vr = null;
         }
     },
-    isBlocked: function ( direction ) {
-        if (
-            ( /^[tb]$/.exec( direction ) && ( this.blocked.hb != null || this.blocked.ht != null ) )
-            ||
-            ( /^[lr]$/.exec( direction ) && ( this.blocked.vl != null || this.blocked.vr != null ) )
-        ) {
-            console.log( "blocked" );
-            return true;
+    isBlocked  : function ( from, to ) {
+        switch ( this.getCrossing( from, to ) ) {
+            case "ht":
+            case "hb":
+                if ( this.blocked.vl != null || this.blocked.vr != null ) {
+                    console.log( "blocked" );
+                    return true;
+                }
+                break;
+            case "vl":
+            case "vr":
+                if ( this.blocked.hb != null || this.blocked.ht != null ) {
+                    console.log( "blocked" );
+                    return true;
+                }
+                break;
+        }
+    },
+    getCrossing: function ( from, to ) {
+        if ( from.localeCompare( to ) > 0 ) {
+            var tmp = from;
+            from = to;
+            to = tmp;
+        }
+
+        switch ( from + to ) {
+            case "ltrt":
+            case "rttl":
+            case "lttr":
+                return "ht";
+            case "lbrb":
+            case "blrb":
+            case "brlb":
+                return "hb";
+            case "bltl":
+            case "lbtl":
+            case "bllt":
+                return "vl";
+            case "brtr":
+            case "rbtr":
+            case "brrt":
+                return "vr";
+            case "lttl":
+            case "bllb":
+            case "brrb":
+            case "rttr":
+                return null;
+            default:
+                console.log( from + to );
+                return null;
         }
     }
 };

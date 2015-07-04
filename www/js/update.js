@@ -38,7 +38,7 @@ function update() {
             if (
                 ledNext == null
                 || ledNext.getState() === LED.prototype.state.snake
-                || point.isBlocked( game.vars.direction.next )
+                || point.isBlocked( idLast, idNext )
             ) {
                 game.vars.snake[ index ].setState( LED.prototype.state.dead );
                 game.vars.direction.next = "s";
