@@ -58,19 +58,26 @@ Point.prototype = {
         }
     },
     isBlocked    : function ( from, to ) {
+        var paths = [];
         switch ( this.getCrossing( from, to ) ) {
             case "ht":
+                paths = [ "vl", "vr", "ht" ];
+                break;
             case "hb":
-                if ( this.blocked.vl != null || this.blocked.vr != null ) {
-                    return true;
-                }
+                paths = [ "vl", "vr", "hb" ];
                 break;
             case "vl":
-            case "vr":
-                if ( this.blocked.hb != null || this.blocked.ht != null ) {
-                    return true;
-                }
+                paths = [ "hb", "ht", "vl" ];
                 break;
+            case "vr":
+                paths = [ "hb", "ht", "vr" ];
+                break;
+        }
+
+        for ( var i = 0; i < paths.length; ++i ) {
+            if ( this.blocked[ paths[ i ] ] != null ) {
+                return true;
+            }
         }
     },
     clearBlocking: function () {
