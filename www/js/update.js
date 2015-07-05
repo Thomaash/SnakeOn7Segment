@@ -1,5 +1,5 @@
 function update() {
-    if ( game.vars.state === "run" && !(++game.vars.update < 40) ) {
+    if ( game.vars.state === "run" && ++game.vars.update >= 40 ) {
         game.vars.update = 0;
 
         if ( game.vars.direction.next !== "s" && game.vars.state !== "end" ) {
