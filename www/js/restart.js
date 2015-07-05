@@ -12,9 +12,10 @@ function restart() {
     // Clean map
     cleanMap();
 
-    // Turn off help
-    game.vars.ui.arrow.l.destroy();
-    game.vars.ui.arrow.r.destroy();
+    // Create help
+    var x = game.world.width, y = (game.world.height - 90) / 2;
+    game.vars.ui.arrow.l = game.add.sprite( 45, y, "Arrows", 0 );
+    game.vars.ui.arrow.r = game.add.sprite( x - 90 - 45, y, "Arrows", 1 );
 
     // Add snake into map
     game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );

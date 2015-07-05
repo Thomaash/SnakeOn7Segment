@@ -23,11 +23,6 @@ function create() {
     // Create map
     game.vars.map = new Map();
 
-    // Create help
-    var x = game.world.width, y = (game.world.height - 90) / 2;
-    game.vars.ui.arrow.l = game.add.sprite( 45, y, "Arrows", 0 );
-    game.vars.ui.arrow.r = game.add.sprite( x - 90 - 45, y, "Arrows", 1 );
-
     // Controls
     createEventListeners();
 }
