@@ -2,9 +2,11 @@
 document.addEventListener(
     'DOMContentLoaded',
     function () {
+        var cols = 6, rows = 2;
+
         window.game = new Phaser.Game(
-            1200,
-            720,
+            cols * (SevenSegment.prototype.width + SevenSegment.prototype.margin),
+            rows * (SevenSegment.prototype.height + SevenSegment.prototype.margin),
             Phaser.AUTO,
             'Snake On 7-Segment',
             {
@@ -22,8 +24,8 @@ document.addEventListener(
             food       : null, // Food LED
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
             segments   : [], // 2D array of LED segments
-            cols       : 6,
-            rows       : 2,
+            cols       : cols,
+            rows       : rows,
             direction  : { previous: "r", next: "s" },
             state      : "end",
             map        : null,
