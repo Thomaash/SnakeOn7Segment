@@ -2,11 +2,12 @@
 document.addEventListener(
     'DOMContentLoaded',
     function () {
-        var cols = 6, rows = 2;
+        var cols   = 6, rows = 2,
+            width  = cols * (SevenSegment.prototype.width + SevenSegment.prototype.margin),
+            height = rows * (SevenSegment.prototype.height + SevenSegment.prototype.margin);
 
         window.game = new Phaser.Game(
-            cols * (SevenSegment.prototype.width + SevenSegment.prototype.margin),
-            rows * (SevenSegment.prototype.height + SevenSegment.prototype.margin),
+            width, height,
             Phaser.AUTO,
             'Snake On 7-Segment',
             {
@@ -31,7 +32,10 @@ document.addEventListener(
             map        : null,
             update     : 0,
             countDown  : 0,
-            ui         : { arrow: { l: null, r: null } },
+            ui         : {
+                elements: { leftArrow: null, rightArrow: null, centerScreenText: null },
+                font : height / 12 + "px Arial"
+            },
             functions  : { update: update }
         };
     },

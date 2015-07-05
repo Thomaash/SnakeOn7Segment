@@ -18,6 +18,10 @@ function updateScore() {
             color = LED.prototype.state.red;
         }
 
+        // Show help
+        game.vars.ui.elements.centerScreenText.text = "Tap anywhere to restart the game.";
+        game.vars.ui.elements.centerScreenText.visible = true;
+
         cleanMap();
 
         for ( var col = 0; col < game.vars.segments.length && col < scoreText.length; ++col ) {

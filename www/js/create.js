@@ -20,6 +20,21 @@ function create() {
         }
     }
 
+    // Help UI arrows
+    var x = game.world.width, y = (game.world.height - 90) / 2;
+    game.vars.ui.elements.leftArrow = game.add.sprite( 45, y, "Arrows", 0 );
+    game.vars.ui.elements.rightArrow = game.add.sprite( x - 90 - 45, y, "Arrows", 1 );
+
+    // Help UI text
+    game.vars.ui.elements.centerScreenText = game.add.text(
+        game.world.centerX, game.world.height / 3,
+        "Tap to start the game.",
+        { font: game.vars.ui.font, fill: "#ddd", align: "center" }
+    );
+    game.vars.ui.elements.centerScreenText.anchor.set( 0.5, 0.5 );
+    game.vars.ui.elements.centerScreenText.wordWrap = true;
+    game.vars.ui.elements.centerScreenText.wordWrapWidth = game.world.width - 50;
+
     // Create map
     game.vars.map = new Map();
 
