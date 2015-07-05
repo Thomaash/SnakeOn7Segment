@@ -19,10 +19,10 @@ function SevenSegment( col, row ) {
     }
 }
 SevenSegment.prototype = {
-    margin      : 8,
-    width       : 192,
-    height      : 352,
-    states      : {
+    margin              : 8,
+    width               : 192,
+    height              : 352,
+    states              : {
         off: [ 0, 0, 0, 0, 0, 0, 0 ],
         0  : [ 1, 1, 1, 1, 1, 1, 0 ],
         1  : [ 0, 1, 1, 0, 0, 0, 0 ],
@@ -40,7 +40,7 @@ SevenSegment.prototype = {
         k  : [ 0, 1, 0, 1, 1, 1, 1 ],
         e  : [ 1, 0, 0, 1, 1, 1, 1 ]
     },
-    setState    : function ( state, color ) {
+    setState            : function ( state, color ) {
         if ( !color ) {
             color = 1;
         }
@@ -48,7 +48,7 @@ SevenSegment.prototype = {
             this.leds[ i ].setState( state[ i ] * color );
         }
     },
-    getRandomLED: function ( id ) {
+    getRandomLED        : function ( id ) {
         return this.leds[ Math.floor( 7 * Math.random() ) ];
     }
 };
