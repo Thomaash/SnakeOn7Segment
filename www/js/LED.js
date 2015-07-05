@@ -28,9 +28,6 @@ function LED( offsetX, offsetY, id ) {
     this.sprite.frame = this.state.empty;
 }
 LED.prototype = {
-    types    : {
-        horizontal: 0, vertical: 90
-    },
     state    : {
         black: 0, red: 1, yellow: 2, green: 3, darkGreen: 4,
         empty: 0, dead: 1, food: 2, snake: 3,
