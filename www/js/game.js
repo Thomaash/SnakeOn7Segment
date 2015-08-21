@@ -56,12 +56,6 @@ document.addEventListener(
         );
 
         game.vars = vars;
-
-        console.log(
-            width, height, "",
-            600 * 0.5 * rows, "",
-            vars.quality, vars.scale
-        );
     },
     false
 );
