@@ -4,7 +4,7 @@ function create() {
     game.scale.pageAlignVertically = true; // Align vertically, horizontal alignment is solved in css
 
     // Background
-    game.stage.backgroundColor = '#000';
+    game.stage.backgroundColor = "#000";
 
     // By default Phaser only starts 2 pointers, enable 6 pointers
     game.input.addPointer();
@@ -21,9 +21,15 @@ function create() {
     }
 
     // Help UI arrows
-    var x = game.world.width, y = (game.world.height - 90) / 2;
-    game.vars.ui.elements.leftArrow = game.add.sprite( 45, y, "Arrows", 0 );
-    game.vars.ui.elements.rightArrow = game.add.sprite( x - 90 - 45, y, "Arrows", 1 );
+    var x = game.world.width, y = game.world.height / 2;
+    game.vars.ui.elements.leftArrow = game.add.sprite( x * 0.1, y, "Arrows", 0 );
+    game.vars.ui.elements.rightArrow = game.add.sprite( x * 0.9, y, "Arrows", 1 );
+    game.vars.ui.elements.leftArrow.scale.x = game.vars.scale.ui;
+    game.vars.ui.elements.leftArrow.scale.y = game.vars.scale.ui;
+    game.vars.ui.elements.rightArrow.scale.x = game.vars.scale.ui;
+    game.vars.ui.elements.rightArrow.scale.y = game.vars.scale.ui;
+    game.vars.ui.elements.leftArrow.anchor.setTo( 0.5, 0.5 );
+    game.vars.ui.elements.rightArrow.anchor.setTo( 0.5, 0.5 );
 
     // Help UI text
     game.vars.ui.elements.centerScreenText = game.add.text(

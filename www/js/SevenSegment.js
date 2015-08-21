@@ -36,11 +36,11 @@ SevenSegment.prototype = {
         9  : [ 1, 1, 1, 1, 0, 1, 1 ]
     },
     setState    : function ( state, color ) {
-        if ( !color ) {
-            color = 1;
+        if ( color == null ) {
+            color = "red";
         }
         for ( var i = 0; i < this.leds.length; ++i ) {
-            this.leds[ i ].setState( state[ i ] * color );
+            this.leds[ i ].setState( state[ i ] ? color : "black" );
         }
     },
     getRandomLED: function () {

@@ -1,5 +1,10 @@
 function preload() {
-    game.load.spritesheet( 'LEDHorizontal', 'assets/LEDHorizontal.png', 160, 32 );
-    game.load.spritesheet( 'LEDVertical', 'assets/LEDVertical.png', 32, 160 );
-    game.load.spritesheet( 'Arrows', 'assets/Arrows.png', 90, 90 );
+    game.load.atlas(
+        "LEDs",
+        "assets/" + game.vars.quality + ".png",
+        "assets/" + game.vars.quality + ".json",
+        Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY
+    );
+
+    game.load.spritesheet( "Arrows", "assets/Arrows.png", 90, 90 );
 }
