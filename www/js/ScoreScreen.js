@@ -24,7 +24,7 @@ function ScoreScreen() {
 ScoreScreen.prototype.update = function () {
     if ( ++game.vars.update === 120 ) {
         // Show help
-        game.vars.ui.elements.centerScreenText.text = "Tap anywhere to continue the game.";
+        game.vars.ui.elements.centerScreenText.text = "Tap anywhere to continue";
         game.vars.ui.elements.centerScreenText.visible = true;
 
         // Turn off all LEDs

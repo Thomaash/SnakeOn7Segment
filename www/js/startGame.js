@@ -67,7 +67,7 @@ function startGame() {
     game.vars.ui.elements.centerScreenText = new Phaser.Text(
         game,
         game.world.centerX, game.world.height / 3,
-        "Tap to start the game.",
+        "Tap anywhere to start",
         { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
     );
     game.vars.groups.ui.add( game.vars.ui.elements.centerScreenText );
