@@ -28,7 +28,14 @@ function createEventListeners() {
                 handleInput.pause();
                 break;
             case 32: // Space bar
-                restart();
+                switch ( game.vars.state ) {
+                    case  "end":
+                        startGame();
+                        break;
+                    case  "prepared":
+                        restart();
+                        break;
+                }
                 break;
         }
     } );

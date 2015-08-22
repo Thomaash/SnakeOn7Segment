@@ -10,14 +10,14 @@ function restart() {
     game.vars.functions.update = updateCountDown;
 
     // Clean map
-    cleanMap();
+    cleanMap( false );
 
     // Create help
     game.vars.ui.elements.leftArrow.visible = true;
     game.vars.ui.elements.rightArrow.visible = true;
     game.vars.ui.elements.centerScreenText.visible = false;
 
-    // Add snake into map
+    // Add snake to map
     game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );
     game.vars.snake[ game.vars.snake.length - 1 ].setState( LED.prototype.state.snake );
 }

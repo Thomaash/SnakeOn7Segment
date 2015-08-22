@@ -22,7 +22,7 @@ function updateScore() {
         game.vars.ui.elements.centerScreenText.text = "Tap anywhere to restart the game.";
         game.vars.ui.elements.centerScreenText.visible = true;
 
-        cleanMap();
+        cleanMap( false );
 
         for ( var col = 0; col < game.vars.segments.length && col < scoreText.length; ++col ) {
             game.vars.segments[ col + offsetCol ][ offsetRow ]

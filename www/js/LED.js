@@ -22,7 +22,7 @@ function LED( offsetX, offsetY, id ) {
     };
     this.pos = this.position[ id ];
 
-    this.sprite = game.add.sprite( offsetX + this.pos.x, offsetY + this.pos.y, "LEDs" );
+    this.sprite = game.vars.groups.leds.create( offsetX + this.pos.x, offsetY + this.pos.y, "LEDs" );
     this.sprite.x *= game.vars.scale.leds;
     this.sprite.y *= game.vars.scale.leds;
     this.setState( this.state.empty );
@@ -54,5 +54,8 @@ LED.prototype = {
             x: this.sprite.world.x + this.sprite.width / 2,
             y: this.sprite.world.y + this.sprite.height / 2
         };
+    },
+    destroy  : function () {
+        this.sprite.destroy();
     }
 };

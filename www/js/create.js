@@ -6,44 +6,32 @@ function create() {
     // Background
     game.stage.backgroundColor = "#000";
 
+    // Groups
+    game.vars.groups.leds = game.add.group();
+    game.vars.groups.ui = game.add.group();
+
     // By default Phaser only starts 2 pointers, enable 6 pointers
     game.input.addPointer();
     game.input.addPointer();
     game.input.addPointer();
     game.input.addPointer();
 
-    // Create segments
-    for ( var col = 0; col < game.vars.cols; ++col ) {
-        game.vars.segments[ col ] = [];
-        for ( var row = 0; row < game.vars.rows; ++row ) {
-            game.vars.segments[ col ][ row ] = new SevenSegment( col, row );
-        }
-    }
-
-    // Help UI arrows
-    var x = game.world.width, y = game.world.height / 2;
-    game.vars.ui.elements.leftArrow = game.add.sprite( x * 0.1, y, "Arrows", 0 );
-    game.vars.ui.elements.rightArrow = game.add.sprite( x * 0.9, y, "Arrows", 1 );
-    game.vars.ui.elements.leftArrow.scale.x = game.vars.scale.ui;
-    game.vars.ui.elements.leftArrow.scale.y = game.vars.scale.ui;
-    game.vars.ui.elements.rightArrow.scale.x = game.vars.scale.ui;
-    game.vars.ui.elements.rightArrow.scale.y = game.vars.scale.ui;
-    game.vars.ui.elements.leftArrow.anchor.setTo( 0.5, 0.5 );
-    game.vars.ui.elements.rightArrow.anchor.setTo( 0.5, 0.5 );
-
-    // Help UI text
-    game.vars.ui.elements.centerScreenText = game.add.text(
-        game.world.centerX, game.world.height / 3,
-        "Tap to start the game.",
-        { font: game.vars.ui.font, fill: "#ddd", align: "center" }
-    );
-    game.vars.ui.elements.centerScreenText.anchor.set( 0.5, 0.5 );
-    game.vars.ui.elements.centerScreenText.wordWrap = true;
-    game.vars.ui.elements.centerScreenText.wordWrapWidth = game.world.width - 50;
-
-    // Create map
-    game.vars.map = new Map();
-
     // Controls
     createEventListeners();
+
+    game.load.onLoadComplete.add( function () {
+        // Create segments
+        game.vars.segments = [];
+        for ( var col = 0; col < game.vars.cols; ++col ) {
+            game.vars.segments[ col ] = [];
+            for ( var row = 0; row < game.vars.rows; ++row ) {
+                game.vars.segments[ col ][ row ] = new SevenSegment( col, row );
+            }
+        }
+
+        // Create map
+        game.vars.map = new Map();
+
+        game.vars.state = "prepared";
+    } );
 }
