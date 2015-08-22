@@ -44,7 +44,7 @@ function update() {
                 game.vars.direction.next = "s";
                 game.vars.state = "end";
                 game.vars.functions.update = updateScreen;
-                game.vars.screen=new ScoreScreen();
+                game.vars.screen = new ScoreScreen();
             } else {
                 if ( ledNext.getState() === LED.prototype.state.food ) {
                     game.vars.snakeLength++;
@@ -53,8 +53,11 @@ function update() {
 
                 // Add new LED to snake
                 game.vars.snake.push( ledNext );
-                ledNext.setState( LED.prototype.state.snake );
+                ledNext.setState( LED.prototype.state.snakeHead );
                 point.block( idLast, idNext );
+
+                // Set former head LED to snake body
+                ledLast.setState( LED.prototype.state.snake );
 
                 index -= game.vars.snakeLength;
                 if ( index >= 0 ) {

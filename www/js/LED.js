@@ -30,7 +30,7 @@ function LED( offsetX, offsetY, id ) {
 LED.prototype = {
     state    : {
         black: "black", red: "red", yellow: "yellow", green: "green", darkGreen: "darkGreen",
-        empty: "black", dead: "red", food: "yellow", snake: "green",
+        empty: "black", dead: "red", food: "yellow", snakeHead: "green", snake: "darkGreen",
         0    : "black", 1: "red", 2: "yellow", 3: "green", 4: "darkGreen" // Backward compatibility
     },
     position : [

@@ -19,5 +19,5 @@ function restart() {
 
     // Add snake to map
     game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );
-    game.vars.snake[ game.vars.snake.length - 1 ].setState( LED.prototype.state.snake );
+    game.vars.snake[ game.vars.snake.length - 1 ].setState( LED.prototype.state.snakeHead );
 }
