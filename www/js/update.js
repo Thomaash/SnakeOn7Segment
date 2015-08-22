@@ -84,12 +84,17 @@ function update() {
         }
 
         if ( game.vars.food == null ) {
+            // Add food if not present
             var foodLED = game.vars.map.getRandomLED();
 
             if ( foodLED.getState() === LED.prototype.state.empty ) {
                 foodLED.setState( LED.prototype.state.food );
                 game.vars.food = foodLED;
             }
+        } else if ( Math.random() < 0.01 ) {
+            // Randomly remove food
+            game.vars.food.setState( LED.prototype.state.empty );
+            game.vars.food = null;
         }
     }
 }
