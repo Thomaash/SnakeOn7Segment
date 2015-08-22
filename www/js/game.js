@@ -30,6 +30,8 @@ document.addEventListener(
             direction  : { previous: "r", next: "s" },
             groups     : {},
             state      : "end",
+            screen     : {},
+            level      : new Level( 1, 1, 1 ), // 1st level, 1 decimal digit, 1 is minimum
             map        : null,
             update     : 0,
             countDown  : 0,

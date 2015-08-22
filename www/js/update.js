@@ -43,7 +43,8 @@ function update() {
                 game.vars.snake[ index ].setState( LED.prototype.state.dead );
                 game.vars.direction.next = "s";
                 game.vars.state = "end";
-                game.vars.functions.update = updateScore;
+                game.vars.functions.update = updateScreen;
+                game.vars.screen=new ScoreScreen();
             } else {
                 if ( ledNext.getState() === LED.prototype.state.food ) {
                     game.vars.snakeLength++;

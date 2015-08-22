@@ -14,7 +14,8 @@ function startGame() {
     }
 
     // Set map size
-    game.vars.rows = Math.round( Math.random() * 3 + 2 );
+    // First level have 2 rows, 2nd 3, etc., level is decimal number
+    game.vars.rows = game.vars.level.floor() + 1;
     game.vars.cols = 3 * game.vars.rows;
 
     // Count sprite quality
