@@ -33,8 +33,6 @@ function Level( defaultValue, precision, min, max ) {
             this.level = item * 1;
             this.limit();
         }
-
-        console.log( this.level );
     };
     this.save = function () {
         window.localStorage.setItem( "So7S_level", this.level );
