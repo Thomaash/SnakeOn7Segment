@@ -1,6 +1,6 @@
 define( ["ui/createButton"], function (createButton) {
     function clickPlay() {
-        game.state.start( "Game" );
+        game.state.start( "PreStart" );
     }
 
     function clickHigh() {
