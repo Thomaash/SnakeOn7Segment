@@ -40,6 +40,7 @@ function update() {
                 || ledNext.getState() === LED.prototype.state.snake
                 || point.isBlocked( idLast, idNext )
             ) {
+                score.save( game.vars.snakeLength + 1 );
                 game.vars.snake[ index ].setState( LED.prototype.state.dead );
                 game.vars.direction.next = "s";
                 game.vars.state = "end";
