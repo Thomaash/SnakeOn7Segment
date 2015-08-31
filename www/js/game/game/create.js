@@ -1,6 +1,6 @@
 define( [], function () {
     return function () {
-        // Groups
+        // Group
         game.vars.groups.leds = game.add.group();
         game.vars.groups.ui = game.add.group();
 
@@ -24,17 +24,6 @@ define( [], function () {
         game.renderer.resize( width, height ); // Tell renderer to resize canvas
         game.scale.refresh(); // Tell scale manager to scale to new canvas size
 
-        // Help UI arrows
-        var x = game.world.width, y = game.world.height / 2;
-        game.vars.ui.elements.leftArrow = game.vars.groups.ui.create( x * 0.1, y, "Arrows", 0 );
-        game.vars.ui.elements.rightArrow = game.vars.groups.ui.create( x * 0.9, y, "Arrows", 1 );
-        game.vars.ui.elements.leftArrow.scale.x = game.vars.scale.ui;
-        game.vars.ui.elements.leftArrow.scale.y = game.vars.scale.ui;
-        game.vars.ui.elements.rightArrow.scale.x = game.vars.scale.ui;
-        game.vars.ui.elements.rightArrow.scale.y = game.vars.scale.ui;
-        game.vars.ui.elements.leftArrow.anchor.setTo( 0.5, 0.5 );
-        game.vars.ui.elements.rightArrow.anchor.setTo( 0.5, 0.5 );
-
         // Help UI text
         game.vars.ui.elements.centerScreenText = new Phaser.Text(
             game,
@@ -46,6 +35,7 @@ define( [], function () {
         game.vars.ui.elements.centerScreenText.anchor.set( 0.5, 0.5 );
         game.vars.ui.elements.centerScreenText.wordWrap = true;
         game.vars.ui.elements.centerScreenText.wordWrapWidth = game.world.width - 50;
+        game.vars.ui.elements.centerScreenText.visible = false;
 
         // Create segments
         game.vars.segments = [];
@@ -59,6 +49,17 @@ define( [], function () {
         // Create map
         game.vars.map = new Map();
 
-        game.vars.state = "prepared";
+        // Add snake to map
+        game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );
+        game.vars.snake[ game.vars.snake.length - 1 ].setState( LED.prototype.state.snakeHead );
+
+        // Set game speed, 40 for 1st level, 10 minimum
+        game.vars.speed = 50 - game.vars.level.floor() * 5;
+        if ( game.vars.speed < 10 ) {
+            game.vars.speed = 10;
+        }
+
+        game.vars.functions.update = update;
+        game.vars.state = "run";
     };
 } );
