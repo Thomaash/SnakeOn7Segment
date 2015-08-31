@@ -28,7 +28,7 @@ ScoreScreen.prototype.update = function () {
         game.vars.ui.elements.centerScreenText.visible = true;
 
         // Turn off all LEDs
-        cleanMap( false );
+        cleanMap();
 
         // Light up score digits
         for ( var col = 0; col < game.vars.segments.length && col < this.scoreText.length; ++col ) {

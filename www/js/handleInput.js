@@ -26,7 +26,7 @@ var handleInput = {
     turn  : function ( direction ) {
         switch ( game.vars.state ) {
             case  "end":
-                startGame();
+                game.state.start( "Game" );
                 break;
             case  "prepared":
                 restart();

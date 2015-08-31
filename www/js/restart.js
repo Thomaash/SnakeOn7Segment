@@ -10,7 +10,7 @@ function restart() {
     game.vars.functions.update = updateCountDown;
 
     // Clean map
-    cleanMap( false );
+    cleanMap();
 
     // Create help
     game.vars.ui.elements.leftArrow.visible = true;
@@ -23,5 +23,7 @@ function restart() {
 
     // Set game speed, 40 for 1st level, 10 minimum
     game.vars.speed = 50 - game.vars.level.floor() * 5;
-    if ( game.vars.speed < 10 ) { game.vars.speed = 10; }
+    if ( game.vars.speed < 10 ) {
+        game.vars.speed = 10;
+    }
 }
