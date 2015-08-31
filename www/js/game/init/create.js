@@ -13,7 +13,7 @@ define( [], function () {
         game.input.addPointer();
         game.input.addPointer();
 
-        // Start game
-        game.state.start( "Game" );
+        // Enter main menu
+        game.state.start( "MainMenu" );
     };
 } );

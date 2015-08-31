@@ -1,4 +1,4 @@
-requirejs( [ "init/main", "game/main" ], function ( init, game ) {
+requirejs( [ "game/main", "init/main", "mainMenu/main" ], function ( game, init, mainMenu ) {
     // Start Phaser
     window.game = new Phaser.Game( window.innerWidth, window.innerHeight, Phaser.AUTO );
 
@@ -36,7 +36,8 @@ requirejs( [ "init/main", "game/main" ], function ( init, game ) {
     createEventListeners();
 
     // Start game
-    window.game.state.add( "Init", init );
     window.game.state.add( "Game", game );
+    window.game.state.add( "Init", init );
+    window.game.state.add( "MainMenu", mainMenu );
     window.game.state.start( "Init" );
 } );
