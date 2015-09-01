@@ -39,6 +39,9 @@ SevenSegment.prototype = {
         if ( color == null ) {
             color = "red";
         }
+        if ( typeof state === "number" || typeof state === "string" ) {
+            state = this.states[ state ];
+        }
         for ( var i = 0; i < this.leds.length; ++i ) {
             this.leds[ i ].setState( state[ i ] ? color : "black" );
         }
