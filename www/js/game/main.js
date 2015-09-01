@@ -6,7 +6,7 @@ requirejs(
                preStart, game, score,
                Level, createEventListeners ) {
         // Start Phaser
-        window.game = new Phaser.Game( window.innerWidth, window.innerHeight, Phaser.AUTO );
+        window.game = new Phaser.Game( 1280, 720, Phaser.AUTO );
 
         // Game state and settings
         window.game.vars = {

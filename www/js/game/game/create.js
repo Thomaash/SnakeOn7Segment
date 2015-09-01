@@ -1,4 +1,4 @@
-define( [ "tools/Map" ], function ( Map ) {
+define( [ "tools/Map", "tools/changeSize" ], function ( Map, changeSize ) {
     return function () {
         // Group
         game.vars.groups.leds = game.add.group();
@@ -14,12 +14,7 @@ define( [ "tools/Map" ], function ( Map ) {
             height = game.vars.rows
                 * (SevenSegment.prototype.height + SevenSegment.prototype.margin)
                 * game.vars.scale.leds;
-        game.width = width;
-        game.height = height;
-        game.world.width = width;
-        game.world.height = height;
-        game.renderer.resize( width, height ); // Tell renderer to resize canvas
-        game.scale.refresh(); // Tell scale manager to scale to new canvas size
+        changeSize( game, width, height );
 
         // Help UI text
         game.vars.ui.elements.centerScreenText = new Phaser.Text(

@@ -1,5 +1,6 @@
-define( [], function () {
+define( [ "tools/changeSize" ], function ( changeSize ) {
     return function () {
+        changeSize( game );
         game.vars.quality = 160;
         game.vars.rows = 2;
         game.vars.cols = 6;
