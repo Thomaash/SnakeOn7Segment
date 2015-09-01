@@ -1,10 +1,11 @@
-define( [ "game/preload", "game/create", "game/shutdown" ], function ( preload, create, shutdown ) {
-    return {
-        preload : preload,
-        create  : create,
-        shutdown: shutdown,
-        update  : function () {
-            game.vars.functions.update();
-        }
-    };
-} );
+define(
+    [ "game/preload", "game/create", "game/update", "game/shutdown" ],
+    function ( preload, create, update, shutdown ) {
+        return {
+            preload : preload,
+            create  : create,
+            shutdown: shutdown,
+            update  : update
+        };
+    }
+);

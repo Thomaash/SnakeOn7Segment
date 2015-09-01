@@ -18,6 +18,5 @@ define( [], function () {
         game.vars.direction = { previous: "r", next: "r" };
         game.vars.update = 0;
         game.vars.countDown = 3;
-        game.vars.functions.update = update;
     };
 } );

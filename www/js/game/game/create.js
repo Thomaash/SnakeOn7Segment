@@ -4,9 +4,6 @@ define( [], function () {
         game.vars.groups.leds = game.add.group();
         game.vars.groups.ui = game.add.group();
 
-        // Prevent function from being called two times
-        game.vars.functions.update = function () {};
-
         // Count LED scale
         game.vars.scale.leds = game.vars.quality / 160;
 
@@ -59,7 +56,6 @@ define( [], function () {
             game.vars.speed = 10;
         }
 
-        game.vars.functions.update = update;
         game.vars.clickAction = "turn";
     };
 } );

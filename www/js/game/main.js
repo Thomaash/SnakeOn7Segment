@@ -32,8 +32,7 @@ requirejs(
                     size: 12,
                     get : function () {return this.size + "px " + this.name;}
                 }
-            },
-            functions  : { update: function () {} }
+            }
         };
 
         // Controls
