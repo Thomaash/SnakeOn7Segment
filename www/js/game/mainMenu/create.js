@@ -12,6 +12,6 @@ define( [ "ui/createButton" ], function ( createButton ) {
         header.anchor.setTo( 0.5, 0 );
 
         createButton( 0, "Play", clickPlay );
-        createButton( 1, "Highscores", clickHigh );
+        createButton( 1, "High scores", clickHigh );
     };
 } );
