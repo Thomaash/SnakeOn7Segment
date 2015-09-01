@@ -14,6 +14,9 @@ var handleInput = {
     },
     click : function () {
         switch ( game.state.getCurrentState().key ) {
+            case  "PreStart":
+                game.state.start( "Game" );
+                break;
             case  "Game":
                 game.state.start( "Score" );
                 break;
