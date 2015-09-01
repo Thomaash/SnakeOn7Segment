@@ -4,6 +4,7 @@ define( [ "tools/changeSize" ], function ( changeSize ) {
         game.vars.quality = 160;
         game.vars.rows = 2;
         game.vars.cols = 6;
+        game.vars.scale.leds = 1;
 
         // Preload LED assets
         game.load.atlas(
