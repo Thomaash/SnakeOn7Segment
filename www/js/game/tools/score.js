@@ -22,10 +22,10 @@ define( [], function () {
             }
 
             // Save updated scores
-            localStorage.setItem( "S7_Scores", JSON.stringify( scores ) );
+            localStorage.setItem( "So7S_Scores", JSON.stringify( scores ) );
         },
         load: function () {
-            return JSON.parse( localStorage.getItem( "S7_Scores" ) );
+            return JSON.parse( localStorage.getItem( "So7S_Scores" ) );
         }
     };
 } );
