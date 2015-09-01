@@ -36,6 +36,8 @@ var handleInput = {
             case 40: // ↓
                 handleInput.bottom();
                 break;
+            case 13: // Enter
+            case 27: // Escape
             case 32: // Space bar
                 this.click();
                 break;
