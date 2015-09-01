@@ -16,13 +16,6 @@ var handleInput = {
             game.vars.direction.next = direction;
         }
     },
-    pause : function () {
-        if ( game.vars.state === "pause" ) {
-            game.vars.state = "run";
-        } else {
-            game.vars.state = "pause";
-        }
-    },
     turn  : function ( direction ) {
         switch ( game.vars.state ) {
             case  "end":
