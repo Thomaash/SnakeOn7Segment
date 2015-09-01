@@ -3,6 +3,11 @@ define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
         game.state.start( "MainMenu" );
     }
 
+    function clickReset() {
+        score.reset();
+        game.state.start( "HighScores" );
+    }
+
     function ordinal( number ) {
         switch ( String( number ).slice( -1 ) ) {
             case "1":
@@ -17,7 +22,8 @@ define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
     }
 
     return function () {
-        createButton( { x: 200, y: 40 }, "Menu", clickMenu );
+        createButton( { x: 200, y: 72 }, "Menu", clickMenu );
+        createButton( { x: game.world.width - 200, y: 72 }, "Reset", clickReset );
 
         var scores = score.load();
         if ( scores != null ) {

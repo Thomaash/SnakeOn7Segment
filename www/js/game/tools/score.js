@@ -1,6 +1,6 @@
 define( [], function () {
     return {
-        save: function ( score ) {
+        save : function ( score ) {
             var scores = this.load();
 
             if ( scores != null ) {
@@ -24,8 +24,11 @@ define( [], function () {
             // Save updated scores
             localStorage.setItem( "So7S_Scores", JSON.stringify( scores ) );
         },
-        load: function () {
+        load : function () {
             return JSON.parse( localStorage.getItem( "So7S_Scores" ) );
+        },
+        reset: function () {
+            localStorage.removeItem( "So7S_Scores" );
         }
     };
 } );
