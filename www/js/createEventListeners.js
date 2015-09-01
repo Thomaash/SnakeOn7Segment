@@ -1,41 +1,17 @@
 function createEventListeners() {
     // Touch controls
     document.body.addEventListener( 'touchstart', function ( event ) {
-        click( event.targetTouches[ 0 ].pageX, event.targetTouches[ 0 ].pageY );
+        handleInput[ game.vars.clickAction ]( event.targetTouches[ 0 ].pageX );
     }, false );
 
     // Mouse controls
     document.body.addEventListener( 'mousedown', function ( event ) {
-        click( event.pageX, event.pageY );
+        handleInput[ game.vars.clickAction ]( event.pageX );
     }, false );
 
     // Keyboard controls
     document.addEventListener( "keydown", function ( event ) {
-        switch ( event.keyCode ) {
-            case 37: // ←
-                handleInput.left();
-                break;
-            case 38: // ↑
-                handleInput.top();
-                break;
-            case 39: // →
-                handleInput.right();
-                break;
-            case 40: // ↓
-                handleInput.bottom();
-                break;
-            case 80: // P
-                handleInput.pause();
-                break;
-            case 32: // Space bar
-                switch ( game.vars.state ) {
-                    case  "end":
-                    case  "score":
-                        game.state.start( "PreStart" );
-                        break;
-                }
-                break;
-        }
+        handleInput.keys( event.keyCode );
     } );
 
     //// Touch & click controls. Works only in canvas

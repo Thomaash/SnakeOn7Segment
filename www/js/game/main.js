@@ -17,8 +17,8 @@ requirejs(
             rows       : 1,
             quality    : 160, // Length of LEDs
             direction  : { previous: "r", next: "s" },
+            clickAction: "click",
             groups     : {},
-            state      : "end",
             screen     : {},
             level      : new Level( 1, 1, 1 ), // 1st level, 1 decimal digit, 1 is minimum
             speed      : 40, // Game speed, higher = slower

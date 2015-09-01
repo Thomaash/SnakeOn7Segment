@@ -2,7 +2,7 @@ function update() {
     if ( ++game.vars.update >= game.vars.speed ) {
         game.vars.update = 0;
 
-        if ( game.vars.state !== "score" ) {
+        if ( game.vars.clickAction === "turn" ) {
             var point, edge, sideRegex, ledNext,
                 index   = game.vars.snake.length - 1,
                 ledLast = game.vars.snake[ index ];
@@ -43,7 +43,7 @@ function update() {
                 score.save( game.vars.snakeLength + 1 );
                 game.vars.snake[ index ].setState( LED.prototype.state.dead );
                 game.vars.direction.next = "s";
-                game.vars.state = "score";
+                game.vars.clickAction = "click";
                 game.vars.speed = 120;
             } else {
                 if ( ledNext.getState() === LED.prototype.state.food ) {

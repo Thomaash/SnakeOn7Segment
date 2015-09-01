@@ -60,6 +60,6 @@ define( [], function () {
         }
 
         game.vars.functions.update = update;
-        game.vars.state = "run";
+        game.vars.clickAction = "turn";
     };
 } );
