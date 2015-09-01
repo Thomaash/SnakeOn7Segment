@@ -1,6 +1,8 @@
 define( [], function () {
     return function () {
         game.vars.quality = 160;
+        game.vars.rows = 2;
+        game.vars.cols = 6;
 
         // Preload LED assets
         game.load.atlas(

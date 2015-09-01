@@ -19,6 +19,7 @@ var handleInput = {
     turn  : function ( direction ) {
         switch ( game.vars.state ) {
             case  "end":
+            case  "score":
                 game.state.start( "PreStart" );
                 break;
             default:

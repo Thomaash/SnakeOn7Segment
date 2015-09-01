@@ -30,6 +30,7 @@ function createEventListeners() {
             case 32: // Space bar
                 switch ( game.vars.state ) {
                     case  "end":
+                    case  "score":
                         game.state.start( "PreStart" );
                         break;
                 }
