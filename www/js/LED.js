@@ -28,12 +28,12 @@ function LED( offsetX, offsetY, id ) {
     this.setState( this.state.empty );
 }
 LED.prototype = {
-    state    : {
+    state   : {
         black: "black", red: "red", yellow: "yellow", green: "green", darkGreen: "darkGreen",
         empty: "black", dead: "red", food: "yellow", snakeHead: "green", snake: "darkGreen",
         0    : "black", 1: "red", 2: "yellow", 3: "green", 4: "darkGreen" // Backward compatibility
     },
-    position : [
+    position: [
         { x: 17, y: 0, type: "h" }, // 0
         { x: 160, y: 17, type: "v" }, // 1
         { x: 160, y: 177, type: "v" }, // 2
@@ -42,14 +42,14 @@ LED.prototype = {
         { x: 0, y: 17, type: "v" }, // 5
         { x: 17, y: 160, type: "h" } // 6
     ],
-    setState : function ( state ) {
+    setState: function ( state ) {
         this.state = state;
         this.sprite.frameName = this.pos.type + state + ".png";
     },
-    getState : function () {
+    getState: function () {
         return this.state;
     },
-    destroy  : function () {
+    destroy : function () {
         this.sprite.destroy();
     }
 };

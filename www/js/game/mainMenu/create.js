@@ -1,4 +1,4 @@
-define( ["ui/createButton"], function (createButton) {
+define( [ "ui/createButton" ], function ( createButton ) {
     function clickPlay() {
         game.state.start( "PreStart" );
     }

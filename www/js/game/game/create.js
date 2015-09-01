@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "tools/Map" ], function ( Map ) {
     return function () {
         // Group
         game.vars.groups.leds = game.add.group();

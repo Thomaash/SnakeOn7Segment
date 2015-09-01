@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "tools/score" ], function ( score ) {
     return function () {
         if ( ++game.vars.update >= game.vars.speed ) {
             game.vars.update = 0;

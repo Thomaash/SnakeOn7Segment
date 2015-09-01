@@ -1,8 +1,10 @@
 requirejs(
     [ "init/main", "mainMenu/main", "highScores/main",
-        "preStart/main", "game/main", "score/main" ],
+        "preStart/main", "game/main", "score/main",
+        "tools/Level", "tools/createEventListeners" ],
     function ( init, mainMenu, highScores,
-               preStart, game, score ) {
+               preStart, game, score,
+               Level, createEventListeners ) {
         // Start Phaser
         window.game = new Phaser.Game( window.innerWidth, window.innerHeight, Phaser.AUTO );
 
