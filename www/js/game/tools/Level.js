@@ -1,5 +1,6 @@
 define( [], function () {
     return function ( defaultValue, precision, min, max ) {
+        this.level = 0;
         this.precision = Math.pow( 10, precision );
         this.default = defaultValue * this.precision;
         this.min = min * this.precision;
@@ -27,11 +28,11 @@ define( [], function () {
             }
         };
         this.load = function () {
-            var item = window.localStorage.getItem( "So7S_level" );
-            if ( item == null ) {
+            var item = parseInt( window.localStorage.getItem( "So7S_level" ) );
+            if ( isNaN( item ) ) {
                 this.level = this.default;
             } else {
-                this.level = item * 1;
+                this.level = item;
                 this.limit();
             }
         };
