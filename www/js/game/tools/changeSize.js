@@ -1,6 +1,6 @@
 define( [], function () {
     return function ( game, width, height ) {
-        width = typeof width === "number" ? width : 1280;
+        width = typeof width === "number" ? width : 1200;
         height = typeof height === "number" ? height : 720;
 
         game.width = width;

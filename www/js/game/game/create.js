@@ -38,6 +38,9 @@ define( [ "tools/Map", "tools/changeSize" ], function ( Map, changeSize ) {
             }
         }
 
+        // Save LED count for score counting
+        game.vars.LEDCount = game.vars.segments.length * game.vars.segments[ 0 ].length * 7;
+
         // Create map
         game.vars.map = new Map();
 

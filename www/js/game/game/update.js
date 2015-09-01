@@ -1,4 +1,4 @@
-define( [ "tools/score" ], function ( score ) {
+define( [], function () {
     return function () {
         if ( ++game.vars.update >= game.vars.speed ) {
             game.vars.update = 0;
@@ -41,7 +41,6 @@ define( [ "tools/score" ], function ( score ) {
                     || ledNext.getState() === LED.prototype.state.snake
                     || point.isBlocked( idLast, idNext )
                 ) {
-                    score.save( game.vars.snakeLength + 1 );
                     game.vars.snake[ index ].setState( LED.prototype.state.dead );
                     game.vars.direction.next = "s";
                     game.vars.clickAction = "click";

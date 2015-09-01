@@ -1,13 +1,18 @@
-define( [ "ui/createButton" ], function ( createButton ) {
+define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
     function clickMenu() {
         game.state.start( "MainMenu" );
     }
 
     return function () {
-        var score = ("      " + (game.vars.snakeLength + 1)).slice( -6 );
+        var scoreInt = game.vars.snakeLength + 1,
+            scoreStr = ("      " + (game.vars.snakeLength + 1)).slice( -6 ),
+            levelChange, color, message;
         game.vars.countDown = 3;
         game.vars.ui.font.size = 24;
         game.vars.update = 60;
+
+        // Save score
+        score.save( scoreInt );
 
         // Create menu button
         createButton( { x: 200, y: 40 }, "Menu", clickMenu );
@@ -16,10 +21,34 @@ define( [ "ui/createButton" ], function ( createButton ) {
         game.vars.groups.leds = game.add.group();
         game.vars.groups.ui = game.add.group();
 
+        // Set LED color and levelChange
+        if ( scoreStr >= game.vars.LEDCount / 2 ) {
+            color = LED.prototype.state.green;
+            levelChange = 10;
+            message = "Awesome";
+        } else if ( scoreStr >= game.vars.LEDCount / 3 ) {
+            color = LED.prototype.state.darkGreen;
+            levelChange = 5;
+            message = "Good job, but to proceed faster, get even higher score.";
+        } else if ( scoreStr >= game.vars.LEDCount / 4 ) {
+            color = LED.prototype.state.yellow;
+            levelChange = 1;
+            message = "Not bad, but to proceed faster, get higher score.";
+        } else {
+            color = LED.prototype.state.red;
+            levelChange = -10;
+            message = "You won't proceed to next level this way, get higher score.";
+        }
+
+        // Save level
+        game.vars.level.add( 0, levelChange );
+
         // Help UI text
         game.vars.ui.elements.centerScreenText = new Phaser.Text(
             game,
             game.world.centerX, game.world.height / 3,
+            message +
+            "\n\n" +
             "Tap anywhere to continue",
             { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
         );
@@ -32,7 +61,7 @@ define( [ "ui/createButton" ], function ( createButton ) {
         game.vars.segments = [];
         for ( var i = 0; i < 6; i++ ) {
             var segment = new SevenSegment( i, 1 );
-            segment.setState( score[ i ] === " " ? "off" : score[ i ] );
+            segment.setState( scoreStr[ i ] === " " ? "off" : scoreStr[ i ], color );
 
             game.vars.segments[ game.vars.segments.length ] = segment;
         }

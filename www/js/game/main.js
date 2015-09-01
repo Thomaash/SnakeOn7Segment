@@ -6,7 +6,7 @@ requirejs(
                preStart, game, score,
                Level, createEventListeners ) {
         // Start Phaser
-        window.game = new Phaser.Game( 1280, 720, Phaser.AUTO );
+        window.game = new Phaser.Game( 1200, 720, Phaser.AUTO );
 
         // Game state and settings
         window.game.vars = {
@@ -14,6 +14,7 @@ requirejs(
             food       : null, // Food LED
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
             segments   : [], // 2D array of LED segments
+            LEDCount   : 0,
             scale      : {}, // Scale sprites
             cols       : 3,
             rows       : 1,
