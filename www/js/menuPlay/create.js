@@ -1,4 +1,4 @@
-define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
+define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button, storage, ordinal ) {
     var rowsLbl, speedLbl,
         click = {
             menu        : function () { game.state.start( "MainMenu" ); },
@@ -45,7 +45,20 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
         // Menu button
         button( 200, 40, "Menu", click.menu, "button" );
 
+
+        // Classic
+        x = game.world.centerX;
+        y = game.world.centerY - 160;
+        button( x, y, "Classic", click.play, "button" );
+        button( x + offset, y - 32, ordinal( game.vars.level.floor() ) + " level", null, "button" );
+
+        // Level number
+        button( game.world.centerX, game.world.centerY - 160, "Classic", click.play, "button" );
+
+
+        // Single
         y = game.world.centerY + 32;
+        button( game.world.centerX, game.world.centerY, "Single level", click.single, "button" );
 
         // Rows
         x = game.world.centerX - offset;
@@ -60,9 +73,5 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
         button( x - 72, y + 80, "−", click.speedSub, "buttonSquare" );
         speedLbl = button( x, y + 80, click.speedGetText(), null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.speedAdd, "buttonSquare" );
-
-        // Game type buttons
-        button( game.world.centerX, game.world.centerY - 160, "Classic", click.play, "button" );
-        button( game.world.centerX, game.world.centerY, "Single level", click.single, "button" );
     };
 } );
