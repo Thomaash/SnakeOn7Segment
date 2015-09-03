@@ -88,12 +88,17 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
 
                     if ( foodLED.getState() === SevenSegment.prototype.state.led.empty ) {
                         foodLED.setState( SevenSegment.prototype.state.led.food );
+                        foodLED.life = 2 * (game.vars.rows + game.vars.cols);
                         game.vars.food = foodLED;
                     }
-                } else if ( Math.random() < 0.01 ) {
+                } else {
                     // Randomly remove food
-                    game.vars.food.setState( SevenSegment.prototype.state.led.empty );
-                    game.vars.food = null;
+                    game.vars.food.life -= Math.random();
+
+                    if ( game.vars.food.life < 0 ) {
+                        game.vars.food.setState( SevenSegment.prototype.state.led.empty );
+                        game.vars.food = null;
+                    }
                 }
             } else {
                 game.state.start( "Score" );
