@@ -41,14 +41,14 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
             case "classic":
                 // Save level
                 game.vars.level.add( 0, levelChange );
-
-                // Save score
-                score.save( scoreInt );
                 break;
             case "single":
                 message = "";
                 break;
         }
+
+        // Save score
+        score.save( game.vars.gameType, scoreInt );
 
         // Help UI text
         game.vars.ui.elements.centerScreenText = new Phaser.Text(

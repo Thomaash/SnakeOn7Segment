@@ -1,7 +1,19 @@
 define( [], function () {
     return {
-        save : function ( score ) {
-            var scores = this.load();
+        save : function ( gameType, score ) {
+            var scores = this.load(),
+                saveID;
+
+            switch ( gameType ) {
+                case "classic":
+                    scores = scores.classic;
+                    saveID = "So7S_Scores";
+                    break;
+                case "single":
+                    scores = scores.single;
+                    saveID = "So7S_ScoresSingle";
+                    break;
+            }
 
             if ( scores != null ) {
                 // Add score on the right position and move everything behind it
@@ -14,7 +26,7 @@ define( [], function () {
                 }
 
                 // If score is not full, add new item. Score is the lowest from list and param
-                if ( scores.length < 9 ) {
+                if ( scores.length < 8 ) {
                     scores[ scores.length ] = score;
                 }
             } else {
@@ -22,13 +34,17 @@ define( [], function () {
             }
 
             // Save updated scores
-            localStorage.setItem( "So7S_Scores", JSON.stringify( scores ) );
+            localStorage.setItem( saveID, JSON.stringify( scores ) );
         },
         load : function () {
-            return JSON.parse( localStorage.getItem( "So7S_Scores" ) );
+            return {
+                classic: JSON.parse( localStorage.getItem( "So7S_Scores" ) ),
+                single : JSON.parse( localStorage.getItem( "So7S_ScoresSingle" ) )
+            };
         },
         reset: function () {
             localStorage.removeItem( "So7S_Scores" );
+            localStorage.removeItem( "So7S_ScoresSingle" );
         }
     };
 } );

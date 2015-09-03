@@ -1,4 +1,4 @@
-define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
+define( [ "ui/button", "ui/createButton", "tools/score" ], function ( button, createButton, score ) {
     function clickMenu() {
         game.state.start( "MainMenu" );
     }
@@ -22,17 +22,43 @@ define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
     }
 
     return function () {
-        createButton( { x: 200, y: 72 }, "Menu", clickMenu );
-        createButton( { x: game.world.width - 200, y: 72 }, "Reset", clickReset );
+        var x, y, i,
+            scores = score.load();
 
-        var scores = score.load();
-        if ( scores != null ) {
-            var offset = Math.floor( scores.length / 2 ) + 1;
-            for ( var i = 0; i < scores.length && i < 9; i++ ) {
-                createButton( i - offset, ordinal( i + 1 ) + ": " + scores[ i ] + " LEDs" );
+        // Menu and reset buttons
+        createButton( { x: 200, y: 72 }, "Menu", clickMenu );
+        createButton( { x: 200, y: game.world.height - 72 }, "Reset", clickReset );
+
+        // Classic
+        x = game.world.centerX;
+        y = 40;
+        // Header
+        button( x, y, "Classic", null, "button" );
+        y += 80;
+        // Scores
+        if ( scores.classic != null ) {
+            for ( i = 0; i < scores.classic.length && i < 9; i++ ) {
+                button( x, y, ordinal( i + 1 ) + ": " + scores.classic[ i ] + " LEDs", null, "button" );
+                y += 80;
             }
         } else {
-            createButton( 0, "No scores yet", clickMenu );
+            button( x, y, "No scores yet", null, "button" );
+        }
+
+        // Single
+        x = game.world.centerX + 360;
+        y = 40;
+        // Header
+        button( x, y, "Single", null, "button" );
+        y += 80;
+        // Scores
+        if ( scores.single != null ) {
+            for ( i = 0; i < scores.single.length && i < 9; i++ ) {
+                button( x, y, ordinal( i + 1 ) + ": " + scores.single[ i ] + " LEDs", null, "button" );
+                y += 80;
+            }
+        } else {
+            button( x, y, "No scores yet", null, "button" );
         }
     };
 } );
