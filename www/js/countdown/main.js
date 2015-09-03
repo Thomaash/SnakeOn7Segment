@@ -1,5 +1,5 @@
 define(
-    [ "preStart/preload", "preStart/create", "preStart/update", "preStart/shutdown" ],
+    [ "countdown/preload", "countdown/create", "countdown/update", "countdown/shutdown" ],
     function ( preload, create, update, shutdown ) {
         return {
             preload : preload,
