@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "segment/Seven" ], function ( SevenSegment ) {
     return function () {
         if ( ++game.vars.update >= 60 ) {
             var color,
@@ -9,21 +9,21 @@ define( [], function () {
 
                 switch ( game.vars.countDown ) {
                     case 1:
-                        color = LED.prototype.state.green;
+                        color = SevenSegment.prototype.state.led.green;
                         break;
                     case 2:
-                        color = LED.prototype.state.yellow;
+                        color = SevenSegment.prototype.state.led.yellow;
                         break;
                     case 3:
-                        color = LED.prototype.state.red;
+                        color = SevenSegment.prototype.state.led.red;
                         break;
                     default:
-                        color = LED.prototype.state.darkGreen;
+                        color = SevenSegment.prototype.state.led.darkGreen;
                 }
 
-                segment.setState( SevenSegment.prototype.states[ game.vars.countDown-- ], color );
+                segment.setState( SevenSegment.prototype.state.segment[ game.vars.countDown-- ], color );
             } else {
-                segment.setState( SevenSegment.prototype.states.off );
+                segment.setState( SevenSegment.prototype.state.segment.off );
                 game.state.start( "Game" );
             }
         }

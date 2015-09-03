@@ -1,4 +1,4 @@
-define( [ "ui/createButton" ], function ( createButton ) {
+define( [ "ui/createButton", "segment/Seven" ], function ( createButton, SevenSegment ) {
     function clickMenu() {
         game.state.start( "MainMenu" );
     }

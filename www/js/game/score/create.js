@@ -1,4 +1,4 @@
-define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
+define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( createButton, score, SevenSegment ) {
     function clickMenu() {
         game.state.start( "MainMenu" );
     }
@@ -23,19 +23,19 @@ define( [ "ui/createButton", "tools/score" ], function ( createButton, score ) {
 
         // Set LED color and levelChange
         if ( scoreStr >= game.vars.LEDCount / 2 ) {
-            color = LED.prototype.state.green;
+            color = SevenSegment.prototype.state.led.green;
             levelChange = 10;
             message = "Awesome";
         } else if ( scoreStr >= game.vars.LEDCount / 3 ) {
-            color = LED.prototype.state.darkGreen;
+            color = SevenSegment.prototype.state.led.darkGreen;
             levelChange = 5;
             message = "Good job, but to proceed faster, get even higher score.";
         } else if ( scoreStr >= game.vars.LEDCount / 4 ) {
-            color = LED.prototype.state.yellow;
+            color = SevenSegment.prototype.state.led.yellow;
             levelChange = 1;
             message = "Not bad, but to proceed faster, get higher score.";
         } else {
-            color = LED.prototype.state.red;
+            color = SevenSegment.prototype.state.led.red;
             levelChange = -10;
             message = "You won't proceed to next level this way, get higher score.";
         }

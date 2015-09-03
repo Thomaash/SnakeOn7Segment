@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "segment/Seven" ], function ( SevenSegment ) {
     return function () {
         if ( ++game.vars.update >= game.vars.speed ) {
             game.vars.update = 0;
@@ -38,26 +38,26 @@ define( [], function () {
 
                 if (
                     ledNext == null
-                    || ledNext.getState() === LED.prototype.state.snake
+                    || ledNext.getState() === SevenSegment.prototype.state.led.snake
                     || point.isBlocked( idLast, idNext )
                 ) {
-                    game.vars.snake[ index ].setState( LED.prototype.state.dead );
+                    game.vars.snake[ index ].setState( SevenSegment.prototype.state.led.dead );
                     game.vars.direction.next = "s";
                     game.vars.clickAction = "click";
                     game.vars.speed = 120;
                 } else {
-                    if ( ledNext.getState() === LED.prototype.state.food ) {
+                    if ( ledNext.getState() === SevenSegment.prototype.state.led.food ) {
                         game.vars.snakeLength++;
                         game.vars.food = null;
                     }
 
                     // Add new LED to snake
                     game.vars.snake.push( ledNext );
-                    ledNext.setState( LED.prototype.state.snakeHead );
+                    ledNext.setState( SevenSegment.prototype.state.led.snakeHead );
                     point.block( idLast, idNext );
 
                     // Set former head LED to snake body
-                    ledLast.setState( LED.prototype.state.snake );
+                    ledLast.setState( SevenSegment.prototype.state.led.snake );
 
                     index -= game.vars.snakeLength;
                     if ( index >= 0 ) {
@@ -78,7 +78,7 @@ define( [], function () {
                         game.vars.snake.length--;
 
                         // Set removed LED to empty
-                        remove.setState( LED.prototype.state.empty );
+                        remove.setState( SevenSegment.prototype.state.led.empty );
                     }
                 }
 
@@ -86,13 +86,13 @@ define( [], function () {
                     // Add food if not present
                     var foodLED = game.vars.map.getRandomLED();
 
-                    if ( foodLED.getState() === LED.prototype.state.empty ) {
-                        foodLED.setState( LED.prototype.state.food );
+                    if ( foodLED.getState() === SevenSegment.prototype.state.led.empty ) {
+                        foodLED.setState( SevenSegment.prototype.state.led.food );
                         game.vars.food = foodLED;
                     }
                 } else if ( Math.random() < 0.01 ) {
                     // Randomly remove food
-                    game.vars.food.setState( LED.prototype.state.empty );
+                    game.vars.food.setState( SevenSegment.prototype.state.led.empty );
                     game.vars.food = null;
                 }
             } else {

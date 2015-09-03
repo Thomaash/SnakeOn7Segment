@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "segment/Seven" ], function ( SevenSegment ) {
     function quality( cols, rows ) {
         var size    = {
                 width : window.innerWidth / cols / SevenSegment.prototype.width,
