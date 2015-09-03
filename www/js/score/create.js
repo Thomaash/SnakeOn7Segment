@@ -11,9 +11,6 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
         game.vars.ui.font.size = 24;
         game.vars.update = 60;
 
-        // Save score
-        score.save( scoreInt );
-
         // Create menu button
         createButton( { x: 200, y: 40 }, "Menu", clickMenu );
 
@@ -44,6 +41,9 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
             case "classic":
                 // Save level
                 game.vars.level.add( 0, levelChange );
+
+                // Save score
+                score.save( scoreInt );
                 break;
             case "single":
                 message = "";
