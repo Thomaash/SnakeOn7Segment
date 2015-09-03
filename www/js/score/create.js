@@ -40,8 +40,15 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
             message = "You won't proceed to next level this way, get higher score.";
         }
 
-        // Save level
-        game.vars.level.add( 0, levelChange );
+        switch ( game.vars.gameType ) {
+            case "classic":
+                // Save level
+                game.vars.level.add( 0, levelChange );
+                break;
+            case "single":
+                message = "";
+                break;
+        }
 
         // Help UI text
         game.vars.ui.elements.centerScreenText = new Phaser.Text(
