@@ -4,11 +4,11 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
             menu        : function () { game.state.start( "MainMenu" ); },
             play        : function () {
                 game.vars.gameType = "classic";
-                game.state.start( "PreStart" );
+                game.state.start( "Countdown" );
             },
             single      : function () {
                 game.vars.gameType = "single";
-                game.state.start( "PreStart" );
+                game.state.start( "Countdown" );
             },
             rowSub      : function () {
                 if ( game.vars.rows > 2 ) {

@@ -15,7 +15,7 @@ define( [], function () {
         },
         click : function () {
             switch ( game.state.getCurrentState().key ) {
-                case  "PreStart":
+                case  "Countdown":
                     game.state.start( "Game" );
                     break;
                 case  "Game":
@@ -24,7 +24,7 @@ define( [], function () {
                 case  "Score":
                     switch ( game.vars.gameType ) {
                         case "classic":
-                            game.state.start( "PreStart" );
+                            game.state.start( "Countdown" );
                             break;
                         case "single":
                             game.state.start( "MenuPlay" );

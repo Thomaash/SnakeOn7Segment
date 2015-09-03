@@ -47,7 +47,7 @@ requirejs(
         window.game.state.add( "MainMenu", mainMenu );
         window.game.state.add( "MenuPlay", menuPlay );
         window.game.state.add( "HighScores", highScores );
-        window.game.state.add( "PreStart", countdown );
+        window.game.state.add( "Countdown", countdown );
         window.game.state.add( "Game", game );
         window.game.state.add( "Score", score );
 
