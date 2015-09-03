@@ -22,10 +22,23 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
     }
 
     return function () {
-        // Set map size
-        // First level have 2 rows, 2nd 3, etc., level is decimal number
-        game.vars.rows = game.vars.level.floor() + 1;
-        game.vars.cols = 3 * game.vars.rows;
+        switch ( game.vars.gameType ) {
+            case  "classic":
+                // Set map size
+                // First level have 2 rows, 2nd 3, etc., level is decimal number
+                game.vars.rows = game.vars.level.floor() + 1;
+                game.vars.cols = 3 * game.vars.rows;
+
+                // Set game speed, 40 for 1st level, 10 minimum
+                game.vars.speed = 50 - game.vars.level.floor() * 5;
+                if ( game.vars.speed < 10 ) {
+                    game.vars.speed = 10;
+                }
+                break;
+            case "single":
+                game.vars.cols = 3 * game.vars.rows;
+                break;
+        }
 
         // Count sprite quality
         game.vars.quality = quality( game.vars.cols, game.vars.rows );

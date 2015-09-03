@@ -22,7 +22,14 @@ define( [], function () {
                     game.state.start( "Score" );
                     break;
                 case  "Score":
-                    game.state.start( "PreStart" );
+                    switch ( game.vars.gameType ) {
+                        case "classic":
+                            game.state.start( "PreStart" );
+                            break;
+                        case "single":
+                            game.state.start( "MenuPlay" );
+                            break;
+                    }
                     break;
             }
         },

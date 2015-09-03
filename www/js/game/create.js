@@ -48,12 +48,6 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );
         game.vars.snake[ game.vars.snake.length - 1 ].setState( SevenSegment.prototype.state.led.snakeHead );
 
-        // Set game speed, 40 for 1st level, 10 minimum
-        game.vars.speed = 50 - game.vars.level.floor() * 5;
-        if ( game.vars.speed < 10 ) {
-            game.vars.speed = 10;
-        }
-
         game.vars.clickAction = "turn";
     };
 } );

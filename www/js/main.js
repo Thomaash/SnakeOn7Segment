@@ -1,8 +1,8 @@
 requirejs(
-    [ "init/main", "mainMenu/main", "highScores/main",
+    [ "init/main", "mainMenu/main", "menuPlay/main", "highScores/main",
         "countdown/main", "game/main", "score/main",
         "tools/Level", "tools/createEventListeners" ],
-    function ( init, mainMenu, highScores,
+    function ( init, mainMenu, menuPlay, highScores,
                countdown, game, score,
                Level, createEventListeners ) {
         // Start Phaser
@@ -10,14 +10,15 @@ requirejs(
 
         // Game state and settings
         window.game.vars = {
+            gameType   : "classic",
             snake      : [], // List of LEDs visited by snake
             food       : null, // Food LED
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
             segments   : [], // 2D array of LED segments
             LEDCount   : 0,
             scale      : {}, // Scale sprites
-            cols       : 3,
-            rows       : 1,
+            rows       : 2,
+            cols       : 6,
             quality    : 160, // Length of LEDs
             direction  : { previous: "r", next: "s" },
             clickAction: "click",
@@ -44,6 +45,7 @@ requirejs(
         // Add states
         window.game.state.add( "Init", init );
         window.game.state.add( "MainMenu", mainMenu );
+        window.game.state.add( "MenuPlay", menuPlay );
         window.game.state.add( "HighScores", highScores );
         window.game.state.add( "PreStart", countdown );
         window.game.state.add( "Game", game );
