@@ -5,11 +5,11 @@ define( [], function () {
             localStorage.setItem( "So7S_speed", game.vars.speed );
         },
         load: function () {
-            var rows = localStorage.getItem( "So7S_rows" ) * 1;
+            var rows = parseInt( localStorage.getItem( "So7S_rows" ) );
             if ( isNaN( rows ) ) {
-                game.vars.speed = 2;
+                game.vars.rows = 2;
             } else {
-                game.vars.speed = rows;
+                game.vars.rows = rows;
             }
 
             var speed = parseInt( localStorage.getItem( "So7S_speed" ) );
