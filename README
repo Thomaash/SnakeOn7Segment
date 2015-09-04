@@ -1,9 +1,9 @@
 Classic snake game on 7 Segment display.
 
 Touch controls:
-    Tap to start game
+    Tap to skip countdown or continue from score screen
     Tap left to turn left and right to turn right
 
 Keyboard controls:
-    Space to start/restart game
+    Space, Enter or Escape to end game, skip countdown or continue from score screen
     Arrows to turn
