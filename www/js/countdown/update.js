@@ -2,7 +2,7 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
     return function () {
         if ( ++game.vars.update >= 60 ) {
             var color,
-                segment = game.vars.segments[ 0 ][ 0 ];
+                segment = game.vars.segments;
 
             if ( game.vars.countDown > 0 ) {
                 game.vars.update = 0;

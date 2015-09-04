@@ -27,7 +27,7 @@ define(
             centerScreenText( "Tap left half of the screen to turn left, right to turn right.", ui );
 
             // Create segment
-            game.vars.segments = [ [ new SevenSegment( 3, 1 ) ] ];
+            game.vars.segments = new SevenSegment( 3, 1 );
         };
     }
 );
