@@ -2,7 +2,6 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
     return function () {
         // Group
         game.vars.groups.leds = game.add.group();
-        game.vars.groups.ui = game.add.group();
 
         // Count LED scale
         game.vars.scale.leds = game.vars.quality / 160;
@@ -15,19 +14,6 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
                 * (SevenSegment.prototype.height + SevenSegment.prototype.margin)
                 * game.vars.scale.leds;
         changeSize( game, width, height );
-
-        // Help UI text
-        var centerScreenText = new Phaser.Text(
-            game,
-            game.world.centerX, game.world.height / 3,
-            "Tap anywhere to start",
-            { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
-        );
-        game.vars.groups.ui.add( centerScreenText );
-        centerScreenText.anchor.set( 0.5, 0.5 );
-        centerScreenText.wordWrap = true;
-        centerScreenText.wordWrapWidth = game.world.width - 50;
-        centerScreenText.visible = false;
 
         // Create segments
         game.vars.segments = [];
