@@ -9,7 +9,6 @@ define(
             var scoreInt = game.vars.snakeLength + 1,
                 scoreStr = ("      " + (game.vars.snakeLength + 1)).slice( -6 ),
                 levelChange, color, message;
-            game.vars.ui.font.size = 24;
             game.vars.update = 60;
 
             // Create menu button

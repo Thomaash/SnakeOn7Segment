@@ -4,7 +4,7 @@ define( [], function () {
             game,
             game.world.centerX, game.world.height / 3,
             text,
-            { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
+            { font: game.vars.font.menu(), fill: game.vars.font.fill, align: "center" }
         );
         centerScreenText.anchor.set( 0.5, 0.5 );
         centerScreenText.wordWrap = true;

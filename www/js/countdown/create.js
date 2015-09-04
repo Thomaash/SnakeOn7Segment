@@ -7,7 +7,6 @@ define(
 
         return function () {
             game.vars.countDown = 3;
-            game.vars.ui.font.size = 24;
             game.vars.update = 60;
 
             // Create menu button

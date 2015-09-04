@@ -16,24 +16,24 @@ requirejs(
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
             segments   : [], // 1D or 2D array of LED segments
             LEDCount   : 0,
-            scale      : {}, // Scale sprites
+            scale      : { leds: 1 }, // Scale sprites
             rows       : 2,
             cols       : 6,
             quality    : 160, // Length of LEDs
             direction  : { previous: "r", next: "s" },
             clickAction: "click",
-            groups     : {},
+            groups     : { leds: null },
             level      : new Level( 1, 1, 1 ), // 1st level, 1 decimal digit, 1 is minimum
             speed      : 40, // Game speed, higher = slower
             map        : null,
             update     : 0,
             countDown  : 0,
-            ui         : {
-                font    : {
-                    name: "Arial",
-                    size: 12,
-                    get : function () { return this.size + "px " + this.name; }
-                }
+            font       : {
+                name: "Arial",
+                size: 12,
+                fill: "#DDDDDD",
+                get : function () { return this.size + "px " + this.name; },
+                menu: function () { return "24px " + this.name; }
             }
         };
 
