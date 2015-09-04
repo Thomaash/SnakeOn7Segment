@@ -17,17 +17,17 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         changeSize( game, width, height );
 
         // Help UI text
-        game.vars.ui.elements.centerScreenText = new Phaser.Text(
+        var centerScreenText = new Phaser.Text(
             game,
             game.world.centerX, game.world.height / 3,
             "Tap anywhere to start",
             { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
         );
-        game.vars.groups.ui.add( game.vars.ui.elements.centerScreenText );
-        game.vars.ui.elements.centerScreenText.anchor.set( 0.5, 0.5 );
-        game.vars.ui.elements.centerScreenText.wordWrap = true;
-        game.vars.ui.elements.centerScreenText.wordWrapWidth = game.world.width - 50;
-        game.vars.ui.elements.centerScreenText.visible = false;
+        game.vars.groups.ui.add( centerScreenText );
+        centerScreenText.anchor.set( 0.5, 0.5 );
+        centerScreenText.wordWrap = true;
+        centerScreenText.wordWrapWidth = game.world.width - 50;
+        centerScreenText.visible = false;
 
         // Create segments
         game.vars.segments = [];

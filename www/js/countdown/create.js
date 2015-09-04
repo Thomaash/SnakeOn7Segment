@@ -13,26 +13,26 @@ define( [ "ui/createButton", "segment/Seven" ], function ( createButton, SevenSe
 
         // Groups
         game.vars.groups.leds = game.add.group();
-        game.vars.groups.ui = game.add.group();
+        var ui = game.add.group();
 
         // Help UI arrows
-        var x = game.world.width, y = game.world.height / 2;
-        game.vars.ui.elements.leftArrow = game.vars.groups.ui.create( x * 0.1, y, "Arrows", 0 );
-        game.vars.ui.elements.rightArrow = game.vars.groups.ui.create( x * 0.9, y, "Arrows", 1 );
-        game.vars.ui.elements.leftArrow.anchor.setTo( 0.5, 0.5 );
-        game.vars.ui.elements.rightArrow.anchor.setTo( 0.5, 0.5 );
+        var x          = game.world.width, y = game.world.height / 2,
+            leftArrow  = ui.create( x * 0.1, y, "Arrows", 0 ),
+            rightArrow = ui.create( x * 0.9, y, "Arrows", 1 );
+        leftArrow.anchor.setTo( 0.5, 0.5 );
+        rightArrow.anchor.setTo( 0.5, 0.5 );
 
         // Help UI text
-        game.vars.ui.elements.centerScreenText = new Phaser.Text(
+        var centerScreenText = new Phaser.Text(
             game,
             game.world.centerX, game.world.height / 3,
             "Tap left half of the screen to turn left, right to turn right.",
             { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
         );
-        game.vars.groups.ui.add( game.vars.ui.elements.centerScreenText );
-        game.vars.ui.elements.centerScreenText.anchor.set( 0.5, 0.5 );
-        game.vars.ui.elements.centerScreenText.wordWrap = true;
-        game.vars.ui.elements.centerScreenText.wordWrapWidth = game.world.width - 50;
+        ui.add( centerScreenText );
+        centerScreenText.anchor.set( 0.5, 0.5 );
+        centerScreenText.wordWrap = true;
+        centerScreenText.wordWrapWidth = game.world.width - 50;
 
         // Create segment
         game.vars.segments = [ [ new SevenSegment( 3, 1 ) ] ];

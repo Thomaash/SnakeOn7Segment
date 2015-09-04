@@ -14,7 +14,7 @@ requirejs(
             snake      : [], // List of LEDs visited by snake
             food       : null, // Food LED
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
-            segments   : [], // 2D array of LED segments
+            segments   : [], // 1D or 2D array of LED segments
             LEDCount   : 0,
             scale      : {}, // Scale sprites
             rows       : 2,
@@ -23,18 +23,16 @@ requirejs(
             direction  : { previous: "r", next: "s" },
             clickAction: "click",
             groups     : {},
-            screen     : {},
             level      : new Level( 1, 1, 1 ), // 1st level, 1 decimal digit, 1 is minimum
             speed      : 40, // Game speed, higher = slower
             map        : null,
             update     : 0,
             countDown  : 0,
             ui         : {
-                elements: { leftArrow: null, rightArrow: null, centerScreenText: null },
                 font    : {
                     name: "Arial",
                     size: 12,
-                    get : function () {return this.size + "px " + this.name;}
+                    get : function () { return this.size + "px " + this.name; }
                 }
             }
         };

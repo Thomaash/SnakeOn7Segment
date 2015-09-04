@@ -7,7 +7,6 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
         var scoreInt = game.vars.snakeLength + 1,
             scoreStr = ("      " + (game.vars.snakeLength + 1)).slice( -6 ),
             levelChange, color, message;
-        game.vars.countDown = 3;
         game.vars.ui.font.size = 24;
         game.vars.update = 60;
 
@@ -51,7 +50,7 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
         score.save( game.vars.gameType, scoreInt );
 
         // Help UI text
-        game.vars.ui.elements.centerScreenText = new Phaser.Text(
+        var centerScreenText = new Phaser.Text(
             game,
             game.world.centerX, game.world.height / 3,
             message +
@@ -59,10 +58,10 @@ define( [ "ui/createButton", "tools/score", "segment/Seven" ], function ( create
             "Tap anywhere to continue",
             { font: game.vars.ui.font.get(), fill: "#ddd", align: "center" }
         );
-        game.vars.groups.ui.add( game.vars.ui.elements.centerScreenText );
-        game.vars.ui.elements.centerScreenText.anchor.set( 0.5, 0.5 );
-        game.vars.ui.elements.centerScreenText.wordWrap = true;
-        game.vars.ui.elements.centerScreenText.wordWrapWidth = game.world.width - 50;
+        game.vars.groups.ui.add( centerScreenText );
+        centerScreenText.anchor.set( 0.5, 0.5 );
+        centerScreenText.wordWrap = true;
+        centerScreenText.wordWrapWidth = game.world.width - 50;
 
         // Create segments
         game.vars.segments = [];
