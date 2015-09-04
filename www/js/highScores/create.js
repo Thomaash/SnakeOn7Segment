@@ -1,6 +1,6 @@
 define(
-    [ "ui/button", "ui/createButton", "tools/score", "tools/ordinal" ],
-    function ( button, createButton, score, ordinal ) {
+    [ "ui/button", "tools/score", "tools/ordinal" ],
+    function ( button, score, ordinal ) {
         function clickMenu() {
             game.state.start( "MainMenu" );
         }
@@ -15,8 +15,8 @@ define(
                 scores = score.load();
 
             // Menu and reset buttons
-            createButton( { x: 200, y: 72 }, "Menu", clickMenu );
-            createButton( { x: 200, y: game.world.height - 72 }, "Reset", clickReset );
+            button( 200, 72, "Menu", clickMenu, "button" );
+            button( 200, game.world.height - 72, "Reset", clickReset, "button" );
 
             // Classic
             x = game.world.centerX;

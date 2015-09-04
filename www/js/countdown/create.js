@@ -1,6 +1,6 @@
 define(
-    [ "ui/createButton", "segment/Seven", "ui/centerScreenText" ],
-    function ( createButton, SevenSegment, centerScreenText ) {
+    [ "ui/button", "segment/Seven", "ui/centerScreenText" ],
+    function ( button, SevenSegment, centerScreenText ) {
         function clickMenu() {
             game.state.start( "MainMenu" );
         }
@@ -10,7 +10,7 @@ define(
             game.vars.update = 60;
 
             // Create menu button
-            createButton( { x: 200, y: 40 }, "Menu", clickMenu );
+            button( 200, 40, "Menu", clickMenu, "button" );
 
             // Groups
             game.vars.groups.leds = game.add.group();
