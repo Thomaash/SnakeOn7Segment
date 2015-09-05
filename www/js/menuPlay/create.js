@@ -1,5 +1,5 @@
 define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button, storage, ordinal ) {
-    var rowsLbl, speedLbl, walledBtn,
+    var rowsLbl, speedLbl, walled,
         click = {
             menu          : function () { game.state.start( "MainMenu" ); },
             classic       : function () {
@@ -41,10 +41,12 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
             speedGetText  : function () { return (60 - game.vars.speed) / 5; },
             walledSetColor: function () {
                 if ( game.vars.walledMap ) {
-                    walledBtn.setFrames( 0, 0, 0, 0 );
+                    walled.button.setFrames( 0, 0, 0, 0 );
+                    walled.label.setText( "✔" );
                 }
                 else {
-                    walledBtn.setFrames( 2, 2, 2, 2 );
+                    walled.button.setFrames( 2, 2, 2, 2 );
+                    walled.label.setText( "✘" );
                 }
             }
         };
@@ -92,7 +94,7 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
         x = game.world.centerX - offset;
         y += 200;
         button( x, y, "Walled map", click.walledMap, "button" );
-        walledBtn = button( x + 128 + 64 + 4, y, "", click.walledMap, "buttonSquare" ).button;
+        walled = button( x + 128 + 64 + 4, y, "", click.walledMap, "buttonSquare" );
         click.walledSetColor();
     };
 } );
