@@ -1,32 +1,74 @@
 define( [ "tools/Point" ], function ( Point ) {
-    function Map( segments ) {
+    function Map( segments, mapType ) {
         this.map = [];
         this.segments = segments;
 
-        for ( var col = 0; col <= segments.length; ++col ) {
-            this.map.push( [] );
+        // There is 1 col of points between LEDs in 1 segment + one at the end
+        // There are 2 rows of points between LEDs in 1 segment + one at the end
+        // Map is always rectangular and there is 1 more iteration than the number of cols, so segments[0]
+        var cols = segments.length, rows = segments[ 0 ].length * 2;
 
-            // Map is always rectangular and there is 1 more iteration than the number of cols, so segments[0]
-            for ( var row = 0; row <= segments[ 0 ].length * 2; row++ ) {
-                var x = col, y = Math.floor( row / 2 );
+        // Set up map variant
+        var connectPoint;
+        switch ( mapType ) {
+            case "through":
+                connectPoint = this.goThroughMap.bind( this );
+                break;
+            default:
+                connectPoint = this.walledMap.bind( this );
+        }
 
-                if ( row % 2 === 0 ) {
-                    this.map[ col ][ row ] = this.connectSegmentsTop(
-                        this.getSegment( x - 1, y - 1 ),
-                        this.getSegment( x, y - 1 ),
-                        this.getSegment( x, y ),
-                        this.getSegment( x - 1, y )
-                    );
-                } else {
-                    this.map[ col ][ row ] = this.connectSegmentsMiddle(
-                        this.getSegment( x - 1, y ),
-                        this.getSegment( x, y )
-                    );
-                }
+        for ( var col = 0; col <= cols; ++col ) {
+            this.map[ col ] = [];
+
+            for ( var row = 0; row <= rows; row++ ) {
+                connectPoint( col, row, cols, rows );
             }
         }
     }
 
+    Map.prototype.walledMap = function ( col, row ) {
+        var rowsHalf = Math.floor( row / 2 ),
+            x        = col,
+            xm       = col - 1,
+            y        = rowsHalf,
+            ym       = rowsHalf - 1;
+
+        if ( row % 2 === 0 ) {
+            this.map[ col ][ row ] = this.connectSegmentsTop(
+                this.getSegment( xm, ym ),
+                this.getSegment( x, ym ),
+                this.getSegment( x, y ),
+                this.getSegment( xm, y )
+            );
+        } else {
+            this.map[ col ][ row ] = this.connectSegmentsMiddle(
+                this.getSegment( xm, y ),
+                this.getSegment( x, y )
+            );
+        }
+    };
+    Map.prototype.goThroughMap = function ( col, row, cols, rows ) {
+        var rowsHalf = Math.floor( row / 2 ),
+            x        = col === cols ? 0 : col,
+            xm       = col - 1 < 0 ? cols : col - 1,
+            y        = row === rows ? 0 : rowsHalf,
+            ym       = rowsHalf - 1 < 0 ? Math.floor( rows / 2 ) : rowsHalf - 1;
+
+        if ( row % 2 === 0 ) {
+            this.map[ col ][ row ] = this.connectSegmentsTop(
+                this.getSegment( xm, ym ),
+                this.getSegment( x, ym ),
+                this.getSegment( x, y ),
+                this.getSegment( xm, y )
+            );
+        } else {
+            this.map[ col ][ row ] = this.connectSegmentsMiddle(
+                this.getSegment( xm, y ),
+                this.getSegment( x, y )
+            );
+        }
+    };
     Map.prototype.connectSegmentsTop = function ( stl, str, sbr, sbl ) {
         var tl, tr, rt, rb, br, bl, lb, lt;
         if ( stl != null ) {
