@@ -63,10 +63,9 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
         x = game.world.centerX;
         y = game.world.centerY - 160;
         button( x, y, "Classic", click.classic, "button" );
-        button( x + offset, y - 32, ordinal( game.vars.level.floor() ) + " level", null, "button" );
 
         // Level number
-        button( game.world.centerX, game.world.centerY - 160, "Classic", click.classic, "button" );
+        button( x + offset, y - 32, ordinal( game.vars.level.floor() ) + " level", null, "button" );
 
 
         // Single
