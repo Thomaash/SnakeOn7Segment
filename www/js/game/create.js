@@ -28,7 +28,7 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         game.vars.LEDCount = game.vars.segments.length * game.vars.segments[ 0 ].length * 7;
 
         // Create map
-        game.vars.map = new Map( game.vars.segments );
+        game.vars.map = new Map( game.vars.segments, game.vars.walledMap );
 
         // Add snake to map
         game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );

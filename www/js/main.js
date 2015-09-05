@@ -11,6 +11,7 @@ requirejs(
         // Game state and settings
         window.game.vars = {
             gameType   : "classic",
+            walledMap  : true,
             snake      : [], // List of LEDs visited by snake
             food       : null, // Food LED
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.

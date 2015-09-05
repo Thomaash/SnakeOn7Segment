@@ -10,12 +10,10 @@ define( [ "tools/Point" ], function ( Point ) {
 
         // Set up map variant
         var connectPoint;
-        switch ( mapType ) {
-            case "through":
-                connectPoint = this.goThroughMap.bind( this );
-                break;
-            default:
-                connectPoint = this.walledMap.bind( this );
+        if ( mapType ) {
+            connectPoint = this.walledMap.bind( this );
+        } else {
+            connectPoint = this.goThroughMap.bind( this );
         }
 
         for ( var col = 0; col <= cols; ++col ) {
