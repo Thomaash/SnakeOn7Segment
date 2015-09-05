@@ -4,15 +4,15 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         var leds = game.add.group();
 
         // Count LED scale
-        game.vars.scale.leds = game.vars.quality / 160;
+        var scale = game.vars.quality / 160;
 
         // Count and set canvas dimensions
         var width  = game.vars.cols
                 * (SevenSegment.prototype.width + SevenSegment.prototype.margin)
-                * game.vars.scale.leds,
+                * scale,
             height = game.vars.rows
                 * (SevenSegment.prototype.height + SevenSegment.prototype.margin)
-                * game.vars.scale.leds;
+                * scale;
         changeSize( game, width, height );
 
         // Create segments
@@ -20,7 +20,7 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         for ( var col = 0; col < game.vars.cols; ++col ) {
             game.vars.segments[ col ] = [];
             for ( var row = 0; row < game.vars.rows; ++row ) {
-                game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row );
+                game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
             }
         }
 

@@ -16,7 +16,6 @@ requirejs(
             snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
             segments   : [], // 1D or 2D array of LED segments
             LEDCount   : 0,
-            scale      : { leds: 1 }, // Scale sprites
             rows       : 2,
             cols       : 6,
             quality    : 160, // Length of LEDs

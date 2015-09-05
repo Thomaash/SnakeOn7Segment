@@ -10,9 +10,10 @@ define( [], function () {
      * @param {number} offsetX
      * @param {number} offsetY
      * @param {number} id
+     * @param {number} [scale]
      * @constructor
      */
-    function LED( group, offsetX, offsetY, id ) {
+    function LED( group, offsetX, offsetY, id, scale ) {
         this.id = id;
         this.TL = {
             point: null,
@@ -25,8 +26,8 @@ define( [], function () {
         this.pos = this.position[ id ];
 
         this.sprite = group.create( offsetX + this.pos.x, offsetY + this.pos.y, "LEDs" );
-        this.sprite.x *= game.vars.scale.leds || 1;
-        this.sprite.y *= game.vars.scale.leds || 1;
+        this.sprite.x *= scale || 1;
+        this.sprite.y *= scale || 1;
         this.setState( this.state.empty );
     }
 
