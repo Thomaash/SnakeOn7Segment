@@ -1,10 +1,13 @@
 define( [ "tools/Point" ], function ( Point ) {
-    function Map() {
+    function Map( segments ) {
         this.map = [];
+        this.segments = segments;
 
-        for ( var col = 0; col <= game.vars.cols; ++col ) {
+        for ( var col = 0; col <= segments.length; ++col ) {
             this.map.push( [] );
-            for ( var row = 0; row <= game.vars.rows * 2; row++ ) {
+
+            // Map is always rectangular and there is 1 more iteration than the number of cols, so segments[0]
+            for ( var row = 0; row <= segments[ 0 ].length * 2; row++ ) {
                 var x = col, y = Math.floor( row / 2 );
 
                 if ( row % 2 === 0 ) {
@@ -63,17 +66,17 @@ define( [ "tools/Point" ], function ( Point ) {
         return new Point( tl, tr, rt, rb, br, bl, lb, lt );
     };
     Map.prototype.getSegment = function ( col, row ) {
-        if ( game.vars.segments[ col ] && game.vars.segments[ col ][ row ] ) {
-            return game.vars.segments[ col ][ row ];
+        if ( this.segments[ col ] && this.segments[ col ][ row ] ) {
+            return this.segments[ col ][ row ];
         } else {
             return null;
         }
     };
     Map.prototype.getRandomSegment = function () {
-        var col = Math.floor( game.vars.segments.length * Math.random() ),
-            row = Math.floor( game.vars.segments[ col ].length * Math.random() );
+        var col = Math.floor( this.segments.length * Math.random() ),
+            row = Math.floor( this.segments[ col ].length * Math.random() );
 
-        return game.vars.segments[ col ][ row ];
+        return this.segments[ col ][ row ];
     };
     Map.prototype.getRandomLED = function () {
         var segment = this.getRandomSegment();
