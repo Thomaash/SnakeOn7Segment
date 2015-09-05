@@ -13,8 +13,8 @@ define(
             button( 200, 40, "Menu", clickMenu, "button" );
 
             // Groups
-            game.vars.groups.leds = game.add.group();
-            var ui = game.add.group();
+            var leds = game.add.group(),
+                ui   = game.add.group();
 
             // Help UI arrows
             var x          = game.world.width, y = game.world.height / 2,
@@ -27,7 +27,7 @@ define(
             centerScreenText( "Tap left half of the screen to turn left, right to turn right.", ui );
 
             // Create segment
-            game.vars.segments = new SevenSegment( 3, 1 );
+            game.vars.segments = new SevenSegment( leds, 3, 1 );
         };
     }
 );

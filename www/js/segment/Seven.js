@@ -6,17 +6,18 @@ define( [ "segment/LED" ], function ( LED ) {
      * 4   2
      *  -3-
      *
+     * @param {Phaser.Group} group
      * @param {number} col
      * @param {number} row
      * @constructor
      */
-    function SevenSegment( col, row ) {
+    function SevenSegment( group, col, row ) {
         this.leds = [];
         var offsetX = col * (this.width + this.margin ) + this.margin / 2,
             offsetY = row * (this.height + this.margin) + this.margin / 2;
 
         for ( var i = 0; i < LED.prototype.position.length; ++i ) {
-            this.leds[ i ] = new LED( offsetX, offsetY, i );
+            this.leds[ i ] = new LED( group, offsetX, offsetY, i );
         }
     }
 

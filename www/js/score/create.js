@@ -15,8 +15,8 @@ define(
             button( 200, 40, "Menu", clickMenu, "button" );
 
             // Groups
-            game.vars.groups.leds = game.add.group();
-            var ui = game.add.group();
+            var leds = game.add.group(),
+                ui   = game.add.group();
 
             // Set LED color and levelChange
             if ( scoreStr >= game.vars.LEDCount / 2 ) {
@@ -56,7 +56,7 @@ define(
             // Create segments
             game.vars.segments = [];
             for ( var i = 0; i < 6; i++ ) {
-                var segment = new SevenSegment( i, 1 );
+                var segment = new SevenSegment( leds, i, 1 );
                 segment.setState( scoreStr[ i ] === " " ? "off" : scoreStr[ i ], color );
 
                 game.vars.segments[ game.vars.segments.length ] = segment;

@@ -22,7 +22,6 @@ requirejs(
             quality    : 160, // Length of LEDs
             direction  : { previous: "r", next: "s" },
             clickAction: "click",
-            groups     : { leds: null },
             level      : new Level( 1, 1, 1 ), // 1st level, 1 decimal digit, 1 is minimum
             speed      : 40, // Game speed, higher = slower
             map        : null,

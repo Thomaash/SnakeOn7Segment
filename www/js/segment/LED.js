@@ -6,12 +6,13 @@ define( [], function () {
      * 4   2
      *  -3-
      *
+     * @param {Phaser.Group} group
      * @param {number} offsetX
      * @param {number} offsetY
      * @param {number} id
      * @constructor
      */
-    function LED( offsetX, offsetY, id ) {
+    function LED( group, offsetX, offsetY, id ) {
         this.id = id;
         this.TL = {
             point: null,
@@ -23,7 +24,7 @@ define( [], function () {
         };
         this.pos = this.position[ id ];
 
-        this.sprite = game.vars.groups.leds.create( offsetX + this.pos.x, offsetY + this.pos.y, "LEDs" );
+        this.sprite = group.create( offsetX + this.pos.x, offsetY + this.pos.y, "LEDs" );
         this.sprite.x *= game.vars.scale.leds || 1;
         this.sprite.y *= game.vars.scale.leds || 1;
         this.setState( this.state.empty );

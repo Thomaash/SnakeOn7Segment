@@ -1,7 +1,6 @@
 define( [], function () {
     return function () {
         // Delete map
-        game.vars.groups.leds = null;
         game.vars.map = null;
         game.vars.segments = null;
 

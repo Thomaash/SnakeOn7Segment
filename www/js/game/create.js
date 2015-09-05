@@ -1,7 +1,7 @@
 define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, changeSize, SevenSegment ) {
     return function () {
         // Group
-        game.vars.groups.leds = game.add.group();
+        var leds = game.add.group();
 
         // Count LED scale
         game.vars.scale.leds = game.vars.quality / 160;
@@ -20,7 +20,7 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         for ( var col = 0; col < game.vars.cols; ++col ) {
             game.vars.segments[ col ] = [];
             for ( var row = 0; row < game.vars.rows; ++row ) {
-                game.vars.segments[ col ][ row ] = new SevenSegment( col, row );
+                game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row );
             }
         }
 
