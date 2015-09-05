@@ -61,7 +61,7 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
 
         // Classic
         x = game.world.centerX;
-        y = game.world.centerY - 160;
+        y = 160;
         button( x, y, "Classic", click.classic, "button" );
 
         // Level number
@@ -90,7 +90,7 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
 
         // Walled or go through map
         x = game.world.centerX - offset;
-        y += 160;
+        y += 200;
         button( x, y, "Walled map", click.walledMap, "button" );
         walledBtn = button( x + 128 + 64 + 4, y, "", click.walledMap, "buttonSquare" ).button;
         click.walledSetColor();
