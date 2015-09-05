@@ -53,11 +53,6 @@ define( [ "segment/LED" ], function ( LED ) {
         },
         getRandomLED: function () {
             return this.leds[ Math.floor( 7 * Math.random() ) ];
-        },
-        destroy     : function () {
-            for ( var i = 0; i < this.leds.length; ++i ) {
-                this.leds[ i ].destroy();
-            }
         }
     };
 

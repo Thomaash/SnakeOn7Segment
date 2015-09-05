@@ -50,9 +50,6 @@ define( [], function () {
         },
         getState: function () {
             return this.state;
-        },
-        destroy : function () {
-            this.sprite.destroy();
         }
     };
 
