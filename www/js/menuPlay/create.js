@@ -1,12 +1,7 @@
-define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button, storage, ordinal ) {
+define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
     var rowsLbl, speedLbl, walled, holes,
         click = {
             menu          : function () { game.state.start( "MainMenu" ); },
-            classic       : function () {
-                game.vars.gameType = "classic";
-                game.vars.walledMap = true;
-                game.state.start( "Countdown" );
-            },
             single        : function () {
                 game.vars.gameType = "single";
                 game.state.start( "Countdown" );
@@ -62,25 +57,12 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
         // Load saved values
         storage.load();
 
-        // Menu button
+        // Menu and play buttons
         button( 200, 40, "Menu", click.menu, "button" );
+        button( game.world.width - 200, 40, "Play!", click.single, "button" );
 
 
-        // Classic
-        x = game.world.centerX;
-        y = 160;
-        button( x, y, "Classic", click.classic, "button" );
-
-        // Level number
-        button( x + offset, y - 32, ordinal( game.vars.level.floor() ) + " level", null, "button" );
-
-
-        // Single
-        x = game.world.centerX;
-        y = game.world.centerY;
-        button( x, y, "Single level", click.single, "button" );
-
-        y += 32;
+        y = 240;
 
         // Rows
         x = game.world.centerX - offset;
@@ -96,7 +78,7 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
         speedLbl = button( x, y + 80, click.speedGetText(), null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.speedAdd, "buttonSquare" );
 
-        y += 200;
+        y += 250;
 
         // Walled or go through map
         x = game.world.centerX - offset;
