@@ -1,5 +1,5 @@
 define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button, storage, ordinal ) {
-    var rowsLbl, speedLbl, walled,
+    var rowsLbl, speedLbl, walled, holes,
         click = {
             menu          : function () { game.state.start( "MainMenu" ); },
             classic       : function () {
@@ -37,16 +37,21 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
                 game.vars.walledMap = !game.vars.walledMap;
                 click.walledSetColor();
             },
+            holesInMap    : function () {
+                game.vars.holesInMap = !game.vars.holesInMap;
+                click.holesSetColor();
+            },
             speedSetText  : function () { speedLbl.setText( click.speedGetText() ); },
             speedGetText  : function () { return (60 - game.vars.speed) / 5; },
-            walledSetColor: function () {
-                if ( game.vars.walledMap ) {
-                    walled.button.setFrames( 0, 0, 0, 0 );
-                    walled.label.setText( "✔" );
-                }
-                else {
-                    walled.button.setFrames( 2, 2, 2, 2 );
-                    walled.label.setText( "✘" );
+            walledSetColor: function () { click.setColor( game.vars.walledMap, walled ); },
+            holesSetColor : function () { click.setColor( game.vars.holesInMap, holes ); },
+            setColor      : function ( condition, button ) {
+                if ( condition ) {
+                    button.button.setFrames( 0, 0, 0, 0 );
+                    button.label.setText( "✔" );
+                } else {
+                    button.button.setFrames( 2, 2, 2, 2 );
+                    button.label.setText( "✘" );
                 }
             }
         };
@@ -75,9 +80,10 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
         y = game.world.centerY;
         button( x, y, "Single level", click.single, "button" );
 
+        y += 32;
+
         // Rows
         x = game.world.centerX - offset;
-        y += 32;
         button( x, y, "Rows", null, "button" );
         button( x - 72, y + 80, "−", click.rowSub, "buttonSquare" );
         rowsLbl = button( x, y + 80, game.vars.rows, null, "buttonSquare" ).label;
@@ -90,11 +96,18 @@ define( [ "ui/button", "menuPlay/storage", "tools/ordinal" ], function ( button,
         speedLbl = button( x, y + 80, click.speedGetText(), null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.speedAdd, "buttonSquare" );
 
+        y += 200;
+
         // Walled or go through map
         x = game.world.centerX - offset;
-        y += 200;
         button( x, y, "Walled map", click.walledMap, "button" );
         walled = button( x + 128 + 64 + 4, y, "", click.walledMap, "buttonSquare" );
         click.walledSetColor();
+
+        // Holes in map
+        x = game.world.centerX + offset;
+        button( x, y, "Holes in map", click.holesInMap, "button" );
+        holes = button( x - 128 - 64 - 4, y, "", click.holesInMap, "buttonSquare" );
+        click.holesSetColor();
     };
 } );

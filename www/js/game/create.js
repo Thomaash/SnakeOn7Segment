@@ -27,7 +27,10 @@ define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, ch
         for ( var col = 0; col < game.vars.cols; ++col ) {
             game.vars.segments[ col ] = [];
             for ( var row = 0; row < game.vars.rows; ++row ) {
-                game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
+                // If enabled, create only 90% of segments, but always keep first and second in fist row
+                if ( !game.vars.holesInMap || Math.random() < 0.9 || (row === 0 && (col === 0 || col === 1)) ) {
+                    game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
+                }
             }
         }
 

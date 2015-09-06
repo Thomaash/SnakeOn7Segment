@@ -113,10 +113,16 @@ define( [ "tools/Point" ], function ( Point ) {
         }
     };
     Map.prototype.getRandomSegment = function () {
-        var col = Math.floor( this.segments.length * Math.random() ),
-            row = Math.floor( this.segments[ col ].length * Math.random() );
+        var segment = null;
 
-        return this.segments[ col ][ row ];
+        while ( segment == null ) {
+            var col = Math.floor( this.segments.length * Math.random() ),
+                row = Math.floor( this.segments[ col ].length * Math.random() );
+
+            segment = this.segments[ col ][ row ];
+        }
+
+        return segment;
     };
     Map.prototype.getRandomLED = function () {
         var segment = this.getRandomSegment();
