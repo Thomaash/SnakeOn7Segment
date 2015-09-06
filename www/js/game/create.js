@@ -1,5 +1,12 @@
 define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, changeSize, SevenSegment ) {
     return function () {
+        // Set game state
+        game.vars.snake = [];
+        game.vars.food = null;
+        game.vars.snakeLength = 0;
+        game.vars.direction = { previous: "r", next: "r" };
+        game.vars.update = 0;
+
         // Group
         var leds = game.add.group();
 
