@@ -27,7 +27,7 @@ define( [ "segment/LED" ], function ( LED ) {
         width       : 192,
         height      : 352,
         state       : {
-            led    : LED.prototype.state,
+            led    : LED.prototype.states,
             segment: {
                 off: [ 0, 0, 0, 0, 0, 0, 0 ],
                 0  : [ 1, 1, 1, 1, 1, 1, 0 ],

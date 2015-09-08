@@ -28,11 +28,11 @@ define( [], function () {
         this.sprite = group.create( offsetX + this.pos.x, offsetY + this.pos.y, "LEDs" );
         this.sprite.x *= scale || 1;
         this.sprite.y *= scale || 1;
-        this.setState( this.state.empty );
+        this.setState( this.states.empty );
     }
 
     LED.prototype = {
-        state   : {
+        states  : {
             black: "black", red: "red", yellow: "yellow", green: "green", darkGreen: "darkGreen",
             empty: "black", dead: "red", food: "yellow", snakeHead: "green", snake: "darkGreen",
             0    : "black", 1: "red", 2: "yellow", 3: "green", 4: "darkGreen" // Backward compatibility
@@ -48,7 +48,7 @@ define( [], function () {
         ],
         setState: function ( state ) {
             this.state = state;
-            this.sprite.frameName = this.pos.type + state + ".png";
+            this.sprite.frameName = this.pos.type + state;
         },
         getState: function () {
             return this.state;
