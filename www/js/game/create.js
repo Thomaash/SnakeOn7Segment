@@ -40,7 +40,7 @@ define(
             game.vars.map = new Map( game.vars.segments, game.vars.walledMap );
 
             // Create snake
-            game.vars.snake = new Snake( game.vars.map );
+            game.vars.snake = new Snake( game.vars.map.map[ 0 ][ 0 ].rb );
 
             game.vars.clickAction = "turn";
         };

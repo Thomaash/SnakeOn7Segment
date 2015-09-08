@@ -1,9 +1,8 @@
 define( [], function () {
-    function Snake( map, canEat ) {
-        var led = map.map[ 0 ][ 0 ].rb;
-        led.setState( led.states.snakeHead );
+    function Snake( firstLED, canEat ) {
+        firstLED.setState( firstLED.states.snakeHead );
 
-        this.leds = [ led ];
+        this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;
         this.direction = { previous: "r", next: "r" };
     }
