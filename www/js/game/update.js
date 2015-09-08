@@ -7,7 +7,6 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
                 // Snake
                 if ( !game.vars.snake.move() ) {
                     game.vars.snake.die();
-                    game.vars.snake.nextDir( "s" );
                     game.vars.clickAction = "click";
                     game.vars.speed = 120;
 
