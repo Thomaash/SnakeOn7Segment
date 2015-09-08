@@ -48,7 +48,7 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
             "LEDs",
             "assets/" + game.vars.quality + ".png",
             "assets/" + game.vars.quality + ".json",
-            Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY
+            Phaser.Loader.TEXTURE_ATLAS_JSON_HASH
         );
     };
 } );

@@ -8,7 +8,7 @@ define( [ "tools/changeSize" ], function ( changeSize ) {
             "LEDs",
             "assets/" + game.vars.quality + ".png",
             "assets/" + game.vars.quality + ".json",
-            Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY
+            Phaser.Loader.TEXTURE_ATLAS_JSON_HASH
         );
 
         // Preload arrows
