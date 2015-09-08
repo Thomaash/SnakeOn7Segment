@@ -6,8 +6,8 @@ define(
         }
 
         return function () {
-            var scoreInt = game.vars.snakeLength + 1,
-                scoreStr = ("      " + (game.vars.snakeLength + 1)).slice( -6 ),
+            var scoreInt = game.vars.score,
+                scoreStr = ("      " + (scoreInt)).slice( -6 ),
                 levelChange, color, message;
             game.vars.update = 60;
 

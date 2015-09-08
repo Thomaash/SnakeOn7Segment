@@ -5,13 +5,13 @@ define( [], function () {
         left  : function () { this.handle( /^r$/, "l" ); },
         right : function () { this.handle( /^l$/, "r" ); },
         handle: function ( regex, direction ) {
-            if ( !regex.exec( game.vars.direction.previous ) ) {
-                game.vars.direction.next = direction;
+            if ( !regex.exec( game.vars.snake.direction.previous ) ) {
+                game.vars.snake.turn( direction );
             }
         },
         turn  : function ( x ) {
             var direction = x < window.innerWidth / 2 ? "left" : "right";
-            game.vars.direction.next = this.turns[ direction ][ game.vars.direction.previous ];
+            game.vars.snake.turn( this.turns[ direction ][ game.vars.snake.direction.previous ] );
         },
         click : function () {
             switch ( game.state.getCurrentState().key ) {

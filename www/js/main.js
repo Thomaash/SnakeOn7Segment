@@ -13,15 +13,14 @@ requirejs(
             gameType   : "classic",
             walledMap  : true,
             holesInMap : true,
-            snake      : [], // List of LEDs visited by snake
+            snake      : null,
             food       : null, // Food LED
-            snakeLength: 0, // 0 means head only, 1 means head + 1 tile, etc.
+            score      : 0,
             segments   : [], // 1D or 2D array of LED segments
             LEDCount   : 0,
             rows       : 2,
             cols       : 6,
             quality    : 160, // Length of LEDs
-            direction  : { previous: "r", next: "s" },
             clickAction: "click",
             level      : new Level( 1, 1, 1 ), // 1st level, 1 decimal digit, 1 is minimum
             speed      : 40, // Game speed, higher = slower

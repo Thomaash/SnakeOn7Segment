@@ -1,49 +1,48 @@
-define( [ "tools/Map", "tools/changeSize", "segment/Seven" ], function ( Map, changeSize, SevenSegment ) {
-    return function () {
-        // Set game state
-        game.vars.snake = [];
-        game.vars.food = null;
-        game.vars.snakeLength = 0;
-        game.vars.direction = { previous: "r", next: "r" };
-        game.vars.update = 0;
+define(
+    [ "tools/Map", "tools/changeSize", "segment/Seven", "game/Snake" ],
+    function ( Map, changeSize, SevenSegment, Snake ) {
+        return function () {
+            // Set game state
+            game.vars.food = null;
+            game.vars.update = 0;
 
-        // Group
-        var leds = game.add.group();
+            // Group
+            var leds = game.add.group();
 
-        // Count LED scale
-        var scale = game.vars.quality / 160;
+            // Count LED scale
+            var scale = game.vars.quality / 160;
 
-        // Count and set canvas dimensions
-        var width  = game.vars.cols
-                * (SevenSegment.prototype.width + SevenSegment.prototype.margin)
-                * scale,
-            height = game.vars.rows
-                * (SevenSegment.prototype.height + SevenSegment.prototype.margin)
-                * scale;
-        changeSize( game, width, height );
+            // Count and set canvas dimensions
+            var width  = game.vars.cols
+                    * (SevenSegment.prototype.width + SevenSegment.prototype.margin)
+                    * scale,
+                height = game.vars.rows
+                    * (SevenSegment.prototype.height + SevenSegment.prototype.margin)
+                    * scale;
+            changeSize( game, width, height );
 
-        // Create segments
-        game.vars.segments = [];
-        for ( var col = 0; col < game.vars.cols; ++col ) {
-            game.vars.segments[ col ] = [];
-            for ( var row = 0; row < game.vars.rows; ++row ) {
-                // If enabled, create only 90% of segments, but always keep first and second in fist row
-                if ( !game.vars.holesInMap || Math.random() < 0.9 || (row === 0 && (col === 0 || col === 1)) ) {
-                    game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
+            // Create segments
+            game.vars.segments = [];
+            for ( var col = 0; col < game.vars.cols; ++col ) {
+                game.vars.segments[ col ] = [];
+                for ( var row = 0; row < game.vars.rows; ++row ) {
+                    // If enabled, create only 90% of segments, but always keep first and second in fist row
+                    if ( !game.vars.holesInMap || Math.random() < 0.9 || (row === 0 && (col === 0 || col === 1)) ) {
+                        game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
+                    }
                 }
             }
-        }
 
-        // Save LED count for score counting
-        game.vars.LEDCount = game.vars.segments.length * game.vars.segments[ 0 ].length * 7;
+            // Save LED count for score counting
+            game.vars.LEDCount = game.vars.segments.length * game.vars.segments[ 0 ].length * 7;
 
-        // Create map
-        game.vars.map = new Map( game.vars.segments, game.vars.walledMap );
+            // Create map
+            game.vars.map = new Map( game.vars.segments, game.vars.walledMap );
 
-        // Add snake to map
-        game.vars.snake.push( game.vars.map.map[ 0 ][ 0 ].rb );
-        game.vars.snake[ game.vars.snake.length - 1 ].setState( SevenSegment.prototype.state.led.snakeHead );
+            // Create snake
+            game.vars.snake = new Snake( game.vars.map );
 
-        game.vars.clickAction = "turn";
-    };
-} );
+            game.vars.clickAction = "turn";
+        };
+    }
+);
