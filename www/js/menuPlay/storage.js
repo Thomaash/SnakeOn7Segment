@@ -1,46 +1,34 @@
 define( [], function () {
     return {
-        save: function () {
-            localStorage.setItem( "So7S_rows", game.vars.rows );
-            localStorage.setItem( "So7S_speed", game.vars.speed );
-            localStorage.setItem( "So7S_walled", game.vars.walledMap );
-            localStorage.setItem( "So7S_holes", game.vars.holesInMap );
-            localStorage.setItem( "So7S_enemy", game.vars.enemy );
+        save   : function () {
+            this.saveOne( "rows", "rows" );
+            this.saveOne( "speed", "speed" );
+            this.saveOne( "walled", "walledMap" );
+            this.saveOne( "holes", "holesInMap" );
+            this.saveOne( "enemy", "enemy" );
         },
-        load: function () {
-            var rows = parseInt( localStorage.getItem( "So7S_rows" ) );
-            if ( isNaN( rows ) ) {
-                game.vars.rows = 2;
+        saveOne: function ( saveName, gameName ) {
+            localStorage.setItem( "So7S_" + saveName, game.vars[ gameName ] );
+        },
+        load   : function () {
+            this.loadOne( "rows", "rows", 2 );
+            this.loadOne( "speed", "speed", 40 );
+            this.loadOne( "walled", "walledMap", true );
+            this.loadOne( "holes", "holesInMap", false );
+            this.loadOne( "enemy", "enemy", false );
+        },
+        loadOne: function ( saveName, gameName, defaultValue ) {
+            var value = localStorage.getItem( "So7S_" + saveName );
+            if ( value == null ) {
+                game.vars[ gameName ] = defaultValue;
             } else {
-                game.vars.rows = rows;
-            }
-
-            var speed = parseInt( localStorage.getItem( "So7S_speed" ) );
-            if ( isNaN( speed ) ) {
-                game.vars.speed = 40;
-            } else {
-                game.vars.speed = speed;
-            }
-
-            var walled = localStorage.getItem( "So7S_walled" );
-            if ( walled == null ) {
-                game.vars.walledMap = true;
-            } else {
-                game.vars.walledMap = walled === "true";
-            }
-
-            var holes = localStorage.getItem( "So7S_holes" );
-            if ( holes == null ) {
-                game.vars.holesInMap = false;
-            } else {
-                game.vars.holesInMap = holes === "true";
-            }
-
-            var enemy = localStorage.getItem( "So7S_enemy" );
-            if ( enemy == null ) {
-                game.vars.enemy = false;
-            } else {
-                game.vars.enemy = enemy === "true";
+                switch ( typeof defaultValue ) {
+                    case "boolean":
+                        game.vars[ gameName ] = value === "true";
+                        break;
+                    default:
+                        game.vars[ gameName ] = value
+                }
             }
         }
     };

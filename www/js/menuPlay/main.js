@@ -2,6 +2,8 @@ define( [ "menuPlay/preload", "menuPlay/create", "menuPlay/storage" ], function 
     return {
         preload : preload,
         create  : create,
-        shutdown: storage.save
+        shutdown: function () {
+            storage.save();
+        }
     };
 } );
