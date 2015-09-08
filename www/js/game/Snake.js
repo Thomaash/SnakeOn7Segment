@@ -8,17 +8,22 @@ define( [], function () {
     }
 
     Snake.prototype = {
-        die   : function () {
+        die    : function () {
             var led = this.leds[ this.leds.length - 1 ];
             led.setState( led.states.dead );
         },
-        length: function () {
+        length : function () {
             return this.leds.length;
         },
-        turn  : function ( direction ) {
-            this.direction.next = direction;
+        turn   : function ( direction ) {
+            this.direction.next = this.turns[ direction ][ this.direction.previous ];
         },
-        move  : function () {
+        nextDir: function ( direction ) {
+            if ( this.turns.forbidden[ this.direction.previous ] != direction ) {
+                this.direction.next = direction;
+            }
+        },
+        move   : function () {
             var edge, sideRegex,
                 ledLast    = this.leds[ this.leds.length - 1 ],
                 removeLast = true;
@@ -95,6 +100,11 @@ define( [], function () {
             }
 
             return true;
+        },
+        turns  : {
+            left     : { t: "l", r: "t", b: "r", l: "b" },
+            right    : { t: "r", r: "b", b: "l", l: "t" },
+            forbidden: { t: "b", r: "l", b: "t", l: "r" }
         }
     };
 
