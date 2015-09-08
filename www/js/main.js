@@ -16,6 +16,7 @@ requirejs(
             enemy      : false,
             snake      : null,
             food       : null, // Food LED
+            enemies    : [],
             score      : 0,
             segments   : [], // 1D or 2D array of LED segments
             LEDCount   : 0,
