@@ -13,6 +13,7 @@ requirejs(
             gameType   : "classic",
             walledMap  : true,
             holesInMap : true,
+            enemy      : false,
             snake      : null,
             food       : null, // Food LED
             score      : 0,

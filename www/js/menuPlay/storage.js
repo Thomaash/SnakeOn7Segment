@@ -5,6 +5,7 @@ define( [], function () {
             localStorage.setItem( "So7S_speed", game.vars.speed );
             localStorage.setItem( "So7S_walled", game.vars.walledMap );
             localStorage.setItem( "So7S_holes", game.vars.holesInMap );
+            localStorage.setItem( "So7S_enemy", game.vars.enemy );
         },
         load: function () {
             var rows = parseInt( localStorage.getItem( "So7S_rows" ) );
@@ -33,6 +34,13 @@ define( [], function () {
                 game.vars.holesInMap = false;
             } else {
                 game.vars.holesInMap = holes === "true";
+            }
+
+            var enemy = localStorage.getItem( "So7S_enemy" );
+            if ( enemy == null ) {
+                game.vars.enemy = false;
+            } else {
+                game.vars.enemy = enemy === "true";
             }
         }
     };

@@ -1,10 +1,14 @@
 define( [], function () {
-    function Snake( firstLED, canEat ) {
-        firstLED.setState( firstLED.states.snakeHead );
-
+    function Snake( firstLED, canEat, headColor ) {
         this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;
         this.direction = { previous: "r", next: "r" };
+        this.colors = {
+            head: typeof headColor === "string" ? headColor : firstLED.states.snakeHead,
+            body: firstLED.states.snake
+        };
+
+        firstLED.setState( this.colors.head );
     }
 
     Snake.prototype = {
@@ -74,11 +78,11 @@ define( [], function () {
 
             // Add new LED to snake
             this.leds.push( ledNext );
-            ledNext.setState( ledNext.states.snakeHead );
+            ledNext.setState( this.colors.head );
             point.block( idLast, idNext );
 
             // Set former head LED to snake body
-            ledLast.setState( ledNext.states.snake );
+            ledLast.setState( this.colors.body );
 
             if ( removeLast ) {
                 var remove = this.leds[ 0 ],

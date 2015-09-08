@@ -1,6 +1,6 @@
 define(
-    [ "tools/Map", "tools/changeSize", "segment/Seven", "game/Snake" ],
-    function ( Map, changeSize, SevenSegment, Snake ) {
+    [ "tools/Map", "tools/changeSize", "segment/Seven", "game/Snake", "game/Enemy" ],
+    function ( Map, changeSize, SevenSegment, Snake, Enemy ) {
         return function () {
             // Set game state
             game.vars.food = null;
@@ -41,6 +41,12 @@ define(
 
             // Create snake
             game.vars.snake = new Snake( game.vars.map.map[ 0 ][ 0 ].rb );
+
+            // Create enemies
+            game.vars.enemies = [];
+            if ( game.vars.enemy ) {
+                game.vars.enemies.push( new Enemy( game.vars.map ) );
+            }
 
             game.vars.clickAction = "turn";
         };

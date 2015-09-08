@@ -4,6 +4,7 @@ define( [ "ui/button" ], function ( button ) {
             game.vars.gameType = "classic";
             game.vars.walledMap = true;
             game.vars.holesInMap = false;
+            game.vars.enemy = false;
             game.state.start( "Countdown" );
         },
         single : function () { game.state.start( "MenuPlay" ); },

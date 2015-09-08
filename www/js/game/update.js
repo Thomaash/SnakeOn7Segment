@@ -31,6 +31,11 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
                         game.vars.food = null;
                     }
                 }
+
+                // Enemies
+                for ( var i = 0; i < game.vars.enemies.length; i++ ) {
+                    game.vars.enemies[ i ].move();
+                }
             } else {
                 game.state.start( "Score" );
             }

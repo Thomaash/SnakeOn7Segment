@@ -1,5 +1,5 @@
 define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
-    var rowsLbl, speedLbl, walled, holes,
+    var rowsLbl, speedLbl, walled, holes, enemy,
         click = {
             menu          : function () { game.state.start( "MainMenu" ); },
             single        : function () {
@@ -36,10 +36,15 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
                 game.vars.holesInMap = !game.vars.holesInMap;
                 click.holesSetColor();
             },
+            enemy         : function () {
+                game.vars.enemy = !game.vars.enemy;
+                click.enemySetColor();
+            },
             speedSetText  : function () { speedLbl.setText( click.speedGetText() ); },
             speedGetText  : function () { return (60 - game.vars.speed) / 5; },
             walledSetColor: function () { click.setColor( game.vars.walledMap, walled ); },
             holesSetColor : function () { click.setColor( game.vars.holesInMap, holes ); },
+            enemySetColor : function () { click.setColor( game.vars.enemy, enemy ); },
             setColor      : function ( condition, button ) {
                 if ( condition ) {
                     button.button.setFrames( 0, 0, 0, 0 );
@@ -91,5 +96,13 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
         button( x, y, "Holes in map", click.holesInMap, "button" );
         holes = button( x - 128 - 64 - 4, y, "", click.holesInMap, "buttonSquare" );
         click.holesSetColor();
+
+        y += 80;
+
+        // Enable enemy
+        x = game.world.centerX - offset;
+        button( x, y, "Enemy", click.enemy, "button" );
+        enemy = button( x + 128 + 64 + 4, y, "", click.enemy, "buttonSquare" );
+        click.enemySetColor();
     };
 } );

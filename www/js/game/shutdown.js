@@ -4,6 +4,7 @@ define( [], function () {
         game.vars.score = game.vars.snake.length();
 
         // Delete attributes
+        game.vars.enemies = null;
         game.vars.food = null;
         game.vars.map = null;
         game.vars.segments = null;

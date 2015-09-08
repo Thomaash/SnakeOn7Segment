@@ -33,9 +33,9 @@ define( [], function () {
 
     LED.prototype = {
         states  : {
-            black: "black", red: "red", yellow: "yellow", green: "green", darkGreen: "darkGreen",
-            empty: "black", dead: "red", food: "yellow", snakeHead: "green", snake: "darkGreen",
-            0    : "black", 1: "red", 2: "yellow", 3: "green", 4: "darkGreen" // Backward compatibility
+            black: "black", red: "red", yellow: "yellow", green: "green", darkGreen: "darkGreen", cyan: "cyan",
+            empty: "black", dead: "red", food: "yellow", snakeHead: "green", snake: "darkGreen", enemy: "cyan",
+            0    : "black", 1: "red", 2: "yellow", 3: "green", 4: "darkGreen", 5: "cyan"
         },
         position: [
             { x: 17, y: 0, type: "h" }, // 0
