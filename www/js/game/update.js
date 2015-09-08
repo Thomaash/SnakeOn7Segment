@@ -4,14 +4,29 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
             game.vars.update = 0;
 
             if ( game.vars.clickAction === "turn" ) {
-                // Snake
-                if ( !game.vars.snake.move() ) {
-                    game.vars.snake.die();
-                    game.vars.clickAction = "click";
-                    game.vars.speed = 120;
+                var i;
 
-                    // End game, prevents enemy from moving and food from disappearing after death
-                    return;
+                // Snakes
+                // Prepare new locations
+                for ( i = 0; i < game.vars.snakes.length; i++ ) {
+                    var snake = game.vars.snakes[ i ];
+                    if ( !snake.move() ) {
+                        snake.die();
+                        game.vars.playersAlive--;
+
+                        // If everyone is dead, end the game
+                        if ( game.vars.playersAlive == 0 ) {
+                            game.vars.clickAction = "click";
+                            game.vars.speed = 120;
+
+                            // End game, prevents enemy from moving and food from disappearing after death
+                            return;
+                        }
+                    }
+                }
+                // Change LEDs colors
+                for ( i = 0; i < game.vars.snakes.length; i++ ) {
+                    game.vars.snakes[ i ].changeLeds();
                 }
 
                 // Food
@@ -35,7 +50,7 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
                 }
 
                 // Enemies
-                for ( var i = 0; i < game.vars.enemies.length; i++ ) {
+                for ( i = 0; i < game.vars.enemies.length; i++ ) {
                     game.vars.enemies[ i ].move();
                 }
             } else {

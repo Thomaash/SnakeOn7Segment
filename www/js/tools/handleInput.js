@@ -1,7 +1,8 @@
 define( [], function () {
     return {
         turn : function ( x ) {
-            game.vars.snake.turn( x < window.innerWidth / 2 ? "left" : "right" );
+            // @todo Update for multiplayer
+            game.vars.snakes[ 0 ].turn( x < window.innerWidth / 2 ? "left" : "right" );
         },
         click: function () {
             switch ( game.state.getCurrentState().key ) {
@@ -24,25 +25,39 @@ define( [], function () {
             }
         },
         keys : function ( keyCode ) {
-            switch ( keyCode ) {
-                case 37: // ←
-                    game.vars.snake.nextDir( "l" );
-                    break;
-                case 38: // ↑
-                    game.vars.snake.nextDir( "t" );
-                    break;
-                case 39: // →
-                    game.vars.snake.nextDir( "r" );
-                    break;
-                case 40: // ↓
-                    game.vars.snake.nextDir( "b" );
-                    break;
-                case 13: // Enter
-                case 27: // Escape
-                case 32: // Space bar
-                    this.click();
-                    break;
-            }
+            try {
+                switch ( keyCode ) {
+                    case 37: // ←
+                        game.vars.snakes[ 0 ].nextDir( "l" );
+                        break;
+                    case 38: // ↑
+                        game.vars.snakes[ 0 ].nextDir( "t" );
+                        break;
+                    case 39: // →
+                        game.vars.snakes[ 0 ].nextDir( "r" );
+                        break;
+                    case 40: // ↓
+                        game.vars.snakes[ 0 ].nextDir( "b" );
+                        break;
+                    case 65: // ←
+                        game.vars.snakes[ 1 ].nextDir( "l" );
+                        break;
+                    case 87: // ↑
+                        game.vars.snakes[ 1 ].nextDir( "t" );
+                        break;
+                    case 68: // →
+                        game.vars.snakes[ 1 ].nextDir( "r" );
+                        break;
+                    case 83: // ↓
+                        game.vars.snakes[ 1 ].nextDir( "b" );
+                        break;
+                    case 13: // Enter
+                    case 27: // Escape
+                    case 32: // Space bar
+                        this.click();
+                        break;
+                }
+            } catch ( e ) { }
         }
     };
 } );

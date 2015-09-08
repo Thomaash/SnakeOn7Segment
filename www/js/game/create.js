@@ -4,6 +4,7 @@ define(
         return function () {
             // Set game state
             game.vars.food = null;
+            game.vars.playersAlive = 1;
             game.vars.update = 0;
 
             // Group
@@ -39,8 +40,13 @@ define(
             // Create map
             game.vars.map = new Map( game.vars.segments, game.vars.walledMap );
 
-            // Create snake
-            game.vars.snake = new Snake( game.vars.map.map[ 0 ][ 0 ].rb );
+            // Create snakes
+            game.vars.snakes = [];
+            game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 0 ].rb ) );
+            if ( game.vars.multiplayer ) {
+                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt ) );
+                game.vars.playersAlive++;
+            }
 
             // Create enemies
             game.vars.enemies = [];

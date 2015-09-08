@@ -1,51 +1,56 @@
 define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
-    var rowsLbl, speedLbl, walled, holes, enemy,
+    var rowsLbl, speedLbl, walled, holes, enemy, multiplayer,
         click = {
-            menu          : function () { game.state.start( "MainMenu" ); },
-            single        : function () {
+            menu               : function () { game.state.start( "MainMenu" ); },
+            single             : function () {
                 game.vars.gameType = "single";
                 game.state.start( "Countdown" );
             },
-            rowSub        : function () {
+            rowSub             : function () {
                 if ( game.vars.rows > 2 ) {
                     game.vars.rows--;
                     rowsLbl.setText( game.vars.rows );
                 }
             },
-            rowAdd        : function () {
+            rowAdd             : function () {
                 game.vars.rows++;
                 rowsLbl.setText( game.vars.rows );
             },
-            speedSub      : function () {
+            speedSub           : function () {
                 if ( game.vars.speed < 60 ) {
                     game.vars.speed += 5;
                     click.speedSetText();
                 }
             },
-            speedAdd      : function () {
+            speedAdd           : function () {
                 if ( game.vars.speed > 0 ) {
                     game.vars.speed -= 5;
                     click.speedSetText();
                 }
             },
-            walledMap     : function () {
+            walledMap          : function () {
                 game.vars.walledMap = !game.vars.walledMap;
                 click.walledSetColor();
             },
-            holesInMap    : function () {
+            holesInMap         : function () {
                 game.vars.holesInMap = !game.vars.holesInMap;
                 click.holesSetColor();
             },
-            enemy         : function () {
+            enemy              : function () {
                 game.vars.enemy = !game.vars.enemy;
                 click.enemySetColor();
             },
-            speedSetText  : function () { speedLbl.setText( click.speedGetText() ); },
-            speedGetText  : function () { return (60 - game.vars.speed) / 5; },
-            walledSetColor: function () { click.setColor( game.vars.walledMap, walled ); },
-            holesSetColor : function () { click.setColor( game.vars.holesInMap, holes ); },
-            enemySetColor : function () { click.setColor( game.vars.enemy, enemy ); },
-            setColor      : function ( condition, button ) {
+            multiplayer        : function () {
+                game.vars.multiplayer = !game.vars.multiplayer;
+                click.multiplayerSetColor();
+            },
+            speedSetText       : function () { speedLbl.setText( click.speedGetText() ); },
+            speedGetText       : function () { return (60 - game.vars.speed) / 5; },
+            walledSetColor     : function () { click.setColor( game.vars.walledMap, walled ); },
+            holesSetColor      : function () { click.setColor( game.vars.holesInMap, holes ); },
+            enemySetColor      : function () { click.setColor( game.vars.enemy, enemy ); },
+            multiplayerSetColor: function () { click.setColor( game.vars.multiplayer, multiplayer ); },
+            setColor           : function ( condition, button ) {
                 if ( condition ) {
                     button.button.setFrames( 0, 0, 0, 0 );
                     button.label.setText( "✔" );
@@ -104,5 +109,11 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
         button( x, y, "Enemy", click.enemy, "button" );
         enemy = button( x + 128 + 64 + 4, y, "", click.enemy, "buttonSquare" );
         click.enemySetColor();
+
+        // Holes in map
+        x = game.world.centerX + offset;
+        button( x, y, "Multiplayer", click.multiplayer, "button" );
+        multiplayer = button( x - 128 - 64 - 4, y, "", click.multiplayer, "buttonSquare" );
+        click.multiplayerSetColor();
     };
 } );

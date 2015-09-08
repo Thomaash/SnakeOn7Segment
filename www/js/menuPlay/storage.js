@@ -6,9 +6,7 @@ define( [], function () {
             this.saveOne( "walled", "walledMap" );
             this.saveOne( "holes", "holesInMap" );
             this.saveOne( "enemy", "enemy" );
-        },
-        saveOne: function ( saveName, gameName ) {
-            localStorage.setItem( "So7S_" + saveName, game.vars[ gameName ] );
+            this.saveOne( "multiplayer", "multiplayer" );
         },
         load   : function () {
             this.loadOne( "rows", "rows", 2 );
@@ -16,6 +14,10 @@ define( [], function () {
             this.loadOne( "walled", "walledMap", true );
             this.loadOne( "holes", "holesInMap", false );
             this.loadOne( "enemy", "enemy", false );
+            this.loadOne( "multiplayer", "multiplayer", false );
+        },
+        saveOne: function ( saveName, gameName ) {
+            localStorage.setItem( "So7S_" + saveName, game.vars[ gameName ] );
         },
         loadOne: function ( saveName, gameName, defaultValue ) {
             var value = localStorage.getItem( "So7S_" + saveName );

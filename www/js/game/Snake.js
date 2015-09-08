@@ -3,31 +3,37 @@ define( [], function () {
         this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;
         this.direction = { previous: "r", next: "r" };
+        this.ledsToChange = { empty: null };
         this.colors = {
-            head: typeof headColor === "string" ? headColor : firstLED.states.snakeHead,
-            body: firstLED.states.snake
+            head : typeof headColor === "string" ? headColor : firstLED.states.snakeHead,
+            body : firstLED.states.snake,
+            empty: firstLED.states.empty
         };
 
         firstLED.setState( this.colors.head );
     }
 
     Snake.prototype = {
-        die    : function () {
+        die       : function () {
             var led = this.leds[ this.leds.length - 1 ];
             led.setState( led.states.dead );
+
+            // Prevent movement
+            this.move = function () { return true; };
+            this.changeLeds = function () { };
         },
-        length : function () {
+        length    : function () {
             return this.leds.length;
         },
-        turn   : function ( direction ) {
+        turn      : function ( direction ) {
             this.direction.next = this.turns[ direction ][ this.direction.previous ];
         },
-        nextDir: function ( direction ) {
+        nextDir   : function ( direction ) {
             if ( this.turns.forbidden[ this.direction.previous ] != direction ) {
                 this.direction.next = direction;
             }
         },
-        move   : function () {
+        move      : function () {
             var edge, sideRegex,
                 ledLast    = this.leds[ this.leds.length - 1 ],
                 removeLast = true;
@@ -102,12 +108,21 @@ define( [], function () {
                 this.leds.length--;
 
                 // Set removed LED to empty
-                remove.setState( remove.states.empty );
+                this.ledsToChange.empty = remove;
             }
 
             return true;
         },
-        turns  : {
+        changeLeds: function () {
+            // Release tail LED after every snake moved
+            this.changeLed( this.ledsToChange.empty, this.colors.empty );
+        },
+        changeLed : function ( led, color ) {
+            if ( led != null ) {
+                led.setState( color );
+            }
+        },
+        turns     : {
             left     : { t: "l", r: "t", b: "r", l: "b" },
             right    : { t: "r", r: "b", b: "l", l: "t" },
             forbidden: { t: "b", r: "l", b: "t", l: "r" }
