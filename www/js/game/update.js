@@ -10,6 +10,9 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
                     game.vars.snake.nextDir( "s" );
                     game.vars.clickAction = "click";
                     game.vars.speed = 120;
+
+                    // End game, prevents enemy from moving and food from disappearing after death
+                    return;
                 }
 
                 // Food
