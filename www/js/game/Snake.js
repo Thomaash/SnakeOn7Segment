@@ -58,7 +58,7 @@ define( [], function () {
             // Check for collisions
             if (
                 ledNext == null
-                || ledNext.getState() === ledNext.states.snake
+                || (ledNext.getState() !== ledNext.states.empty && ledNext.getState() !== ledNext.states.food)
                 || point.isBlocked( idLast, idNext )
             ) {
                 return false;
