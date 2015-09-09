@@ -5,8 +5,8 @@ define( [], function () {
         this.direction = { previous: "r", next: "r" };
         this.ledsToChange = { empty: null };
         this.colors = {
-            head : typeof headColor === "string" ? headColor : firstLED.states.snakeHead,
-            body : firstLED.states.snake,
+            head : typeof headColor === "string" ? headColor : firstLED.states.snake0Head,
+            body : firstLED.states.snake0Body,
             empty: firstLED.states.empty
         };
 
