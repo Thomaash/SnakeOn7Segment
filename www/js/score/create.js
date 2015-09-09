@@ -5,62 +5,73 @@ define(
             game.state.start( "MainMenu" );
         }
 
+        function createDisplay( text, color, position ) {
+            var group  = game.add.group(),
+                // Big segments will fill whole screen, small less than half
+                length = game.vars.quality === 160 ? 6 : 5;
+            text = (new Array( length + 1 ).join( " " ) + text).slice( -length );
+
+            for ( var i = 0; i < length; i++ ) {
+                var segment = new SevenSegment( group, i, 0, game.vars.quality / 160 );
+                segment.setState( text[ i ] === " " ? "off" : text[ i ], color );
+            }
+
+            group.x = (game.world.width - group.width) * position; // 1 for right, 0 for left
+            group.y = game.world.height - group.height;
+        }
+
         return function () {
-            var scoreInt = game.vars.score,
-                scoreStr = ("      " + (scoreInt)).slice( -6 ),
-                levelChange, color, message;
-            game.vars.update = 60;
+            var message = "";
 
             // Create menu button
             button( 200, 40, "Menu", clickMenu, "button" );
 
-            // Groups
-            var leds = game.add.group(),
-                ui   = game.add.group();
-
-            // Set LED color and levelChange
-            if ( scoreStr >= game.vars.LEDCount / 2 ) {
-                color = SevenSegment.prototype.state.led.green;
-                levelChange = 10;
-                message = "Awesome";
-            } else if ( scoreStr >= game.vars.LEDCount / 3 ) {
-                color = SevenSegment.prototype.state.led.darkGreen;
-                levelChange = 5;
-                message = "Good job, but to proceed faster, get even higher score.";
-            } else if ( scoreStr >= game.vars.LEDCount / 4 ) {
-                color = SevenSegment.prototype.state.led.yellow;
-                levelChange = 1;
-                message = "Not bad, but to proceed faster, get higher score.";
-            } else {
-                color = SevenSegment.prototype.state.led.red;
-                levelChange = -10;
-                message = "You won't proceed to next level this way, get higher score.";
-            }
-
             switch ( game.vars.gameType ) {
                 case "classic":
+                    var levelChange, color,
+                        playerScore = game.vars.scores[ 0 ];
+
+                    // Set LED color and levelChange
+                    if ( playerScore >= game.vars.LEDCount / 2 ) {
+                        color = SevenSegment.prototype.state.led.green;
+                        levelChange = 10;
+                        message = "Awesome";
+                    } else if ( playerScore >= game.vars.LEDCount / 3 ) {
+                        color = SevenSegment.prototype.state.led.darkGreen;
+                        levelChange = 5;
+                        message = "Good job, but to proceed faster, get even higher score.";
+                    } else if ( playerScore >= game.vars.LEDCount / 4 ) {
+                        color = SevenSegment.prototype.state.led.yellow;
+                        levelChange = 1;
+                        message = "Not bad, but to proceed faster, get higher score.";
+                    } else {
+                        color = SevenSegment.prototype.state.led.red;
+                        levelChange = -10;
+                        message = "You won't proceed to next level this way, get higher score.";
+                    }
+
                     // Save level
                     game.vars.level.add( 0, levelChange );
+
+                    // Show and save score
+                    createDisplay( playerScore, color, 1 );
+                    score.save( game.vars.gameType, playerScore );
                     break;
                 case "single":
-                    message = "";
+                    // First player
+                    createDisplay( game.vars.scores[ 0 ], SevenSegment.prototype.state.led.green, 1 );
+                    score.save( game.vars.gameType, game.vars.scores[ 0 ] );
+
+                    // Second player
+                    if ( game.vars.multiplayer ) {
+                        createDisplay( game.vars.scores[ 1 ], SevenSegment.prototype.state.led.greenYellow, 0 );
+                        score.save( game.vars.gameType, game.vars.scores[ 1 ] );
+                    }
                     break;
             }
 
-            // Save score
-            score.save( game.vars.gameType, scoreInt );
-
             // Help UI text
-            centerScreenText( message + "\n\n" + "Tap anywhere to continue", ui );
-
-            // Create segments
-            game.vars.segments = [];
-            for ( var i = 0; i < 6; i++ ) {
-                var segment = new SevenSegment( leds, i, 1 );
-                segment.setState( scoreStr[ i ] === " " ? "off" : scoreStr[ i ], color );
-
-                game.vars.segments[ game.vars.segments.length ] = segment;
-            }
+            centerScreenText( message + "\n\n" + "Tap anywhere to continue", game.add.group() );
         };
     }
 );

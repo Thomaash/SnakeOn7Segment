@@ -19,7 +19,7 @@ requirejs(
             food        : null, // Food LED
             snakes      : [],
             enemies     : [],
-            score       : 0,
+            scores      : [],
             segments    : [], // 1D or 2D array of LED segments
             LEDCount    : 0,
             rows        : 2,

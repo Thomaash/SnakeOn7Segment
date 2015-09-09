@@ -1,11 +1,9 @@
 define( [], function () {
     return function () {
         // Set score attribute
-        game.vars.score = 0;
+        game.vars.scores=[];
         for ( var i = 0; i < game.vars.snakes.length; i++ ) {
-            if ( game.vars.snakes[ i ].length() > game.vars.score ) {
-                game.vars.score = game.vars.snakes[ i ].length();
-            }
+            game.vars.scores[ i ] = game.vars.snakes[ i ].length();
         }
 
         // Delete attributes
