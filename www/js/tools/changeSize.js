@@ -3,10 +3,13 @@ define( [], function () {
         width = typeof width === "number" ? width : 1200;
         height = typeof height === "number" ? height : 720;
 
-        game.world.width = width; // Resize world
-        game.world.height = height; // Resize world
-        game.scale.setGameSize( width, height ); // Tell Phaser to resize canvas
-        game.renderer.resize( width, height ); // Tell renderer to resize canvas
-        game.scale.refresh(); // Tell scale manager to scale to new canvas size
+        game.width = width;
+        game.height = height;
+        game.stage.getBounds.width = width;
+        game.stage.getBounds.height = height;
+        game.world.setBounds( 0, 0, width, height );
+        game.camera.setSize( width, height );
+        game.camera.setBoundsToWorld();
+        game.renderer.resize( width, height );
     };
 } );
