@@ -5,6 +5,7 @@ define( [ "ui/button" ], function ( button ) {
             game.vars.walledMap = true;
             game.vars.holesInMap = false;
             game.vars.enemy = false;
+            game.vars.multiplayer = false;
             game.state.start( "Countdown" );
         },
         single : function () { game.state.start( "MenuPlay" ); },
