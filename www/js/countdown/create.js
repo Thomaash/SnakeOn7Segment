@@ -5,6 +5,12 @@ define(
             game.state.start( "MainMenu" );
         }
 
+        function createArrow( group, x, y, a ) {
+            var leftArrow = group.create( x, y, "Arrows", 0 );
+            leftArrow.anchor.setTo( 0.5, 0.5 );
+            leftArrow.angle = a;
+        }
+
         return function () {
             game.vars.countDown = 3;
             game.vars.update = 60;
@@ -17,11 +23,15 @@ define(
                 ui   = game.add.group();
 
             // Help UI arrows
-            var x          = game.world.width, y = game.world.height / 2,
-                leftArrow  = ui.create( x * 0.1, y, "Arrows", 0 ),
-                rightArrow = ui.create( x * 0.9, y, "Arrows", 1 );
-            leftArrow.anchor.setTo( 0.5, 0.5 );
-            rightArrow.anchor.setTo( 0.5, 0.5 );
+            if ( game.vars.multiplayer ) {
+                createArrow( ui, game.world.width * 0.25, game.world.height * 0.2, 90 );
+                createArrow( ui, game.world.width * 0.25, game.world.height * 0.8, 270 );
+                createArrow( ui, game.world.width * 0.75, game.world.height * 0.2, 90 );
+                createArrow( ui, game.world.width * 0.75, game.world.height * 0.8, 270 );
+            } else {
+                createArrow( ui, game.world.width * 0.2, game.world.height * 0.5, 0 );
+                createArrow( ui, game.world.width * 0.8, game.world.height * 0.5, 180 );
+            }
 
             // Help UI text
             centerScreenText( "Tap left half of the screen to turn left, right to turn right.", ui );
