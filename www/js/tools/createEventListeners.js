@@ -2,12 +2,12 @@ define( [ "tools/handleInput" ], function ( handleInput ) {
     return function () {
         // Touch controls
         document.body.addEventListener( 'touchstart', function ( event ) {
-            handleInput[ game.vars.clickAction ]( event.targetTouches[ 0 ].pageX );
+            handleInput[ game.vars.clickAction ]( event.targetTouches[ 0 ].pageX, event.targetTouches[ 0 ].pageY );
         }, false );
 
         // Mouse controls
         document.body.addEventListener( 'mousedown', function ( event ) {
-            handleInput[ game.vars.clickAction ]( event.pageX );
+            handleInput[ game.vars.clickAction ]( event.pageX, event.pageY );
         }, false );
 
         // Keyboard controls

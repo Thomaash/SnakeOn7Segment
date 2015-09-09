@@ -1,8 +1,21 @@
 define( [], function () {
     return {
-        turn : function ( x ) {
-            // @todo Update for multiplayer
-            game.vars.snakes[ 0 ].turn( x < window.innerWidth / 2 ? "left" : "right" );
+        turn : function ( x, y ) {
+            if ( game.vars.multiplayer ) {
+                var player,
+                    condition = y < window.innerHeight / 2;
+
+                if ( x < window.innerWidth / 2 ) {
+                    player = 0;
+                } else {
+                    player = 1;
+                    condition = !condition;
+                }
+
+                game.vars.snakes[ player ].turn( condition ? "left" : "right" );
+            } else {
+                game.vars.snakes[ 0 ].turn( x < window.innerWidth / 2 ? "left" : "right" );
+            }
         },
         click: function () {
             switch ( game.state.getCurrentState().key ) {
