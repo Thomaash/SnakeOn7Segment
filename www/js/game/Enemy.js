@@ -18,7 +18,8 @@ define( [ "game/Snake" ], function ( Snake ) {
                 this.snake.turn( turn );
             }
 
-            this.snake.move();
+            this.snake.move(); // Move head to new position
+            this.snake.changeLeds(); // Clear tail LED
         }
     };
 
