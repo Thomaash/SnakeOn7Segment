@@ -1,15 +1,17 @@
 define( [], function () {
-    function Snake( firstLED, canEat, headColor ) {
+    function Snake( firstLED, canEat, headColor, bodyColor ) {
         this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;
         this.direction = { previous: "r", next: "r" };
         this.ledsToChange = { empty: null };
-        this.colors = {
-            head : typeof headColor === "string" ? headColor : firstLED.states.snake0Head,
-            body : firstLED.states.snake0Body,
-            empty: firstLED.states.empty
-        };
 
+        // Set default colors
+        this.states = firstLED.states;
+        this.colors = { empty: firstLED.states.empty };
+        this.setDefaultColor( "head", headColor );
+        this.setDefaultColor( "body", bodyColor );
+
+        // Set first LEDs color
         firstLED.setState( this.colors.head );
     }
 
@@ -120,6 +122,20 @@ define( [], function () {
         changeLed : function ( led, color ) {
             if ( led != null ) {
                 led.setState( color );
+            }
+        },
+        setDefaultColor  : function ( id, color ) {
+            var stateSuffix = id.charAt( 0 ).toUpperCase() + id.slice( 1 );
+            switch ( typeof color ) {
+                case "string":
+                    this.colors[ id ] = color;
+                    break;
+                case "number":
+                    this.colors[ id ] = this.states[ "snake" + color + stateSuffix ];
+                    break;
+                default:
+                    this.colors[ id ] = this.states[ "snake0" + stateSuffix ];
+                    break;
             }
         },
         turns     : {
