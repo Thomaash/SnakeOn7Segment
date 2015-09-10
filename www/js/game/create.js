@@ -50,8 +50,8 @@ define(
 
             // Create enemies
             game.vars.enemies = [];
-            if ( game.vars.enemy ) {
-                game.vars.enemies.push( new Enemy( game.vars.map ) );
+            for ( var i = 0; i < game.vars.enemy; i++ ) {
+                game.vars.enemies[ i ] = new Enemy( game.vars.map );
             }
 
             game.vars.clickAction = "turn";

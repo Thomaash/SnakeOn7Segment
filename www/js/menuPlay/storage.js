@@ -13,7 +13,7 @@ define( [], function () {
             this.loadOne( "speed", "speed", 40 );
             this.loadOne( "walled", "walledMap", true );
             this.loadOne( "holes", "holesInMap", false );
-            this.loadOne( "enemy", "enemy", false );
+            this.loadOne( "enemy", "enemy", 0 );
             this.loadOne( "multiplayer", "multiplayer", false );
         },
         saveOne: function ( saveName, gameName ) {
