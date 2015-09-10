@@ -1,7 +1,7 @@
 define( [ "segment/Seven" ], function ( SevenSegment ) {
     return function () {
-        if ( ++game.vars.update >= game.vars.speed ) {
-            game.vars.update = 0;
+        if ( --game.vars.update < 0 ) {
+            game.vars.update = 120 / game.vars.speed;
 
             if ( game.vars.clickAction === "turn" ) {
                 var i;

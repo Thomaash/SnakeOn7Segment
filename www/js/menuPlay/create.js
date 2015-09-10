@@ -17,15 +17,15 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
                 rowsLbl.setText( game.vars.rows );
             },
             speedSub           : function () {
-                if ( game.vars.speed < 60 ) {
-                    game.vars.speed += 5;
-                    click.speedSetText();
+                if ( game.vars.speed > 0 ) {
+                    game.vars.speed--;
+                    speedLbl.setText( game.vars.speed );
                 }
             },
             speedAdd           : function () {
-                if ( game.vars.speed > 0 ) {
-                    game.vars.speed -= 5;
-                    click.speedSetText();
+                if ( game.vars.speed < 120 ) {
+                    game.vars.speed++;
+                    speedLbl.setText( game.vars.speed );
                 }
             },
             walledMap          : function () {
@@ -44,8 +44,6 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
                 game.vars.multiplayer = !game.vars.multiplayer;
                 click.multiplayerSetColor();
             },
-            speedSetText       : function () { speedLbl.setText( click.speedGetText() ); },
-            speedGetText       : function () { return (60 - game.vars.speed) / 5; },
             walledSetColor     : function () { click.setColor( game.vars.walledMap, walled ); },
             holesSetColor      : function () { click.setColor( game.vars.holesInMap, holes ); },
             enemySetColor      : function () { click.setColor( game.vars.enemy, enemy ); },
@@ -85,7 +83,7 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
         x = game.world.centerX + offset;
         button( x, y, "Speed", null, "button" );
         button( x - 72, y + 80, "−", click.speedSub, "buttonSquare" );
-        speedLbl = button( x, y + 80, click.speedGetText(), null, "buttonSquare" ).label;
+        speedLbl = button( x, y + 80, game.vars.speed, null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.speedAdd, "buttonSquare" );
 
         y += 250;
