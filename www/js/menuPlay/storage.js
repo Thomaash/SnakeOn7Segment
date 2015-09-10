@@ -28,8 +28,14 @@ define( [], function () {
                     case "boolean":
                         game.vars[ gameName ] = value === "true";
                         break;
+                    case "number":
+                        game.vars[ gameName ] = value;
+                        if ( isNaN( game.vars[ gameName ] ) ) {
+                            game.vars[ gameName ] = defaultValue;
+                        }
+                        break;
                     default:
-                        game.vars[ gameName ] = value
+                        game.vars[ gameName ] = value;
                 }
             }
         }
