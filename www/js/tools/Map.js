@@ -27,24 +27,10 @@ define( [ "tools/Point" ], function ( Point ) {
 
     Map.prototype.walledMap = function ( col, row ) {
         var rowsHalf = Math.floor( row / 2 ),
-            x        = col,
             xm       = col - 1,
-            y        = rowsHalf,
             ym       = rowsHalf - 1;
 
-        if ( row % 2 === 0 ) {
-            this.map[ col ][ row ] = this.connectSegmentsTop(
-                this.getSegment( xm, ym ),
-                this.getSegment( x, ym ),
-                this.getSegment( x, y ),
-                this.getSegment( xm, y )
-            );
-        } else {
-            this.map[ col ][ row ] = this.connectSegmentsMiddle(
-                this.getSegment( xm, y ),
-                this.getSegment( x, y )
-            );
-        }
+        this.connect( col, row, col, rowsHalf, xm, ym );
     };
     Map.prototype.goThroughMap = function ( col, row, cols, rows ) {
         var rowsHalf = Math.floor( row / 2 ),
@@ -53,6 +39,9 @@ define( [ "tools/Point" ], function ( Point ) {
             y        = row === rows ? 0 : rowsHalf,
             ym       = rowsHalf - 1 < 0 ? Math.floor( rows / 2 ) : rowsHalf - 1;
 
+        this.connect( col, row, x, y, xm, ym );
+    };
+    Map.prototype.connect = function ( col, row, x, y, xm, ym ) {
         if ( row % 2 === 0 ) {
             this.map[ col ][ row ] = this.connectSegmentsTop(
                 this.getSegment( xm, ym ),
@@ -133,17 +122,6 @@ define( [ "tools/Point" ], function ( Point ) {
         for ( var row = 0; row < this.map.length; ++row ) {
             for ( var col = 0; col < this.map[ row ].length; ++col ) {
                 this.map[ row ][ col ].clearBlocking();
-            }
-        }
-    };
-    Map.prototype.setPointState = function ( x, y, color ) {
-        if ( x < this.map.length && y < this.map[ x ].length ) {
-            var point = this.map[ x ][ y ];
-
-            for ( var key in point ) {
-                if ( point.hasOwnProperty( key ) && point[ key ] != null ) {
-                    point[ key ].setState( color );
-                }
             }
         }
     };
