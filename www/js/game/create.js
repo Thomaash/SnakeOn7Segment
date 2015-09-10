@@ -22,13 +22,30 @@ define(
                     * scale;
             changeSize( game, width, height );
 
+            // Whitelist segments
+            var whitelist = [], blacklistLength = game.vars.rows, col, row;
+            for ( col = 0; col < game.vars.cols; ++col ) {
+                whitelist[ col ] = [];
+                for ( row = 0; row < game.vars.rows; ++row ) {
+                    whitelist[ col ][ row ] = true;
+                }
+            }
+            while ( game.vars.holesInMap && blacklistLength > 0 ) {
+                col = Math.floor( Math.random() * game.vars.cols );
+                row = Math.floor( Math.random() * game.vars.rows );
+                if ( whitelist[ col ][ row ] && !(row === 0 && (col === 0 || col === 1)) ) {
+                    blacklistLength--;
+                    whitelist[ col ][ row ] = false;
+                }
+            }
+
             // Create segments
             game.vars.segments = [];
-            for ( var col = 0; col < game.vars.cols; ++col ) {
+            for ( col = 0; col < game.vars.cols; ++col ) {
                 game.vars.segments[ col ] = [];
-                for ( var row = 0; row < game.vars.rows; ++row ) {
+                for ( row = 0; row < game.vars.rows; ++row ) {
                     // If enabled, create only 90% of segments, but always keep first and second in fist row
-                    if ( !game.vars.holesInMap || Math.random() < 0.9 || (row === 0 && (col === 0 || col === 1)) ) {
+                    if ( whitelist[ col ][ row ] ) {
                         game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
                     }
                 }
@@ -42,9 +59,9 @@ define(
 
             // Create snakes
             game.vars.snakes = [];
-            game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 0 ].rb, true,false, 0, 0 ) );
+            game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 0 ].rb, true, false, 0, 0 ) );
             if ( game.vars.multiplayer ) {
-                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt, true,false, 1, 1 ) );
+                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt, true, false, 1, 1 ) );
                 game.vars.playersAlive++;
             }
 
