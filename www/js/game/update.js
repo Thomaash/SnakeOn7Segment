@@ -10,8 +10,7 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
                 // Prepare new locations
                 for ( i = 0; i < game.vars.snakes.length; i++ ) {
                     var snake = game.vars.snakes[ i ];
-                    if ( !snake.move() ) {
-                        snake.die();
+                    if ( snake.move() ) {
                         game.vars.playersAlive--;
 
                         // If everyone is dead, end the game

@@ -16,26 +16,33 @@ define( [], function () {
     }
 
     Snake.prototype = {
-        die       : function () {
-            var led = this.leds[ this.leds.length - 1 ];
-            led.setState( led.states.dead );
+        die            : function () {
+            this.index = this.leds.length;
 
-            // Prevent movement
-            this.move = function () { return true; };
+            // Prevent movement and change color
+            this.move = function () {
+                var led = this.leds[ --this.index ];
+                if ( led != null ) {
+                    led.setState( led.states.dead );
+                } else {
+                    this.move = function () { };
+                    return true;
+                }
+            };
             this.changeLeds = function () { };
         },
-        length    : function () {
+        length         : function () {
             return this.leds.length;
         },
-        turn      : function ( direction ) {
+        turn           : function ( direction ) {
             this.direction.next = this.turns[ direction ][ this.direction.previous ];
         },
-        nextDir   : function ( direction ) {
+        nextDir        : function ( direction ) {
             if ( this.turns.forbidden[ this.direction.previous ] != direction ) {
                 this.direction.next = direction;
             }
         },
-        move      : function () {
+        move           : function () {
             var edge, sideRegex,
                 ledLast    = this.leds[ this.leds.length - 1 ],
                 removeLast = true;
@@ -73,7 +80,8 @@ define( [], function () {
                 || (ledNext.getState() !== ledNext.states.empty && ledNext.getState() !== ledNext.states.food)
                 || point.isBlocked( idLast, idNext )
             ) {
-                return false;
+                this.die();
+                return;
             }
 
             // Check for food
@@ -112,19 +120,17 @@ define( [], function () {
                 // Set removed LED to empty
                 this.ledsToChange.empty = remove;
             }
-
-            return true;
         },
-        changeLeds: function () {
+        changeLeds     : function () {
             // Release tail LED after every snake moved
             this.changeLed( this.ledsToChange.empty, this.colors.empty );
         },
-        changeLed : function ( led, color ) {
+        changeLed      : function ( led, color ) {
             if ( led != null ) {
                 led.setState( color );
             }
         },
-        setDefaultColor  : function ( id, color ) {
+        setDefaultColor: function ( id, color ) {
             var stateSuffix = id.charAt( 0 ).toUpperCase() + id.slice( 1 );
             switch ( typeof color ) {
                 case "string":
@@ -138,7 +144,7 @@ define( [], function () {
                     break;
             }
         },
-        turns     : {
+        turns          : {
             left     : { t: "l", r: "t", b: "r", l: "b" },
             right    : { t: "r", r: "b", b: "l", l: "t" },
             forbidden: { t: "b", r: "l", b: "t", l: "r" }
