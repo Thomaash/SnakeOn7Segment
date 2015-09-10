@@ -42,9 +42,9 @@ define(
 
             // Create snakes
             game.vars.snakes = [];
-            game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 0 ].rb, true, 0, 0 ) );
+            game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 0 ].rb, true,false, 0, 0 ) );
             if ( game.vars.multiplayer ) {
-                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt, true, 1, 1 ) );
+                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt, true,false, 1, 1 ) );
                 game.vars.playersAlive++;
             }
 

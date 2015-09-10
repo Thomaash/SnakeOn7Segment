@@ -1,5 +1,5 @@
 define( [], function () {
-    function Snake( firstLED, canEat, headColor, bodyColor ) {
+    function Snake( firstLED, canEat, immortal, headColor, bodyColor ) {
         this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;
         this.direction = { previous: "r", next: "r" };
@@ -10,6 +10,8 @@ define( [], function () {
         this.colors = { empty: firstLED.states.empty };
         this.setDefaultColor( "head", headColor );
         this.setDefaultColor( "body", bodyColor );
+
+        if ( immortal ) { this.die = function () {}; }
 
         // Set first LEDs color
         firstLED.setState( this.colors.head );
