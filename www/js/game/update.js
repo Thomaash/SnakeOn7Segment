@@ -17,7 +17,7 @@ define( [ "segment/Seven" ], function ( SevenSegment ) {
                         // If everyone is dead, end the game
                         if ( game.vars.playersAlive == 0 ) {
                             game.vars.clickAction = "click";
-                            game.vars.speed = 120;
+                            game.vars.update = 120;
 
                             // End game, prevents enemy from moving and food from disappearing after death
                             return;
