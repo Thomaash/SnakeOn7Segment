@@ -47,6 +47,9 @@ define(
                     // If enabled, create only 90% of segments, but always keep first and second in fist row
                     if ( whitelist[ col ][ row ] ) {
                         game.vars.segments[ col ][ row ] = new SevenSegment( leds, col, row, scale );
+                    } else {
+                        // Map always have to be rectangular, create empty spot
+                        game.vars.segments[ col ][ row ] = null;
                     }
                 }
             }
