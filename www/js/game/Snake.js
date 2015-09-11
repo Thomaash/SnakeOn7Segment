@@ -1,9 +1,10 @@
 define( [], function () {
-    function Snake( firstLED, canEat, immortal, headColor, bodyColor ) {
+    function Snake( firstLED, deathCallback, canEat, immortal, headColor, bodyColor ) {
         this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;
         this.direction = { previous: "r", next: "r" };
         this.ledsToChange = { empty: null };
+        this.deathCallback = deathCallback;
 
         // Set default colors
         this.states = firstLED.states;
@@ -19,19 +20,24 @@ define( [], function () {
 
     Snake.prototype = {
         die            : function () {
-            this.index = this.leds.length;
+            if ( this.deathCallback != null ) {
+                this.deathCallback();
+            }
 
             // Prevent movement and change color
+            this.index = this.leds.length;
             this.move = function () {
                 var led = this.leds[ --this.index ];
                 if ( led != null ) {
                     led.setState( led.states.dead );
                 } else {
-                    this.move = function () { };
-                    return true;
+                    this.move = function () {};
                 }
             };
-            this.changeLeds = function () { };
+            this.changeLeds = function () {};
+
+            // Change first LED to dead color
+            this.move();
         },
         length         : function () {
             return this.leds.length;

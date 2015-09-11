@@ -1,6 +1,15 @@
 define(
     [ "tools/Map", "tools/changeSize", "segment/Seven", "game/Snake", "game/Enemy" ],
     function ( Map, changeSize, SevenSegment, Snake, Enemy ) {
+        function deathCallback() {
+            game.vars.playersAlive--;
+
+            // If everyone is dead, end the game on click
+            if ( game.vars.playersAlive == 0 ) {
+                game.vars.clickAction = "click";
+            }
+        }
+
         return function () {
             // Set game state
             game.vars.food = null;
@@ -61,10 +70,9 @@ define(
             game.vars.map = new Map( game.vars.segments, game.vars.walledMap );
 
             // Create snakes
-            game.vars.snakes = [];
-            game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 0 ].rb, true, false, 0, 0 ) );
+            game.vars.snakes = [ new Snake( game.vars.map.map[ 0 ][ 0 ].rb, deathCallback, true, false, 0, 0 ) ];
             if ( game.vars.multiplayer ) {
-                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt, true, false, 1, 1 ) );
+                game.vars.snakes.push( new Snake( game.vars.map.map[ 0 ][ 2 ].rt, deathCallback, true, false, 1, 1 ) );
                 game.vars.playersAlive++;
             }
 

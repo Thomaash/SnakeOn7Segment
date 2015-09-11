@@ -5,7 +5,7 @@ define( [ "game/Snake" ], function ( Snake ) {
             led = map.getRandomLED();
         }
 
-        this.snake = new Snake( led, false, true, led.states.enemy, led.states.enemy );
+        this.snake = new Snake( led, null, false, true, led.states.enemy, led.states.enemy );
     }
 
     Enemy.prototype = {
