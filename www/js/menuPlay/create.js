@@ -25,7 +25,7 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
                 enemyLbl.setText( ++game.vars.enemy );
             },
             speedSub           : function () {
-                if ( game.vars.speed > 0 ) {
+                if ( game.vars.speed > 1 ) {
                     speedLbl.setText( --game.vars.speed );
                 }
             },
