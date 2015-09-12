@@ -14,7 +14,7 @@ define(
             // Set game state
             game.vars.food = null;
             game.vars.playersAlive = 1;
-            game.vars.update = 500 / game.vars.speed; // Make first step slow 120→500
+            game.vars.update = 120; // Make first step slow (2 seconds)
 
             // Group
             var leds = game.add.group();
