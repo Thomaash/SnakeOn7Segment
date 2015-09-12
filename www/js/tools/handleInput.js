@@ -25,16 +25,6 @@ define( [], function () {
                 case  "Game":
                     game.state.start( "Score" );
                     break;
-                case  "Score":
-                    switch ( game.vars.gameType ) {
-                        case "classic":
-                            game.state.start( "Countdown" );
-                            break;
-                        case "single":
-                            game.state.start( "MenuPlay" );
-                            break;
-                    }
-                    break;
             }
         },
         keys : function ( keyCode ) {

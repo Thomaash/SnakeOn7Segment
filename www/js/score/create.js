@@ -1,9 +1,10 @@
 define(
-    [ "ui/button", "tools/score", "segment/Seven", "ui/centerScreenText" ],
-    function ( button, score, SevenSegment, centerScreenText ) {
-        function clickMenu() {
-            game.state.start( "MainMenu" );
-        }
+    [ "ui/button", "tools/score", "segment/Seven" ],
+    function ( button, score, SevenSegment ) {
+        var click = {
+            menu: function () { game.state.start( game.vars.gameType === "classic" ? "MainMenu" : "MenuPlay" ); },
+            play: function () { game.state.start( "Countdown" ); }
+        };
 
         function createDisplay( text, color, position ) {
             var group  = game.add.group(),
@@ -24,7 +25,8 @@ define(
             var message = "";
 
             // Create menu button
-            button( 200, 40, "Menu", clickMenu, "button" );
+            button( 200, 40, "Menu", click.menu, "button" );
+            button( game.world.width - 200, 40, "Play!", click.play, "button" );
 
             switch ( game.vars.gameType ) {
                 case "classic":
@@ -69,9 +71,6 @@ define(
                     }
                     break;
             }
-
-            // Help UI text
-            centerScreenText( message + "\n\n" + "Tap anywhere to continue", game.add.group() );
         };
     }
 );
