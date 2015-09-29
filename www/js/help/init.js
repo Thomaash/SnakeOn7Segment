@@ -6,7 +6,7 @@ define( [], function () {
     };
 
     return function ( page, back ) {
-        this.game.state.states[ "Help" ].text = pages[ page ] == null ? "Help not found, sorry ☹." : pages[ page ];
+        this.game.state.states[ "Help" ].text = pages[ page ] != null ? pages[ page ] : "Help not found, sorry ☹.\nID: " + page;
         this.game.state.states[ "Help" ].back = back;
     };
 } );
