@@ -1,4 +1,4 @@
-define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
+define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button, helpButton, storage ) {
     var rowsLbl, enemyLbl, speedLbl, walled, holes, multiplayer,
         click = {
             menu               : function () {
@@ -106,6 +106,7 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
         // Holes in map
         x = game.world.centerX + offset;
         button( x, y, "Holes in map", click.holesInMap, "button" );
+        helpButton( x + 128 + 64 + 4, y, "holesInMap" );
         holes = button( x - 128 - 64 - 4, y, "", click.holesInMap, "buttonSquare" );
         click.holesSetColor();
 

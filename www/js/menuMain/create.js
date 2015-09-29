@@ -1,4 +1,4 @@
-define( [ "ui/button" ], function ( button ) {
+define( [ "ui/button", "ui/helpButton" ], function ( button, helpButton ) {
     var click = {
         classic: function () {
             game.vars.gameType = "classic";
@@ -21,9 +21,11 @@ define( [ "ui/button" ], function ( button ) {
         y += 80;
         button( x, y, "Play Classic", click.classic, "button" );
         button( x + 200, y, game.vars.level.floor(), click.classic, "buttonSquare" );
+        helpButton( x - 200, y, "classic" );
 
         y += 80;
         button( x, y, "Play single level", click.single, "button" );
+        helpButton( x - 200, y, "single" );
 
         y += 80;
         button( x, y, "High scores", click.scores, "button" );
