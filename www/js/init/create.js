@@ -14,6 +14,6 @@ define( [], function () {
         game.input.addPointer();
 
         // Enter main menu
-        game.state.start( "MainMenu" );
+        game.state.start( "MenuMain" );
     };
 } );

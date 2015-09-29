@@ -2,7 +2,7 @@ define(
     [ "ui/button", "tools/score", "segment/Seven" ],
     function ( button, score, SevenSegment ) {
         var click = {
-            menu: function () { game.state.start( game.vars.gameType === "classic" ? "MainMenu" : "MenuPlay" ); },
+            menu: function () { game.state.start( game.vars.gameType === "classic" ? "MenuMain" : "MenuPlay" ); },
             play: function () { game.state.start( "Countdown" ); }
         };
 

@@ -2,7 +2,7 @@ define( [ "ui/button", "menuPlay/storage" ], function ( button, storage ) {
     var rowsLbl, enemyLbl, speedLbl, walled, holes, multiplayer,
         click = {
             menu               : function () {
-                game.state.start( "MainMenu" );
+                game.state.start( "MenuMain" );
             },
             single             : function () {
                 game.vars.gameType = "single";

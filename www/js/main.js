@@ -1,8 +1,8 @@
 requirejs(
-    [ "init/main", "mainMenu/main", "menuPlay/main", "highScores/main",
+    [ "init/main", "menuMain/main", "menuPlay/main", "highScores/main",
         "countdown/main", "game/main", "score/main",
         "tools/Level", "tools/createEventListeners" ],
-    function ( init, mainMenu, menuPlay, highScores,
+    function ( init, menuMain, menuPlay, highScores,
                countdown, game, score,
                Level, createEventListeners ) {
         // Start Phaser
@@ -43,7 +43,7 @@ requirejs(
 
         // Add states
         window.game.state.add( "Init", init );
-        window.game.state.add( "MainMenu", mainMenu );
+        window.game.state.add( "MenuMain", menuMain );
         window.game.state.add( "MenuPlay", menuPlay );
         window.game.state.add( "HighScores", highScores );
         window.game.state.add( "Countdown", countdown );

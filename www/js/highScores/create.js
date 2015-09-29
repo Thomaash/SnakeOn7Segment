@@ -3,7 +3,7 @@ define(
     function ( button, score, ordinal ) {
         var click = {
             menu : function () {
-                game.state.start( "MainMenu" );
+                game.state.start( "MenuMain" );
             },
             reset: function () {
                 score.reset();

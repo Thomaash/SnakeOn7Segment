@@ -2,7 +2,7 @@ define(
     [ "ui/button", "segment/Seven", "ui/text" ],
     function ( button, SevenSegment, text ) {
         function clickMenu() {
-            game.state.start( "MainMenu" );
+            game.state.start( "MenuMain" );
         }
 
         function createArrow( group, x, y, a ) {
