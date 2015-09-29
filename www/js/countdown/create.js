@@ -1,6 +1,6 @@
 define(
-    [ "ui/button", "segment/Seven", "ui/centerScreenText" ],
-    function ( button, SevenSegment, centerScreenText ) {
+    [ "ui/button", "segment/Seven", "ui/text" ],
+    function ( button, SevenSegment, text ) {
         function clickMenu() {
             game.state.start( "MainMenu" );
         }
@@ -55,7 +55,13 @@ define(
 
 
             // Help UI text
-            centerScreenText( "Tap left half of the screen to turn left, right to turn right.", ui );
+            var help = "Tap left half of the screen to turn left, right to turn right.";
+            if ( game.vars.multiplayer ) {
+                text( help, ui, game.world.width * 0.70, game.world.height * 0.5, -90, game.world.height );
+                text( help, ui, game.world.width * 0.30, game.world.height * 0.5, 90, game.world.height );
+            } else {
+                text( help, ui );
+            }
 
 
             // Create segment
