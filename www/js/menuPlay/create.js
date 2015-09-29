@@ -79,6 +79,7 @@ define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button,
         button( x - 72, y + 80, "−", click.rowSub, "buttonSquare" );
         rowsLbl = button( x, y + 80, game.vars.rows, null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.rowAdd, "buttonSquare" );
+        helpButton( x, y - 80, "rows" );
 
         // Enemy
         x = game.world.centerX;
@@ -86,6 +87,7 @@ define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button,
         button( x - 72, y + 80, "−", click.enemySub, "buttonSquare" );
         enemyLbl = button( x, y + 80, game.vars.enemy, null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.enemyAdd, "buttonSquare" );
+        helpButton( x, y - 80, "enemy" );
 
         // Speed
         x = game.world.centerX + offset;
@@ -93,6 +95,7 @@ define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button,
         button( x - 72, y + 80, "−", click.speedSub, "buttonSquare" );
         speedLbl = button( x, y + 80, game.vars.speed, null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.speedAdd, "buttonSquare" );
+        helpButton( x, y - 80, "speed" );
 
 
         y += 250;
@@ -100,6 +103,7 @@ define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button,
         // Walled or go through map
         x = game.world.centerX - offset;
         button( x, y, "Walled map", click.walledMap, "button" );
+        helpButton( x - 128 - 64 - 4, y, "walledMap" );
         walled = button( x + 128 + 64 + 4, y, "", click.walledMap, "buttonSquare" );
         click.walledSetColor();
 
@@ -116,6 +120,7 @@ define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button,
         // Holes in map
         x = game.world.centerX + offset;
         button( x, y, "Multiplayer", click.multiplayer, "button" );
+        helpButton( x + 128 + 64 + 4, y, "multiplayer" );
         multiplayer = button( x - 128 - 64 - 4, y, "", click.multiplayer, "buttonSquare" );
         click.multiplayerSetColor();
     };
