@@ -1,4 +1,4 @@
-define( [ "menuPlay/preload", "menuSettings/create", "menuPlay/storage" ], function ( preload, create, storage ) {
+define( [ "menuPlay/preload", "menuSettings/create", "menuSettings/storage" ], function ( preload, create, storage ) {
     return {
         preload : preload,
         create  : create,
