@@ -4,7 +4,6 @@ define( [ "tools/storage" ], function ( storage ) {
             storage.save( "help", "help" );
         },
         load: function () {
-            console.log( "menuSettings/storage" );
             storage.load( "help", "help" );
         }
     };

@@ -9,7 +9,6 @@ define( [ "tools/storage" ], function ( storage ) {
             storage.save( "multiplayer", "multiplayer" );
         },
         load: function () {
-            console.log( "menuPlay/storage" );
             storage.load( "rows", "rows" );
             storage.load( "speed", "speed" );
             storage.load( "walled", "walledMap" );
