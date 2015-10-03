@@ -7,7 +7,6 @@ define( [ "tools/storage" ], function ( storage ) {
             storage.save( "holes", "holesInMap" );
             storage.save( "enemy", "enemy" );
             storage.save( "multiplayer", "multiplayer" );
-            storage.save( "help", "help" );
         },
         load: function () {
             storage.load( "rows", "rows", 2 );
@@ -16,7 +15,6 @@ define( [ "tools/storage" ], function ( storage ) {
             storage.load( "holes", "holesInMap", false );
             storage.load( "enemy", "enemy", 0 );
             storage.load( "multiplayer", "multiplayer", false );
-            storage.load( "help", "help", true );
         }
     };
 } );
