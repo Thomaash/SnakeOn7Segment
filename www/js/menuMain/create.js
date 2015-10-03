@@ -1,6 +1,6 @@
 define( [ "ui/button", "ui/helpButton" ], function ( button, helpButton ) {
     var click = {
-        classic: function () {
+        classic : function () {
             game.vars.gameType = "classic";
             game.vars.walledMap = true;
             game.vars.holesInMap = false;
@@ -8,8 +8,9 @@ define( [ "ui/button", "ui/helpButton" ], function ( button, helpButton ) {
             game.vars.multiplayer = false;
             game.state.start( "Countdown" );
         },
-        single : function () { game.state.start( "MenuPlay" ); },
-        scores : function () { game.state.start( "HighScores" ); }
+        single  : function () { game.state.start( "MenuPlay" ); },
+        scores  : function () { game.state.start( "HighScores" ); },
+        settings: function () { game.state.start( "MenuSettings" ); }
     };
 
     return function () {
@@ -29,5 +30,8 @@ define( [ "ui/button", "ui/helpButton" ], function ( button, helpButton ) {
 
         y += 80;
         button( x, y, "High scores", click.scores, "button" );
+
+        y += 80;
+        button( x, y, "Settings", click.settings, "button" );
     };
 } );
