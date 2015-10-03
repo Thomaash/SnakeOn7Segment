@@ -1,10 +1,12 @@
 define( [], function () {
     return {
-        save: function ( saveName, gameName ) {
+        save    : function ( saveName, gameName ) {
             localStorage.setItem( "So7S_" + saveName, game.vars[ gameName ] );
         },
-        load: function ( saveName, gameName, defaultValue ) {
-            var value = localStorage.getItem( "So7S_" + saveName );
+        load    : function ( saveName, gameName ) {
+            var value        = localStorage.getItem( "So7S_" + saveName ),
+                defaultValue = this.defaults[ saveName ];
+
             if ( value == null ) {
                 game.vars[ gameName ] = defaultValue;
             } else {
@@ -22,6 +24,15 @@ define( [], function () {
                         game.vars[ gameName ] = value;
                 }
             }
+        },
+        defaults: {
+            rows       : 2,
+            speed      : 40,
+            walled     : true,
+            holes      : false,
+            enemy      : 0,
+            multiplayer: false,
+            help       : true
         }
     };
 } );

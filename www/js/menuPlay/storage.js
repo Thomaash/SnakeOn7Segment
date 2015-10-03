@@ -9,12 +9,13 @@ define( [ "tools/storage" ], function ( storage ) {
             storage.save( "multiplayer", "multiplayer" );
         },
         load: function () {
-            storage.load( "rows", "rows", 2 );
-            storage.load( "speed", "speed", 40 );
-            storage.load( "walled", "walledMap", true );
-            storage.load( "holes", "holesInMap", false );
-            storage.load( "enemy", "enemy", 0 );
-            storage.load( "multiplayer", "multiplayer", false );
+            console.log( "menuPlay/storage" );
+            storage.load( "rows", "rows" );
+            storage.load( "speed", "speed" );
+            storage.load( "walled", "walledMap" );
+            storage.load( "holes", "holesInMap" );
+            storage.load( "enemy", "enemy" );
+            storage.load( "multiplayer", "multiplayer" );
         }
     };
 } );

@@ -1,4 +1,4 @@
-define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button, helpButton, storage ) {
+define( [ "ui/button" ], function ( button ) {
     var help,
         click = {
             menu        : function () {
@@ -22,9 +22,6 @@ define( [ "ui/button", "ui/helpButton", "menuPlay/storage" ], function ( button,
 
     return function () {
         var x, y, offset = 324;
-
-        // Load saved values
-        storage.load();
 
         // Menu button
         button( 200, 40, "Menu", click.menu, "button" );
