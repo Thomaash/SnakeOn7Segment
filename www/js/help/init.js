@@ -2,7 +2,8 @@ define( [], function () {
     var pages = {
         classic    : "In Classic you will proceed to higher levels by eating food (making your snake longer)." +
         "\nBut you can also fall to lower level if you failed to make your snake long enough." +
-        "\nHigher levels have bigger maps and faster snakes.",
+        "\n\n- Higher levels have bigger maps and faster snakes." +
+        "\n- Number right of Classic button in main menu indicates your current level.",
         single     : "In Single level you can freely select map size, speed and many other parameters." +
         "\nYou can also play against computer controlled enemies and/or other player.",
         holesInMap : "This setting (if enabled) places holes (= obstacles) into map." +
