@@ -32,9 +32,10 @@ requirejs(
             update      : 0,
             countDown   : 0,
             font        : {
-                name: "Arial", size: 12, fill: "#DDDDDD",
-                get : function () { return this.size + "px " + this.name; },
-                menu: function () { return "24px " + this.name; }
+                name  : "Arial", size: 12, fill: "#DDDDDD",
+                get   : function () { return this.size + "px " + this.name; },
+                menu  : function () { return "24px " + this.name; },
+                footer: function () { return "16px " + this.name; }
             }
         };
 
