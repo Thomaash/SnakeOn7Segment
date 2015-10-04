@@ -84,7 +84,7 @@ define( [ "ui/button", "ui/helpButton" ], function ( button, helpButton ) {
         button( x - 72, y + 80, "−", click.enemySub, "buttonSquare" );
         enemyLbl = button( x, y + 80, game.vars.enemy, null, "buttonSquare" ).label;
         button( x + 72, y + 80, "+", click.enemyAdd, "buttonSquare" );
-        helpButton( x, y - 80, "enemy" );
+        helpButton( x, y - 80, "enemies" );
 
         // Speed
         x = game.world.centerX + offset;
