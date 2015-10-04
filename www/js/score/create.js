@@ -1,6 +1,6 @@
 define(
-    [ "ui/button", "tools/score", "segment/Seven" ],
-    function ( button, score, SevenSegment ) {
+    [ "ui/button", "ui/text", "tools/score", "segment/Seven" ],
+    function ( button, text, score, SevenSegment ) {
         var click = {
             menu: function () { game.state.start( game.vars.gameType === "classic" ? "MenuMain" : "MenuPlay" ); },
             play: function () { game.state.start( "Countdown" ); }
@@ -22,15 +22,13 @@ define(
         }
 
         return function () {
-            var message = "";
-
             // Create menu button
             button( 200, 40, "Menu", click.menu, "button" );
             button( game.world.width - 200, 40, "Play!", click.play, "button" );
 
             switch ( game.vars.gameType ) {
                 case "classic":
-                    var levelChange, color,
+                    var levelChange, color, message,
                         playerScore = game.vars.scores[ 0 ];
 
                     // Set LED color and levelChange
@@ -58,6 +56,9 @@ define(
                     // Show and save score
                     createDisplay( playerScore, color, 1 );
                     score.save( game.vars.gameType, playerScore );
+
+                    // Show message
+                    text( message, game.add.group() );
                     break;
                 case "single":
                     // First player
