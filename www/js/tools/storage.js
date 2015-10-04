@@ -27,7 +27,7 @@ define( [], function () {
         },
         defaults: {
             rows       : 2,
-            speed      : 40,
+            speed      : 6,
             walled     : true,
             holes      : false,
             enemy      : 0,
