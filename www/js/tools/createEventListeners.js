@@ -1,4 +1,4 @@
-define( [ "tools/handleInput" ], function ( handleInput ) {
+define( [ "state/game", "tools/handleInput" ], function ( game, handleInput ) {
     return function () {
         // Touch controls
         document.body.addEventListener( 'touchstart', function ( event ) {

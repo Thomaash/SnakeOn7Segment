@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "state/game" ], function ( game ) {
     return function () {
         // Set score attribute
         var scoreMultiplier = game.vars.gameType === "single"

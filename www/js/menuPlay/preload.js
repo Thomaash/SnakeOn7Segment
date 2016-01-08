@@ -1,4 +1,4 @@
-define( [ "tools/changeSize" ], function ( changeSize ) {
+define( [ "state/game", "tools/changeSize" ], function ( game, changeSize ) {
     return function () {
         changeSize( game );
 

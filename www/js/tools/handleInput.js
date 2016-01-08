@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "state/game" ], function ( game ) {
     return {
         turn : function ( x, y ) {
             if ( game.vars.multiplayer ) {

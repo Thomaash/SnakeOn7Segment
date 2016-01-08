@@ -1,6 +1,6 @@
 define(
-    [ "ui/button", "ui/text", "tools/score", "segment/Seven" ],
-    function ( button, text, score, SevenSegment ) {
+    [ "state/game", "ui/button", "ui/text", "tools/score", "segment/Seven" ],
+    function ( game, button, text, score, SevenSegment ) {
         var click = {
             menu: function () { game.state.start( game.vars.gameType === "classic" ? "MenuMain" : "MenuPlay" ); },
             play: function () { game.state.start( "Countdown" ); }

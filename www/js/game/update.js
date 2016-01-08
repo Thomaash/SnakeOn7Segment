@@ -1,4 +1,4 @@
-define( [ "segment/Seven" ], function ( SevenSegment ) {
+define( [ "state/game", "segment/Seven" ], function ( game, SevenSegment ) {
     return function () {
         if ( --game.vars.update < 0 ) {
             var i;

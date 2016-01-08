@@ -1,4 +1,4 @@
-define( [ "ui/button", "ui/helpButton" ], function ( button, helpButton ) {
+define( [ "state/game", "ui/button", "ui/helpButton" ], function ( game, button, helpButton ) {
     var rowsLbl, enemyLbl, speedLbl, walled, holes, multiplayer,
         click = {
             menu               : function () {

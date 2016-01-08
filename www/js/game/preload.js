@@ -1,4 +1,4 @@
-define( [ "segment/Seven" ], function ( SevenSegment ) {
+define( [ "state/game", "segment/Seven" ], function ( game, SevenSegment ) {
     function quality( cols, rows ) {
         var size    = Math.min(
                 window.innerWidth / cols / SevenSegment.prototype.width,

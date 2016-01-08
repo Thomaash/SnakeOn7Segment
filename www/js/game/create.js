@@ -1,6 +1,6 @@
 define(
-    [ "tools/Map", "tools/changeSize", "segment/Seven", "game/Snake", "game/Enemy" ],
-    function ( Map, changeSize, SevenSegment, Snake, Enemy ) {
+    [ "state/game", "tools/Map", "tools/changeSize", "segment/Seven", "game/Snake", "game/Enemy" ],
+    function ( game, Map, changeSize, SevenSegment, Snake, Enemy ) {
         function deathCallback() {
             game.vars.playersAlive--;
 

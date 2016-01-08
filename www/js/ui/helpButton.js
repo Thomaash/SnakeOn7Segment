@@ -1,4 +1,4 @@
-define( [ "ui/button" ], function ( button ) {
+define( [ "state/game", "ui/button" ], function ( game, button ) {
     return function ( x, y, page ) {
         if ( !game.vars.help ) {
             return;

@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "state/game" ], function ( game ) {
     function Snake( firstLED, deathCallback, canEat, immortal, headColor, bodyColor ) {
         this.leds = [ firstLED ];
         this.canEat = typeof canEat === "boolean" ? canEat : true;

@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "state/game" ], function ( game ) {
     return {
         save    : function ( saveName, gameName ) {
             localStorage.setItem( "So7S_" + saveName, game.vars[ gameName ] );

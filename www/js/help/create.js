@@ -1,4 +1,4 @@
-define( [ "ui/button" ], function ( button ) {
+define( [ "state/game", "ui/button" ], function ( game, button ) {
     function helpText( text ) {
         var textObject = game.add.text(
             40, game.world.height / 2, text,

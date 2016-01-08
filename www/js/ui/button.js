@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "state/game" ], function ( game ) {
     return function ( x, y, text, callback, asset ) {
         // Create button group
         var group = game.add.group(),
@@ -16,8 +16,8 @@ define( [], function () {
 
         // Create button and label
         var button = new Phaser.Button(
-                game, 0, 0, asset, callback, this,
-                states.overFrame, states.outFrame, states.downFrame, states.upFrame
+            game, 0, 0, asset, callback, this,
+            states.overFrame, states.outFrame, states.downFrame, states.upFrame
             ),
             label  = new Phaser.Text( game, 0, 0, text, this.style );
 

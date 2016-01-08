@@ -1,6 +1,6 @@
 define(
-    [ "ui/button", "segment/Seven", "ui/text" ],
-    function ( button, SevenSegment, text ) {
+    [ "state/game", "ui/button", "segment/Seven", "ui/text" ],
+    function ( game, button, SevenSegment, text ) {
         function clickMenu() {
             game.state.start( game.vars.gameType === "classic" ? "MenuMain" : "MenuPlay" );
         }

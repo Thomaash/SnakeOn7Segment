@@ -1,6 +1,6 @@
 define(
-    [ "ui/button", "tools/score", "tools/ordinal" ],
-    function ( button, score, ordinal ) {
+    [ "state/game", "ui/button", "tools/score", "tools/ordinal" ],
+    function ( game, button, score, ordinal ) {
         var click = {
             menu : function () {
                 game.state.start( "MenuMain" );

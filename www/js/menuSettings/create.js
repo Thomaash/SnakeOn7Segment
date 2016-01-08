@@ -1,4 +1,4 @@
-define( [ "ui/button" ], function ( button ) {
+define( [ "state/game", "ui/button" ], function ( game, button ) {
     var help,
         click = {
             menu        : function () {
