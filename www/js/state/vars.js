@@ -1,4 +1,4 @@
-define( [], function () {
+define( [ "tools/Level" ], function ( Level ) {
     return {
         gameType    : "classic",
         walledMap   : true,

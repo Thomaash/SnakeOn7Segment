@@ -1,4 +1,4 @@
-define( [ "state/game" ], function ( game ) {
+define( [ "state/game", "Phaser" ], function ( game, Phaser ) {
     return function ( text, group, x, y, angle, wordWrapWidth ) {
         var textObject = new Phaser.Text(
             game,

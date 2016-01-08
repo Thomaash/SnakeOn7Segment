@@ -1,4 +1,4 @@
-define( [ "state/game" ], function ( game ) {
+define( [ "state/game", "Phaser" ], function ( game, Phaser ) {
     return function ( x, y, text, callback, asset ) {
         // Create button group
         var group = game.add.group(),

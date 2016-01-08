@@ -1,4 +1,4 @@
-define( [ "state/game", "game/Snake" ], function ( game, Snake ) {
+define( [ "state/game", "game/Snake", "Phaser" ], function ( game, Snake, Phaser ) {
     function Enemy( map ) {
         var led = null;
         while ( led == null || led.getState() !== led.states.empty ) {

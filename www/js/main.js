@@ -1,12 +1,19 @@
+requirejs.config( {
+    baseUrl: "js",
+    paths  : {
+        Phaser: "/lib/phaser"
+    }
+} );
+
 requirejs(
     [ "state/game",
         "init/main", "menuMain/main", "menuPlay/main", "highScores/main", "menuSettings/main", "help/main",
         "countdown/main", "game/main", "score/main",
-        "tools/Level", "tools/createEventListeners", "tools/storage" ],
+        "tools/createEventListeners", "tools/storage" ],
     function ( game,
                stateInit, stateMenuMain, stateMenuPlay, stateHighScores, stateMenuSettings, stateHelp,
                stateCountdown, stateGame, stateScore,
-               Level, createEventListeners, storage ) {
+               createEventListeners, storage ) {
         // Controls
         createEventListeners();
 

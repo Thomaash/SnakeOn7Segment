@@ -1,4 +1,4 @@
-define( [ "state/game", "tools/changeSize" ], function ( game, changeSize ) {
+define( [ "state/game", "tools/changeSize", "Phaser" ], function ( game, changeSize, Phaser ) {
     return function () {
         changeSize( game );
         game.vars.quality = game.vars.multiplayer ? 80 : 160; // Use half width LEDs for 2 scores

@@ -1,4 +1,4 @@
-define( [ "state/game" ], function ( game ) {
+define( [ "state/game", "Phaser" ], function ( game, Phaser ) {
     return function () {
         // Scaling
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL; // Scale the game to fit the screen (keep ratio)

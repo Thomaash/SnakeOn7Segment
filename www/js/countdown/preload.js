@@ -1,4 +1,4 @@
-define( [ "state/game", "tools/changeSize" ], function ( game, changeSize ) {
+define( [ "state/game", "tools/changeSize", "Phaser" ], function ( game, changeSize, Phaser ) {
     return function () {
         changeSize( game );
         game.vars.quality = 160;
