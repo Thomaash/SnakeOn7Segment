@@ -5,10 +5,14 @@ define(
             game.state.start( game.vars.gameType === "classic" ? "MenuMain" : "MenuPlay" );
         }
 
-        function createArrow( group, x, y, a ) {
-            var leftArrow = group.create( x, y, "Arrows", 0 );
-            leftArrow.anchor.setTo( 0.5, 0.5 );
-            leftArrow.angle = a;
+        function showSprite( group, x, y, a, spriteName, frameName ) {
+            var sprite = group.create( x, y, spriteName, 0 );
+            sprite.anchor.setTo( 0.5, 0.5 );
+            sprite.angle = a;
+
+            if ( frameName != null ) {
+                sprite.frameName = frameName;
+            }
         }
 
         return function () {
@@ -24,15 +28,32 @@ define(
             button( 200, 40, "Menu", clickMenu, "button" );
 
 
-            // Help UI arrows
+            // Help UI
+            var help = "Tap left half of the screen to turn left, right to turn right.";
             if ( game.vars.multiplayer ) {
-                createArrow( ui, game.world.width * 0.25, game.world.height * 0.2, 90 );
-                createArrow( ui, game.world.width * 0.25, game.world.height * 0.8, 270 );
-                createArrow( ui, game.world.width * 0.75, game.world.height * 0.2, 90 );
-                createArrow( ui, game.world.width * 0.75, game.world.height * 0.8, 270 );
+                // Arrows
+                showSprite( ui, game.world.width * 0.25, game.world.height * 0.2, 90, "Arrows" );
+                showSprite( ui, game.world.width * 0.25, game.world.height * 0.8, 270, "Arrows" );
+                showSprite( ui, game.world.width * 0.75, game.world.height * 0.2, 90, "Arrows" );
+                showSprite( ui, game.world.width * 0.75, game.world.height * 0.8, 270, "Arrows" );
+
+                // LEDs
+                showSprite( ui, game.world.width * 0.75, game.world.height * 0.5, 0, "LEDs", "vgreenYellow" );
+                showSprite( ui, game.world.width * 0.25, game.world.height * 0.5, 0, "LEDs", "vgreen" );
+
+                // Texts
+                text( help, ui, game.world.width * 0.70, game.world.height * 0.5, -90, game.world.height );
+                text( help, ui, game.world.width * 0.30, game.world.height * 0.5, 90, game.world.height );
             } else {
-                createArrow( ui, game.world.width * 0.2, game.world.height * 0.5, 0 );
-                createArrow( ui, game.world.width * 0.8, game.world.height * 0.5, 180 );
+                // Arrows
+                showSprite( ui, game.world.width * 0.2, game.world.height * 0.5, 0, "Arrows" );
+                showSprite( ui, game.world.width * 0.8, game.world.height * 0.5, 180, "Arrows" );
+
+                // LED
+                showSprite( ui, game.world.width * 0.5, game.world.height * 0.2, 0, "LEDs", "hgreen" );
+
+                // Text
+                text( help, ui );
             }
 
 
@@ -52,16 +73,6 @@ define(
 
             // Add lines to group
             lines.add( graphics );
-
-
-            // Help UI text
-            var help = "Tap left half of the screen to turn left, right to turn right.";
-            if ( game.vars.multiplayer ) {
-                text( help, ui, game.world.width * 0.70, game.world.height * 0.5, -90, game.world.height );
-                text( help, ui, game.world.width * 0.30, game.world.height * 0.5, 90, game.world.height );
-            } else {
-                text( help, ui );
-            }
 
 
             // Create segment
