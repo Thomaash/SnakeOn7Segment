@@ -15,7 +15,6 @@ define( [], function () {
         this.change = function ( int, decimal ) {
             this.level += int * this.precision + decimal;
             this.limit();
-            this.save();
         };
         this.floor = function () {
             return Math.floor( this.level / this.precision );
@@ -27,8 +26,8 @@ define( [], function () {
                 this.level = this.max;
             }
         };
-        this.load = function () {
-            var item = parseInt( window.localStorage.getItem( "So7S_level" ) );
+        this.load = function ( value ) {
+            var item = parseInt( value );
             if ( isNaN( item ) ) {
                 this.level = this.default;
             } else {
@@ -36,11 +35,5 @@ define( [], function () {
                 this.limit();
             }
         };
-        this.save = function () {
-            window.localStorage.setItem( "So7S_level", this.level );
-        };
-
-        // Load saved value or use default
-        this.load();
     };
 } );

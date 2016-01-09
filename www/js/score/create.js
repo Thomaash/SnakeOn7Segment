@@ -1,6 +1,6 @@
 define(
-    [ "state/game", "ui/button", "ui/text", "tools/score", "segment/Seven" ],
-    function ( game, button, text, score, SevenSegment ) {
+    [ "state/game", "ui/button", "ui/text", "tools/score", "segment/Seven", "tools/storage" ],
+    function ( game, button, text, score, SevenSegment, storage ) {
         var click = {
             menu: function () { game.state.start( game.vars.gameType === "classic" ? "MenuMain" : "MenuPlay" ); },
             play: function () { game.state.start( "Countdown" ); }
@@ -52,6 +52,7 @@ define(
 
                     // Save level
                     game.vars.level.add( 0, levelChange );
+                    storage.save( "level", game.vars.level.level );
 
                     // Show and save score
                     createDisplay( playerScore, color, 1 );
