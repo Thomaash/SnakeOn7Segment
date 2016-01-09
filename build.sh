@@ -2,4 +2,4 @@
 
 cd "$(dirname "$0")"
 
-r.js -o baseUrl=www/js name=main out=www/script.js
+r.js -o 'buildConfig.js'
