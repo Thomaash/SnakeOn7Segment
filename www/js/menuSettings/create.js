@@ -39,7 +39,7 @@ define( [ "state/game", "ui/button", "tools/storage" ], function ( game, button,
         help = button( x + 196, y, "", click.help, "buttonSquare" );
         click.helpSetColor();
 
-        // Reset
+        // Reset settings
         x = game.world.centerX + offset;
         button( x, y, "Reset settings", click.resetSettings, "button" );
     };

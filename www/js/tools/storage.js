@@ -27,9 +27,15 @@ define( [ "state/game" ], function ( game ) {
             }
         },
         clearSettings: function () {
-            for ( var key in this.defaults ) {
+            var key;
+
+            for ( key in localStorage ) {
+                if ( localStorage.hasOwnProperty( key ) && /^So7S_/.exec( key ) ) {
+                    localStorage.removeItem( key );
+                }
+            }
+            for ( key in this.defaults ) {
                 if ( this.defaults.hasOwnProperty( key ) ) {
-                    localStorage.removeItem( this.prefix( key ) );
                     game.vars[ key ] = this.defaults[ key ];
                 }
             }
