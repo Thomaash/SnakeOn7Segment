@@ -1,10 +1,10 @@
 define( [ "tools/storage" ], function ( storage ) {
     return {
         save: function () {
-            storage.save( "help", "help" );
+            storage.save( "help" );
         },
         load: function () {
-            storage.load( "help", "help" );
+            storage.load( "help" );
         }
     };
 } );

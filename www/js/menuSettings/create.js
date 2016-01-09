@@ -1,15 +1,19 @@
-define( [ "state/game", "ui/button" ], function ( game, button ) {
+define( [ "state/game", "ui/button", "tools/storage" ], function ( game, button, storage ) {
     var help,
         click = {
-            menu        : function () {
+            menu         : function () {
                 game.state.start( "MenuMain" );
             },
-            help        : function () {
+            help         : function () {
                 game.vars.help = !game.vars.help;
                 click.helpSetColor();
             },
-            helpSetColor: function () { click.setColor( game.vars.help, help ); },
-            setColor    : function ( condition, button ) {
+            resetSettings: function () {
+                storage.clearSettings();
+                game.state.start( "MenuSettings" );
+            },
+            helpSetColor : function () { click.setColor( game.vars.help, help ); },
+            setColor     : function ( condition, button ) {
                 if ( condition ) {
                     button.button.setFrames( 0, 0, 0, 0 );
                     button.label.setText( "✔" );
@@ -34,5 +38,9 @@ define( [ "state/game", "ui/button" ], function ( game, button ) {
         button( x, y, "Show help", click.help, "button" );
         help = button( x + 196, y, "", click.help, "buttonSquare" );
         click.helpSetColor();
+
+        // Reset
+        x = game.world.centerX + offset;
+        button( x, y, "Reset settings", click.resetSettings, "button" );
     };
 } );

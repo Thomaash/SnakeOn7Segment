@@ -1,35 +1,44 @@
 define( [ "state/game" ], function ( game ) {
     return {
-        save    : function ( saveName, gameName ) {
-            localStorage.setItem( "So7S_" + saveName, game.vars[ gameName ] );
+        prefix       : function ( name ) {return "So7S_" + name;},
+        save         : function ( name ) {
+            localStorage.setItem( this.prefix( name ), game.vars[ name ] );
         },
-        load    : function ( saveName, gameName ) {
-            var value        = localStorage.getItem( "So7S_" + saveName ),
-                defaultValue = this.defaults[ saveName ];
+        load         : function ( name ) {
+            var value        = localStorage.getItem( this.prefix( name ) ),
+                defaultValue = this.defaults[ name ];
 
             if ( value == null ) {
-                game.vars[ gameName ] = defaultValue;
+                game.vars[ name ] = defaultValue;
             } else {
                 switch ( typeof defaultValue ) {
                     case "boolean":
-                        game.vars[ gameName ] = value === "true";
+                        game.vars[ name ] = value === "true";
                         break;
                     case "number":
-                        game.vars[ gameName ] = value;
-                        if ( isNaN( game.vars[ gameName ] ) ) {
-                            game.vars[ gameName ] = defaultValue;
+                        game.vars[ name ] = value;
+                        if ( isNaN( game.vars[ name ] ) ) {
+                            game.vars[ name ] = defaultValue;
                         }
                         break;
                     default:
-                        game.vars[ gameName ] = value;
+                        game.vars[ name ] = value;
                 }
             }
         },
-        defaults: {
+        clearSettings: function () {
+            for ( var key in this.defaults ) {
+                if ( this.defaults.hasOwnProperty( key ) ) {
+                    localStorage.removeItem( this.prefix( key ) );
+                    game.vars[ key ] = this.defaults[ key ];
+                }
+            }
+        },
+        defaults     : {
             rows       : 2,
             speed      : 6,
-            walled     : true,
-            holes      : false,
+            walledMap  : true,
+            holesInMap : false,
             enemy      : 0,
             multiplayer: false,
             help       : true

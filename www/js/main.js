@@ -29,7 +29,7 @@ requirejs(
         game.state.add( "Score", stateScore );
 
         // Load settings
-        storage.load( "help", "help" );
+        storage.load( "help" );
 
         // Start game
         game.state.start( "Init" );
