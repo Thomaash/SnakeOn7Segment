@@ -1,4 +1,5 @@
 define( [ "state/game", "ui/button" ], function ( game, button ) {
+    // Show text in middle of the screen (left horizontaly)
     function helpText( text ) {
         var textObject = game.add.text(
             40, game.world.height / 2, text,
@@ -11,6 +12,7 @@ define( [ "state/game", "ui/button" ], function ( game, button ) {
         return textObject;
     }
 
+    // Shof footer in bottom right corner of the screen
     function footer( text ) {
         var textObject = game.add.text(
             game.world.width, game.world.height, text,
@@ -22,14 +24,14 @@ define( [ "state/game", "ui/button" ], function ( game, button ) {
     }
 
     var click = {
-        menu: function () {
+        close: function () {
             game.state.start( game.state.states[ "Help" ].back );
         }
     };
 
     return function () {
         // Close button
-        button( 200, 40, "Close", click.menu, "button" );
+        button( 200, 40, "Close", click.close, "button" );
 
         // Help text
         helpText( this.game.state.states[ "Help" ].text );

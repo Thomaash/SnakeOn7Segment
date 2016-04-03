@@ -16,7 +16,7 @@ define( [], function () {
             }
 
             if ( scores != null ) {
-                // Add score on the right position and move everything behind it
+                // Add score on the right position and move everything behind it. The lowest score is stored in score var
                 for ( var i = 0; i < scores.length; i++ ) {
                     if ( scores[ i ] < score ) {
                         var tmp = score;
