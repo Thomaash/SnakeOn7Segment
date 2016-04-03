@@ -23,7 +23,7 @@ define( [ "state/game", "ui/button" ], function ( game, button ) {
 
     var click = {
         menu: function () {
-            game.state.start( this.game.state.states[ "Help" ].back );
+            game.state.start( game.state.states[ "Help" ].back );
         }
     };
 
