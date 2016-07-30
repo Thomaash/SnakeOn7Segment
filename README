@@ -1,10 +1,12 @@
 Classic snake game on 7 Segment display.
 
+You can play at: http://tvg.stranky.cc/games/so7s/
+
 Touch controls:
-    Tap to skip countdown or continue from score screen
-    Tap left to turn left and right to turn right
+	Tap to skip countdown or continue from score screen
+	Tap left to turn left and right to turn right
 
 Keyboard controls:
-    Space, Enter or Escape to end game, skip countdown or continue from score screen
-    First snake:  arrows
-    Second snake: WASD
+	Space, Enter or Escape to end game, skip countdown or continue from score screen
+	First snake:  arrows
+	Second snake: WASD
